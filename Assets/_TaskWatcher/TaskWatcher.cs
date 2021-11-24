@@ -43,7 +43,10 @@ public class TaskWatcher : MonoBehaviour
         }
         else
         {
-            Debug.Log(string.Format(@"Found {0} Task objects", _tasks.Length));
+            foreach (Task t in _tasks)
+            {
+                Debug.Log(string.Format("Task Found: {0}", t.TaskName));
+            }
         }
     }
 }

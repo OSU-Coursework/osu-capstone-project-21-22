@@ -11,10 +11,12 @@ using UnityEngine;
 [AddComponentMenu("Task Management/Task")]
 public class Task : MonoBehaviour
 {
+    public string TaskName = "";
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Task Started");
+        Debug.Log(string.Format("Task Started: {0}", TaskName));
     }
 
     // Update is called once per frame

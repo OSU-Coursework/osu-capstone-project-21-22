@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58da4d9102353344aaed336e5c523635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TaskName: Move Thing From A to B
 --- !u!4 &394734188
 Transform:
   m_ObjectHideFlags: 0
@@ -478,6 +479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58da4d9102353344aaed336e5c523635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TaskName: Wall Lift
 --- !u!4 &693980134
 Transform:
   m_ObjectHideFlags: 0
@@ -875,6 +877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58da4d9102353344aaed336e5c523635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TaskName: Push Button
 --- !u!4 &2089177329
 Transform:
   m_ObjectHideFlags: 0
