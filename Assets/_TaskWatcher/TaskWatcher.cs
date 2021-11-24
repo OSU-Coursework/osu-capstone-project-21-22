@@ -18,12 +18,32 @@ public class TaskWatcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Task Watcher Started");
+        Initialization();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    /// <summary>
+    /// Sets up properties and collects Tasks in current scene.
+    /// </summary>
+    public virtual void Initialization()
+    {
+        Debug.Log("Task Watcher Started");
+
+        // collect tasks in current scene
+        _tasks = Resources.FindObjectsOfTypeAll<Task>();
+
+        if (_tasks.Length == 0)
+        {
+            Debug.Log("No Task objects found in scene");
+        }
+        else
+        {
+            Debug.Log(string.Format(@"Found {0} Task objects", _tasks.Length));
+        }
     }
 }
