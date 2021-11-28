@@ -6,7 +6,10 @@ using UnityEngine;
 /// This base class serves as the template for creating
 /// a game object that can be watched by the TaskWatcher.
 /// It provides extendable functions for defining when
-/// a task is completed.
+/// and how a task is completed.
+/// 
+/// Derived classes should always override Update() and
+/// call base.Update() to ensure events are raised.
 /// </summary>
 [AddComponentMenu("Task Management/Task")]
 public class Task : MonoBehaviour
