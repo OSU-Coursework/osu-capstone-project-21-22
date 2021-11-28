@@ -14,10 +14,11 @@ using UnityEngine.UI;
 [AddComponentMenu("Task Management/Task Watcher")]  // make this script selectable from within editor
 public class TaskWatcher : MonoBehaviour
 {
+    protected Task[] _tasks;  // gathered automatically by task watcher on scene initialization
+    private int _taskCount;
+
     public Text _canvasText;
     protected string _canvasTaskList = "";
-
-    protected Task[] _tasks;  // gathered automatically by task watcher on scene initialization
 
     // Start is called before the first frame update
     void Start()
@@ -25,10 +26,9 @@ public class TaskWatcher : MonoBehaviour
         Initialization();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        TaskEventManager.onTaskComplete += UpdateTasks;
     }
 
     /// <summary>
@@ -40,6 +40,7 @@ public class TaskWatcher : MonoBehaviour
 
         // collect tasks in current scene
         _tasks = Resources.FindObjectsOfTypeAll<Task>();
+        _taskCount = _tasks.Length;
 
         if (_tasks.Length == 0)
         {
@@ -49,20 +50,48 @@ public class TaskWatcher : MonoBehaviour
         {
             foreach (Task t in _tasks)
             {
-                Debug.Log(string.Format("Task Found: {0}", t.TaskName));
+                Debug.Log(string.Format("Task Found: {0}", t.ToString()));
 
-                _canvasTaskList += t.TaskName + "\n";
+                _canvasTaskList += t.ToString() + "\n";
             }
-        
-            // set hud text
-            if (_canvasText != null)
+
+            SetHudText();
+        }
+    }
+
+    private void UpdateTasks()
+    {
+        _taskCount = 0;
+        _canvasTaskList = "";
+
+        foreach (Task t in _tasks)
+        {
+            if (!t.TaskComplete)
             {
-                _canvasText.text = _canvasTaskList;
+                // update new count
+                _taskCount++;
+
+                // update hud string
+                _canvasTaskList += t.ToString() + "\n";
             }
-            else
-            {
-                Debug.LogError("ERROR :: no text object assigned to task watcher for hud display!");
-            }
+        }
+
+        SetHudText();
+    }
+
+    private void SetHudText()
+    {
+        // set hud text
+        if (_canvasText != null)
+        {
+            string hudText = string.Format("Tasks Remaining: {0}\n\n", _taskCount);
+            hudText += _canvasTaskList;
+
+            _canvasText.text = hudText;
+        }
+        else
+        {
+            Debug.LogError("ERROR :: no text object assigned to task watcher for hud display!");
         }
     }
 }

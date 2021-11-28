@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 394734188}
   - component: {fileID: 394734187}
   m_Layer: 0
-  m_Name: TestTask02
+  m_Name: TaskKeyG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,10 +273,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 394734186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58da4d9102353344aaed336e5c523635, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b0db2ef9f03bd749b6dc5a707f4fc09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _taskName: Wall Lift
+  _taskName: 
+  _inputKey: 103
 --- !u!4 &394734188
 Transform:
   m_ObjectHideFlags: 0
@@ -541,7 +542,7 @@ GameObject:
   - component: {fileID: 693980134}
   - component: {fileID: 693980133}
   m_Layer: 0
-  m_Name: TestTask01
+  m_Name: TaskKeyB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -556,10 +557,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 693980132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58da4d9102353344aaed336e5c523635, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b0db2ef9f03bd749b6dc5a707f4fc09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _taskName: Move Thing From A to B
+  _taskName: 
+  _inputKey: 98
 --- !u!4 &693980134
 Transform:
   m_ObjectHideFlags: 0
@@ -943,7 +945,7 @@ GameObject:
   - component: {fileID: 2089177329}
   - component: {fileID: 2089177328}
   m_Layer: 0
-  m_Name: TestTask03
+  m_Name: TaskKeyP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -958,10 +960,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2089177327}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58da4d9102353344aaed336e5c523635, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b0db2ef9f03bd749b6dc5a707f4fc09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _taskName: Push Button
+  _taskName: 
+  _inputKey: 112
 --- !u!4 &2089177329
 Transform:
   m_ObjectHideFlags: 0
