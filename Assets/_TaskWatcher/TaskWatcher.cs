@@ -36,7 +36,7 @@ public class TaskWatcher : MonoBehaviour
     /// </summary>
     public virtual void Initialization()
     {
-        Debug.Log("Task Watcher Started");
+        //Debug.Log("Task Watcher Started");
 
         // collect tasks in current scene
         _tasks = Resources.FindObjectsOfTypeAll<Task>();
@@ -44,13 +44,13 @@ public class TaskWatcher : MonoBehaviour
 
         if (_tasks.Length == 0)
         {
-            Debug.Log("No Task objects found in scene");
+            Debug.LogError("No Task objects found in scene");
         }
         else
         {
             foreach (Task t in _tasks)
             {
-                Debug.Log(string.Format("Task Found: {0}", t.ToString()));
+                //Debug.Log(string.Format("Task Found: {0}", t.ToString()));
 
                 _canvasTaskList += t.ToString() + "\n";
             }

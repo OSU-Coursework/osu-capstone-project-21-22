@@ -20,7 +20,7 @@ public class Task : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        Debug.Log(string.Format("Task Started: {0}", _taskName));
+        //Debug.Log(string.Format("Task Started: {0}", _taskName));
     }
 
     // Update is called once per frame
