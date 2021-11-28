@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [SelectionBase]  // when selecting objects in the scene editor, this should force
                  //   unity to select the object this script is attached to instead
@@ -13,7 +14,10 @@ using UnityEngine;
 [AddComponentMenu("Task Management/Task Watcher")]  // make this script selectable from within editor
 public class TaskWatcher : MonoBehaviour
 {
-    protected Task[] _tasks;
+    public Text _canvasText;
+    protected string _canvasTaskList = "";
+
+    protected Task[] _tasks;  // gathered automatically by task watcher on scene initialization
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +50,18 @@ public class TaskWatcher : MonoBehaviour
             foreach (Task t in _tasks)
             {
                 Debug.Log(string.Format("Task Found: {0}", t.TaskName));
+
+                _canvasTaskList += t.TaskName + "\n";
+            }
+        
+            // set hud text
+            if (_canvasText != null)
+            {
+                _canvasText.text = _canvasTaskList;
+            }
+            else
+            {
+                Debug.LogError("ERROR :: no text object assigned to task watcher for hud display!");
             }
         }
     }
