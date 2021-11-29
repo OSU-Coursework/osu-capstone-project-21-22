@@ -16,6 +16,10 @@ public class Task : MonoBehaviour
 {
     public string _taskName = "";
 
+    [Header("Ordered Tasks")]
+    public uint _taskNumber;
+    public uint TaskNumber { get { return _taskNumber; } }
+
     protected bool _taskComplete = false;
     public bool TaskComplete { get { return _taskComplete; } }
     private bool _taskCompleteEventHandled = false;

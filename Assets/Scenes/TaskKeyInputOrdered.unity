@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb073e3745323e4890ac57988eaf1e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _executeTasksInOrder: 0
+  _executeTasksInOrder: 1
   _canvasText: {fileID: 24037106}
 --- !u!1 &394734186
 GameObject:
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _taskName: 
-  _taskNumber: 0
+  _taskNumber: 2
   _inputKey: 103
 --- !u!4 &394734188
 Transform:
@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _taskName: 
-  _taskNumber: 0
+  _taskNumber: 1
   _inputKey: 98
 --- !u!4 &693980134
 Transform:
@@ -967,7 +967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _taskName: 
-  _taskNumber: 0
+  _taskNumber: 3
   _inputKey: 112
 --- !u!4 &2089177329
 Transform:

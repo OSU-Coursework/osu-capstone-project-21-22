@@ -10,6 +10,7 @@ using UnityEngine;
 [AddComponentMenu("Task Management/Keyboard Input")]
 public class TaskKeyInputTest : Task
 {
+    [Header("Keyboard Input")]
     public char _inputKey;
 
     private string _taskDescription;

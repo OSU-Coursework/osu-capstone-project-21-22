@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,9 @@ public class TaskWatcher : MonoBehaviour
 {
     protected Task[] _tasks;  // gathered automatically by task watcher on scene initialization
     private int _taskCount;
+
+    public bool _executeTasksInOrder = false;
+    private int _activeTaskIndex = 0;
 
     public Text _canvasText;
     protected string _canvasTaskList = "";
@@ -48,11 +52,28 @@ public class TaskWatcher : MonoBehaviour
         }
         else
         {
+            // sort tasks by number
+            _tasks = _tasks.OrderBy(t => t.TaskNumber).ToArray();
+
             foreach (Task t in _tasks)
             {
                 //Debug.Log(string.Format("Task Found: {0}", t.ToString()));
 
-                _canvasTaskList += t.ToString() + "\n";
+                if (_executeTasksInOrder)
+                {
+                    if (t == _tasks[_activeTaskIndex])
+                    {
+                        _canvasTaskList += t.ToString() + "\n";
+                    }
+                    else  // disable all task objects but the active one
+                    {
+                        t.gameObject.SetActive(false);
+                    }
+                }
+                else  // tasks are not ordered, display them all
+                {
+                    _canvasTaskList += t.ToString() + "\n";
+                }
             }
 
             SetHudText();
@@ -64,6 +85,15 @@ public class TaskWatcher : MonoBehaviour
         _taskCount = 0;
         _canvasTaskList = "";
 
+        if (_executeTasksInOrder && _tasks[_activeTaskIndex].TaskComplete)
+        {
+            // increment task tracking index when task is completed
+            _activeTaskIndex = Mathf.Min(_activeTaskIndex + 1, _tasks.Length - 1);
+
+            // activate new task
+           _tasks[_activeTaskIndex].gameObject.SetActive(true);
+        }
+
         foreach (Task t in _tasks)
         {
             if (!t.TaskComplete)
@@ -72,7 +102,17 @@ public class TaskWatcher : MonoBehaviour
                 _taskCount++;
 
                 // update hud string
-                _canvasTaskList += t.ToString() + "\n";
+                if (_executeTasksInOrder)
+                {
+                    if (t == _tasks[_activeTaskIndex])
+                    {
+                        _canvasTaskList += t.ToString() + "\n";
+                    }
+                }
+                else  // tasks are not ordered, display them all
+                {
+                    _canvasTaskList += t.ToString() + "\n";
+                }
             }
         }
 
