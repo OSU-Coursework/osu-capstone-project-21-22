@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 /// <summary>
 /// Basic task created for testing.
 /// Task is completed when specified key is pressed.
 /// Key can be set through inspector.
 /// </summary>
-[AddComponentMenu("Task Management/Keyboard Input")]
-public class TaskKeyInputTest : Task
+[AddComponentMenu("Task Management/Interactable Pick Up")]
+public class TaskInteractablePickUp : Task
 {
-    [Header("Keyboard Input")]
-    public char _inputKey;
+    public GameObject _interactableGameObject;
+    private Interactable _interactable;
 
     private string _taskDescription;
 
@@ -21,7 +22,10 @@ public class TaskKeyInputTest : Task
     // Object.Instantiate is initialized.
     void Awake()
     {
-        _taskDescription = string.Format("Press '{0}' key to complete", _inputKey);
+        // get handle for steamvr interactable script
+        _interactable = _interactableGameObject.GetComponent<Interactable>();
+
+        _taskDescription = string.Format("Pick up {0}", _interactableGameObject.name);
     }
 
     // Update is called once per frame
@@ -31,7 +35,8 @@ public class TaskKeyInputTest : Task
         base.Update();
 
         // update task
-        if (Input.GetKey((KeyCode)_inputKey))
+        if (_interactable != null && 
+            _interactable.attachedToHand != null)
         {
             _taskComplete = true;
         }
