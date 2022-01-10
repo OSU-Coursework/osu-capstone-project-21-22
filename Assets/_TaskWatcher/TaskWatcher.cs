@@ -43,7 +43,7 @@ public class TaskWatcher : MonoBehaviour
         //Debug.Log("Task Watcher Started");
 
         // collect tasks in current scene
-        _tasks = Resources.FindObjectsOfTypeAll<Task>();
+        _tasks = FindObjectsOfType<Task>();
         _taskCount = _tasks.Length;
 
         if (_tasks.Length == 0)
