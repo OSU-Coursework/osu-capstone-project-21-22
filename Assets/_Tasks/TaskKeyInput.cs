@@ -8,7 +8,7 @@ using UnityEngine;
 /// Key can be set through inspector.
 /// </summary>
 [AddComponentMenu("Task Management/Keyboard Input")]
-public class TaskKeyInputTest : Task
+public class TaskKeyInput : Task
 {
     [Header("Keyboard Input")]
     public char _inputKey;
