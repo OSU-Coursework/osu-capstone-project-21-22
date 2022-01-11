@@ -14,7 +14,6 @@ public class PauseMenu : MonoBehaviour
     public Text VisualQual;
     public SteamVR_Input_Sources leftHand;
     private GameObject player;
-    private GameObject hand;
 
     // Find the player object
     private void Awake()
@@ -23,7 +22,6 @@ public class PauseMenu : MonoBehaviour
         if (GameObject.Find("Player") != null)
         {
             player = GameObject.Find("Player").transform.GetChild(0).GetChild(3).gameObject;
-            hand = GameObject.Find("Player").transform.GetChild(0).GetChild(1).gameObject;
         }
 
         // Get all pause menu objects
@@ -109,7 +107,12 @@ public class PauseMenu : MonoBehaviour
     {
         DeleteMenu();
         GameObject.Destroy(GameObject.Find("Player"));
+        foreach (GameObject obj in Object.FindObjectsOfType<GameObject>())
+        {
+            if (obj != this) GameObject.Destroy(obj);
+        }
         SceneManager.LoadScene("MainMenu");
+        GameObject.Destroy(this);
     }
 
     void Update()
@@ -130,14 +133,11 @@ public class PauseMenu : MonoBehaviour
             if (GameObject.Find("PlayerVR") != null)
             {
                 player = GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(3).gameObject;
-                hand = GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(1).gameObject;
             }
             // Otherwise, look for a spawned player instance
             else if (GameObject.Find("PlayerVR(Clone)") != null)
             {
                 player = GameObject.Find("PlayerVR(Clone)").transform.GetChild(0).GetChild(3).gameObject;
-                hand = GameObject.Find("PlayerVR(Clone)").transform.GetChild(0).GetChild(1).gameObject;
-                Debug.Log("Player is: ", player);
             }
         }
     }
