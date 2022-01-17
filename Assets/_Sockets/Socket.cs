@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Socket : MonoBehaviour
 {
-    private Socketable _socketableItem;
+    private bool _holdingSocketable;
+    public bool HoldingSocketable
+    {
+        get { return _holdingSocketable; }
+        set { _holdingSocketable = value; }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
