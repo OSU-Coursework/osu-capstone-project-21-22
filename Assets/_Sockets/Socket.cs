@@ -11,6 +11,9 @@ public class Socket : MonoBehaviour
         set { _holdingSocketable = value; }
     }
 
+    [SerializeField] private Transform _attachTransform;
+    public Transform AttachTransform { get { return _attachTransform; } }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Socketable>())

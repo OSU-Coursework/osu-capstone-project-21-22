@@ -33,7 +33,16 @@ public class Socketable : MonoBehaviour
         if (_attachedToSocket)
         {
             _rigidbody.useGravity = false;
-            transform.position = _visibleSocket.transform.position;
+
+            if (_visibleSocket.AttachTransform != null)
+            {
+                transform.position = _visibleSocket.AttachTransform.position; 
+                transform.rotation = _visibleSocket.AttachTransform.rotation;
+            }
+            else
+            {
+                transform.position = _visibleSocket.transform.position;
+            }
         }
 
     }
