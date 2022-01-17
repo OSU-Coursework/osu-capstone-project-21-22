@@ -11,6 +11,8 @@ public class Socket : MonoBehaviour
         set { _holdingSocketable = value; }
     }
 
+    [SerializeField] private GameObject _allowedObjectType;
+    public GameObject AllowedObjectType { get { return _allowedObjectType; } }
     [SerializeField] private Transform _attachTransform;
     public Transform AttachTransform { get { return _attachTransform; } }
 

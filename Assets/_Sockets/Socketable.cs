@@ -9,7 +9,7 @@ public class Socketable : MonoBehaviour
     private Rigidbody _rigidbody;
     private Socket _visibleSocket;
 
-    [SerializeField] private bool _inSocketZone;
+    private bool _inSocketZone;
     private bool _attachedToSocket;
 
     void Awake()
@@ -52,8 +52,12 @@ public class Socketable : MonoBehaviour
         // if inside socket zone while being let go, attach to socket
         if (_inSocketZone && !_visibleSocket.HoldingSocketable)
         {
-            _attachedToSocket = true;
-            _visibleSocket.HoldingSocketable = true;
+            if (_visibleSocket.AllowedObjectType == null ||
+                _visibleSocket.AllowedObjectType == this.gameObject)
+            {
+                _attachedToSocket = true;
+                _visibleSocket.HoldingSocketable = true;
+            }
         }
     }
 
