@@ -1054,6 +1054,11 @@ PrefabInstance:
       propertyPath: _canvasText
       value: 
       objectReference: {fileID: 246869003}
+    - target: {fileID: 7528362159264748159, guid: 4f782268a95bd6b45ad87742b6d2f43d,
+        type: 3}
+      propertyPath: _executeTasksInOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f782268a95bd6b45ad87742b6d2f43d, type: 3}
 --- !u!1 &1347003621
