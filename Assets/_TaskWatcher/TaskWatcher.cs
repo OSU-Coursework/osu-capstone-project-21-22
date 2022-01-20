@@ -52,8 +52,8 @@ public class TaskWatcher : MonoBehaviour
         }
         else
         {
-            // sort tasks by number
-            _tasks = _tasks.OrderBy(t => t.TaskNumber).ToArray();
+            // sort tasks by their order in the scene hierarchy
+            _tasks = _tasks.OrderBy(t => t.transform.GetSiblingIndex()).ToArray();
 
             foreach (Task t in _tasks)
             {
