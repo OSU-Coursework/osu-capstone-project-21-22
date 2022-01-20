@@ -18,12 +18,12 @@ public class Socketable : MonoBehaviour
     private Rigidbody _rigidbody;
     // a socket is visible when an object is inside of its
     //   collision boundary.
-    private Socket _visibleSocket;
+    public Socket _visibleSocket;
 
     // these flags are useful for managing the state of a
     //   socketable object.
     private bool _inSocketZone;
-    private bool _attachedToSocket;
+    public bool _attachedToSocket;
 
     void Awake()
     {
@@ -66,13 +66,17 @@ public class Socketable : MonoBehaviour
     private void AttachToSocket(Hand hand)
     {
         // if inside socket zone while being let go from hand, attach to socket.
-        if (_inSocketZone && !_visibleSocket.HoldingSocketable)
+        if (!_attachedToSocket && _inSocketZone && !_visibleSocket.HoldingSocketable)
         {
             if (_visibleSocket.AllowedObjectType == null ||
                 _visibleSocket.AllowedObjectType == this.gameObject)
             {
                 _attachedToSocket = true;
                 _visibleSocket.HoldingSocketable = true;
+                if (_visibleSocket._vanishOnUse)
+                {
+                    _visibleSocket.GetComponent<MeshRenderer>().enabled = false;
+                }
             }
         }
     }
@@ -85,6 +89,7 @@ public class Socketable : MonoBehaviour
             _attachedToSocket = false;
             _visibleSocket.HoldingSocketable = false;
             _rigidbody.useGravity = true;
+            _visibleSocket.GetComponent<MeshRenderer>().enabled = true;
         }
 
     }
