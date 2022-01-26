@@ -22,6 +22,7 @@ public class TaskWatcher : MonoBehaviour
     private int _activeTaskIndex = 0;
 
     public Text _canvasText;
+    public Text _canvasText2;
     protected string _canvasTaskList = "";
 
     // Start is called before the first frame update
@@ -128,10 +129,32 @@ public class TaskWatcher : MonoBehaviour
             hudText += _canvasTaskList;
 
             _canvasText.text = hudText;
+            _canvasText2.text = hudText;
         }
-        else
+    }
+
+    private void Update()
+    {
+        if (_canvasText == null)
         {
-            Debug.LogError("ERROR :: no text object assigned to task watcher for hud display!");
+            Debug.Log("waiting...");
+            if (GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(1).childCount >= 6)
+            {
+                var hand = GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(1).GetChild(5).GetChild(0).GetChild(2);
+                _canvasText = hand.transform.GetChild(0).GetChild(0).GetComponent<Text>();
+                SetHudText();
+                Debug.Log("here!");
+            }
+        }
+        if (_canvasText2 == null)
+        {
+            if (GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(2).childCount >= 6)
+            {
+                var hand = GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(2).GetChild(5).GetChild(0).GetChild(2);
+                _canvasText = hand.transform.GetChild(0).GetChild(0).GetComponent<Text>();
+                SetHudText();
+                Debug.Log("here!");
+            }
         }
     }
 }

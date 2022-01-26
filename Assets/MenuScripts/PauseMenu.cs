@@ -141,4 +141,9 @@ public class PauseMenu : MonoBehaviour
             }
         }
     }
+
+    public void ChangeDomHand(bool rightHandDom)
+    {
+        OptionState.RightHandDominant = rightHandDom;
+    }
 }

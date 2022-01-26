@@ -175,4 +175,9 @@ public class MainMenuCanvas : MonoBehaviour
 
         VisualQual.text = "Visual Quality:\n" + levelname;
     }
+
+    public void ChangeDomHand(bool rightHandDom)
+    {
+        OptionState.RightHandDominant = rightHandDom;
+    }
 }
