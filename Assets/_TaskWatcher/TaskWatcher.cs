@@ -137,23 +137,22 @@ public class TaskWatcher : MonoBehaviour
     {
         if (_canvasText == null)
         {
-            Debug.Log("waiting...");
             if (GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(1).childCount >= 6)
             {
-                var hand = GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(1).GetChild(5).GetChild(0).GetChild(2);
-                _canvasText = hand.transform.GetChild(0).GetChild(0).GetComponent<Text>();
+                //var hand = GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(1).GetChild(5).GetChild(0).GetChild(2);
+                //_canvasText = hand.transform.GetChild(0).GetChild(0).GetComponent<Text>();
+                _canvasText = GameObject.FindGameObjectsWithTag("HUDobject")[0].transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
                 SetHudText();
-                Debug.Log("here!");
             }
         }
         if (_canvasText2 == null)
         {
             if (GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(2).childCount >= 6)
             {
-                var hand = GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(2).GetChild(5).GetChild(0).GetChild(2);
-                _canvasText = hand.transform.GetChild(0).GetChild(0).GetComponent<Text>();
+                //var hand = GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(2).GetChild(5).GetChild(0).GetChild(2);
+                //_canvasText = hand.transform.GetChild(0).GetChild(0).GetComponent<Text>();
+                _canvasText2 = GameObject.FindGameObjectsWithTag("HUDobject")[1].transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
                 SetHudText();
-                Debug.Log("here!");
             }
         }
     }

@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 896208928718925310}
   m_Layer: 0
   m_Name: HUDobject
-  m_TagString: Untagged
+  m_TagString: HUDobject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -541,7 +541,12 @@ PrefabInstance:
     - target: {fileID: 3819940000733193839, guid: 9a9c17618ae3cdb40a5310ad139d3634,
         type: 3}
       propertyPath: m_Text
-      value: 'Welcome to '
+      value: 'This is your Task Manager
+
+        Use this to keep track of your tasks.
+
+        Completing
+        all of them finishes the scenario.'
       objectReference: {fileID: 0}
     - target: {fileID: 3819940000733193839, guid: 9a9c17618ae3cdb40a5310ad139d3634,
         type: 3}

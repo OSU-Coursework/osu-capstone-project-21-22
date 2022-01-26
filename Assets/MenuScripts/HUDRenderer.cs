@@ -55,6 +55,11 @@ public class HUDRenderer : MonoBehaviour
             visible = false;
             EnableHUD(false);
         }
+
+        if (!visible)
+        {
+            EnableHUD(false);
+        }
     }
 
     private void EnableHUD(bool mode)
