@@ -25,6 +25,9 @@ public class Socketable : MonoBehaviour
     private bool _inSocketZone;
     public bool _attachedToSocket;
 
+    // This flag allows an object to be socketed
+    public bool _canBeSocketed = true;
+
     void Awake()
     {
         // get handle for steamvr interactable script
@@ -41,6 +44,21 @@ public class Socketable : MonoBehaviour
 
     void Update()
     {
+        // reset the rigidbody
+        if (_rigidbody == null && GetComponent<Rigidbody>() != null)
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+        }
+
+        // reset the interactable
+        if (_interactable == null && GetComponent<Interactable>() != null)
+        {
+            _interactable = GetComponent<Interactable>();
+            // register socket functions with interactable events
+            _interactable.onAttachedToHand += DetachFromSocket;
+            _interactable.onDetachedFromHand += AttachToSocket;
+        }
+
         // if attached to socket, disable gravity to
         //   'hover' object and keep at socket position
         if (_attachedToSocket)
@@ -96,9 +114,12 @@ public class Socketable : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (!_canBeSocketed) return;
         // don't run unless colliding with a socket.
         if (other.GetComponent<Socket>())
         {
+            // do NOT attach to a sawable socket
+            if (other.gameObject.name == "SawBoardSocket" || other.gameObject.name.Contains("SawBoardSocket (")) return;
             _inSocketZone = true;
             _visibleSocket = other.GetComponent<Socket>();
         }
@@ -106,9 +127,12 @@ public class Socketable : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (!_canBeSocketed) return;
         // don't run unless colliding with a socket.
         if (other.GetComponent<Socket>())
         {
+            // do NOT attach to a sawable socket
+            if (other.gameObject.name == "SawBoardSocket" || other.gameObject.name.Contains("SawBoardSocket (")) return;
             _inSocketZone = false;
             _visibleSocket = null;
         }

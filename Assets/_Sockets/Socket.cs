@@ -23,6 +23,8 @@ public class Socket : MonoBehaviour
 
     // vanish the ghost when the socket is in use
     public bool _vanishOnUse = false;
+    // only accept sawable boards
+    public bool _sawBoardSocket = false;
 
     // optional game object to define what this socket can hold.
     [SerializeField] private GameObject _allowedObjectType;
