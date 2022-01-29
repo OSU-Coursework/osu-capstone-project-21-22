@@ -194,7 +194,7 @@ PrefabInstance:
     - target: {fileID: 6542905613209680174, guid: 6e6689d7c5738474896652142550a945,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e6689d7c5738474896652142550a945, type: 3}
@@ -269,6 +269,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerFlyCam
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475652679253274494, guid: f03639b33635c54439e2aaaef18e6672,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f03639b33635c54439e2aaaef18e6672, type: 3}
