@@ -122,13 +122,16 @@ public class TaskWatcher : MonoBehaviour
 
     private void SetHudText()
     {
-        // set hud text
+        string hudText = string.Format("Tasks Remaining: {0}\n\n", _taskCount);
+        hudText += _canvasTaskList;
+        
         if (_canvasText != null)
         {
-            string hudText = string.Format("Tasks Remaining: {0}\n\n", _taskCount);
-            hudText += _canvasTaskList;
-
             _canvasText.text = hudText;
+        }
+        
+        if (_canvasText2 != null)
+        {
             _canvasText2.text = hudText;
         }
     }
