@@ -117,7 +117,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (SteamVR_Input.GetStateDown("X", leftHand))
+        if (SteamVR_Input.GetStateDown("X", leftHand) || Input.GetKeyDown((KeyCode)'p'))
         {
             SpawnMenu();
         }
