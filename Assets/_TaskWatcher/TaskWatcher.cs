@@ -21,19 +21,36 @@ public class TaskWatcher : MonoBehaviour
     public bool _executeTasksInOrder = false;
     private int _activeTaskIndex = 0;
 
-    public Text _canvasText;
-    public Text _canvasText2;
-    protected string _canvasTaskList = "";
+    private GameObject[] activeHudTextTaggedObjects;  // taskwatcher periodically checks for text objects with a
+                                       //   specific tag and stores them in this list.
+    private string _canvasTaskList = "";
 
     // Start is called before the first frame update
     void Start()
     {
         Initialization();
+
+        // continue to update hud objects once a second as long as this object exists
+        InvokeRepeating("CollectAndUpdateHudTextObjects", 0.0f, 1.0f);
     }
 
     private void OnEnable()
     {
         TaskEventManager.onTaskComplete += UpdateTasks;
+    }
+
+    private void CollectAndUpdateHudTextObjects()
+    {
+        string hudTag = "HudText";
+        activeHudTextTaggedObjects = GameObject.FindGameObjectsWithTag(hudTag);
+        if (activeHudTextTaggedObjects.Length > 0)
+        {
+            SetHudText();
+        }
+        else
+        {
+            Debug.Log("No objects with tag :: " + hudTag + " :: found");
+        }
     }
 
     /// <summary>
@@ -76,8 +93,6 @@ public class TaskWatcher : MonoBehaviour
                     _canvasTaskList += t.ToString() + "\n";
                 }
             }
-
-            SetHudText();
         }
     }
 
@@ -124,38 +139,23 @@ public class TaskWatcher : MonoBehaviour
     {
         string hudText = string.Format("Tasks Remaining: {0}\n\n", _taskCount);
         hudText += _canvasTaskList;
-        
-        if (_canvasText != null)
-        {
-            _canvasText.text = hudText;
-        }
-        
-        if (_canvasText2 != null)
-        {
-            _canvasText2.text = hudText;
-        }
-    }
 
-    private void Update()
-    {
-        if (_canvasText == null)
+        foreach (GameObject obj in activeHudTextTaggedObjects)
         {
-            if (GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(1).childCount >= 6)
+            Text canvas = obj.GetComponent<Text>();
+            if (canvas != null)
             {
-                //var hand = GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(1).GetChild(5).GetChild(0).GetChild(2);
-                //_canvasText = hand.transform.GetChild(0).GetChild(0).GetComponent<Text>();
-                _canvasText = GameObject.FindGameObjectsWithTag("HUDobject")[0].transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
-                SetHudText();
+                canvas.text = hudText;
             }
-        }
-        if (_canvasText2 == null)
-        {
-            if (GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(2).childCount >= 6)
+            else
             {
-                //var hand = GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(2).GetChild(5).GetChild(0).GetChild(2);
-                //_canvasText = hand.transform.GetChild(0).GetChild(0).GetComponent<Text>();
-                _canvasText2 = GameObject.FindGameObjectsWithTag("HUDobject")[1].transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
-                SetHudText();
+                Debug.LogError("ERROR :: " +
+                                GetType().ToString() +
+                                " :: GameObject with name " +
+                                obj +
+
+                                " has no attached <Text> object!");
+
             }
         }
     }

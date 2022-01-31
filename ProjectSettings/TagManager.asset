@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - HUDobject
+  - projectile
+  - FxTemporaire
+  - HudText
   layers:
   - Default
   - TransparentFX
