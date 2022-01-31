@@ -1318,6 +1318,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4000012125075130}
     m_Modifications:
+    - target: {fileID: 804685710668944115, guid: 5b78653c8f26c5e4b9b51a157ab32f83,
+        type: 3}
+      propertyPath: m_TagString
+      value: HudText
+      objectReference: {fileID: 0}
     - target: {fileID: 4181915928044382620, guid: 5b78653c8f26c5e4b9b51a157ab32f83,
         type: 3}
       propertyPath: m_Name
@@ -1331,7 +1336,7 @@ PrefabInstance:
     - target: {fileID: 5388789896746527327, guid: 5b78653c8f26c5e4b9b51a157ab32f83,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0509
+      value: 0.075
       objectReference: {fileID: 0}
     - target: {fileID: 5388789896746527327, guid: 5b78653c8f26c5e4b9b51a157ab32f83,
         type: 3}
