@@ -300,7 +300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6388da3184589f41b062028d8f80ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
+  startActive: 1
+  active: 0
   _attachedToSocket: 0
   max_length: 5
   board1Len: 2

@@ -6,13 +6,21 @@ using Valve.VR.InteractionSystem;
 public class SawableBoard : MonoBehaviour
 {
     // whether it can be used to saw
+
+    [Header("DO NOT CHANGE")]
     public bool active = false;
+
+    [Header("Activate after initializing")]
+    public bool startActive = false;
 
     // whether it is being sawed
     private bool _inUse = false;
 
     // whether this is colliding with a saw
     private bool hittingSaw = false;
+
+    // whether this was just freed
+    private bool justFreed = true;
 
     // we can use the onAttachedToHand/onDetachedFromHand
     //   events on an interactable to trigger socket attach
@@ -25,6 +33,7 @@ public class SawableBoard : MonoBehaviour
     //   collision boundary.
     private Socket _visibleSocket;
 
+    // a reference to _visibleSocket once it is freed
     private Socket _lastSocket;
 
     // these flags are useful for managing the state of a
@@ -58,10 +67,7 @@ public class SawableBoard : MonoBehaviour
 
     void Awake()
     {
-        if (active)
-        {
-            InitBoards();
-        }
+        InitBoards();
     }
 
     public void InitBoards()
@@ -109,18 +115,9 @@ public class SawableBoard : MonoBehaviour
 
         float ratio = (float)board1Len / (float)max_length;
         float size = (float)ratio * max_length;
+        float board2Len = max_length - board1Len;
 
-        // Change the length of board1
-        Board1.transform.localScale = new Vector3(Board1.transform.localScale.x, size, Board1.transform.localScale.z);
-
-        // Change the length of board2
-        Board2.transform.localScale = new Vector3(Board2.transform.localScale.x, max_length - size, Board2.transform.localScale.z);
-
-        // Move the boards into their positions
-        Board1.transform.localPosition = new Vector3((-0.153f * Board1.transform.localScale.y), 0f, 0f);
-        Board1.transform.localEulerAngles = new Vector3(-90f, 0f, 90f);
-        Board2.transform.localPosition = new Vector3((0.153f * Board2.transform.localScale.y), 0f, 0f);
-        Board2.transform.localEulerAngles = new Vector3(-90f, 0f, 90f);
+        UpdateBoardPos();
 
         // Set the size of the box
         Component[] boxes = GetComponents(typeof(BoxCollider));
@@ -134,38 +131,44 @@ public class SawableBoard : MonoBehaviour
                 box.center = new Vector3(0.5f-ratio, 0f, 0f);
             }
         }
+
+        // change the active status
+        active = startActive;
     }
 
     void Update()
     {
+        // initialize if somehow not ready
         if (active && !_doneInit)
         {
             InitBoards();
         }
+        // if this is not active, disable the hologram
         if (!active)
         {
             transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
             return;
         }
+        // otherwise, enable the hologram
         if (_inUse && !transform.GetChild(1).GetComponent<MeshRenderer>().enabled)
         {
             transform.GetChild(1).GetComponent<MeshRenderer>().enabled = true;
         }
+        // if this is not in use, disable the hologram
         else if (!_inUse && transform.GetChild(1).GetComponent<MeshRenderer>().enabled)
         {
             transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
         }
         // Move the boards into their positions
-        Board1.transform.localPosition = new Vector3((-0.153f * Board1.transform.localScale.y), 0f, 0f);
-        Board1.transform.localEulerAngles = new Vector3(-90f, 0f, 90f);
-        Board2.transform.localPosition = new Vector3((0.153f * Board2.transform.localScale.y), 0f, 0f);
-        Board2.transform.localEulerAngles = new Vector3(-90f, 0f, 90f);
+        UpdateBoardPos();
         // if attached to socket, disable gravity to
         //   'hover' object and keep at socket position
         if (_visibleSocket != null)
         {
             _lastSocket = _visibleSocket;
         }
+
+        // if this is attached, regulate position!
         if (_attachedToSocket)
         {
             _inUse = true;
@@ -188,6 +191,8 @@ public class SawableBoard : MonoBehaviour
 
     private void AttachToSocket(Hand hand)
     {
+        Debug.Log(gameObject.name);
+        if (!active) return;
         // if inside socket zone while being let go from hand, attach to socket.
         if (_inSocketZone && !_visibleSocket.HoldingSocketable)
         {
@@ -201,32 +206,30 @@ public class SawableBoard : MonoBehaviour
 
     private void DetachFromSocket(Hand hand)
     {
+        if (!active) return;
         // if attached to socket while being grabbed by hand, release from socket.
         if (_attachedToSocket)
         {
+            _visibleSocket.gameObject.GetComponent<MeshRenderer>().enabled = true;
             _attachedToSocket = false;
             _visibleSocket.HoldingSocketable = false;
             _rigidbody.useGravity = true;
-            _visibleSocket.gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
 
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (!active) return;
+        if (!active || justFreed) return;
         // don't run unless colliding with a socket.
         if (other.gameObject.name == "SawBoardSocket" || other.gameObject.name.Contains("SawBoardSocket ("))
         {
-            // Remove any velocity
-            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-
             // set other values
             _inUse = true;
             _inSocketZone = true;
             _visibleSocket = other.GetComponent<Socket>();
             _lastSocket = _visibleSocket;
+            Debug.Log("Im in a socket!");
             // if this is a sawblade, break instantly
             if (hittingSaw && _attachedToSocket)
             {
@@ -244,13 +247,17 @@ public class SawableBoard : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (!active) return;
+
+        // unset the one-way flag
+        justFreed = false;
+
         // don't run unless colliding with a socket.
         if (other.gameObject.name == "SawBoardSocket" || other.gameObject.name.Contains("SawBoardSocket ("))
         {
             _inUse = false;
             _inSocketZone = false;
             _visibleSocket = null;
-            _rigidbody.useGravity = true;
+            if (gameObject.GetComponent<Rigidbody>() != null) _rigidbody.useGravity = true;
         }
         if (other.gameObject.name == "SawHitbox")
         {
@@ -275,7 +282,8 @@ public class SawableBoard : MonoBehaviour
     {
         // Free the socket
         _attachedToSocket = false;
-        _lastSocket.HoldingSocketable = false;
+        _visibleSocket.gameObject.GetComponent<MeshRenderer>().enabled = true;
+        _visibleSocket.HoldingSocketable = false;
         _rigidbody.useGravity = true;
         _inUse = false;
         _inSocketZone = false;
@@ -300,12 +308,63 @@ public class SawableBoard : MonoBehaviour
 
         // make board1 usable
         if (Board1.GetComponent<Socketable>() != null) Board1.GetComponent<Socketable>()._canBeSocketed = true;
-        if (Board1.GetComponent<SawableBoard>() != null) Board1.GetComponent<SawableBoard>().active = true;
+        if (Board1.GetComponent<SawableBoard>() != null) Board1.GetComponent<SawableBoard>().ReInitComponents();
         // make board2 usable
         if (Board2.GetComponent<Socketable>() != null) Board2.GetComponent<Socketable>()._canBeSocketed = true;
-        if (Board2.GetComponent<SawableBoard>() != null) Board2.GetComponent<SawableBoard>().active = true;
+        if (Board2.GetComponent<SawableBoard>() != null) Board2.GetComponent<SawableBoard>().ReInitComponents();
 
         // Destroy this object
         GameObject.Destroy(gameObject);
+    }
+
+    void UpdateBoardPos()
+    {
+        float ratio = (float)board1Len / (float)max_length;
+        float size = (float)ratio * max_length;
+        float board2Len = max_length - board1Len;
+
+        // if board 1 is sawable
+        if (Board1.GetComponent<SawableBoard>() != null)
+        {
+            Board1.transform.localScale = new Vector3(Board1.transform.localScale.x, 1f, Board1.transform.localScale.z);
+            Board1.transform.localPosition = new Vector3((0.153f * board1Len), 0f, 0f);
+            Board1.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+        }
+        else
+        {
+            Board1.transform.localScale = new Vector3(Board1.transform.localScale.x, size, Board1.transform.localScale.z);
+            Board1.transform.localPosition = new Vector3((0.153f * Board1.transform.localScale.y), 0f, 0f);
+            Board1.transform.localEulerAngles = new Vector3(-90f, 0f, 90f);
+        }
+        // if board 2 is sawable
+        if (Board2.GetComponent<SawableBoard>() != null)
+        {
+            Board2.transform.localScale = new Vector3(Board2.transform.localScale.x, 1f, Board2.transform.localScale.z);
+            Board2.transform.localPosition = new Vector3((-0.153f * board2Len), 0f, 0f);
+            Board2.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+        }
+        else
+        {
+            Board2.transform.localScale = new Vector3(Board2.transform.localScale.x, board2Len, Board2.transform.localScale.z);
+            Board2.transform.localPosition = new Vector3((-0.153f * board2Len), 0f, 0f);
+            Board2.transform.localEulerAngles = new Vector3(-90f, 0f, 90f);
+        }
+    }
+
+    public void ReInitComponents()
+    {
+        // make this active
+        active = true;
+
+        // get handle for steamvr interactable script
+        _interactable = GetComponent<Interactable>();
+
+        // register socket functions with interactable events
+        _interactable.onAttachedToHand += DetachFromSocket;
+        _interactable.onDetachedFromHand += AttachToSocket;
+
+        // get handle for attached rigidbody to disable
+        //   gravity when needed
+        _rigidbody = GetComponent<Rigidbody>();
     }
 }

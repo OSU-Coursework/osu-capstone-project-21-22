@@ -102,11 +102,14 @@ public class HammerableNail : MonoBehaviour
         }
         // If the parent is socketable, and it is NOT in a socket
         // we should return
-        if (_lastSocket.transform.parent.GetComponent<Socketable>() != null)
+        if (_lastSocket != null)
         {
-            if (!_lastSocket.transform.parent.GetComponent<Socketable>()._attachedToSocket)
+            if (_lastSocket.transform.parent.GetComponent<Socketable>() != null)
             {
-                return;
+                if (!_lastSocket.transform.parent.GetComponent<Socketable>()._attachedToSocket)
+                {
+                    return;
+                }
             }
         }
         // If the collision speed is not fast enough, stop
