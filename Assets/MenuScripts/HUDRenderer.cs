@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Valve.VR.InteractionSystem;
 
 public class HUDRenderer : MonoBehaviour
 {
@@ -59,6 +61,19 @@ public class HUDRenderer : MonoBehaviour
         if (!visible)
         {
             EnableHUD(false);
+        }
+
+        // make the UI invisible
+        if (transform.parent.parent.parent.gameObject.GetComponent<Hand>().currentAttachedObject != null)
+        {
+            transform.GetChild(0).GetChild(0).GetComponent<Text>().enabled = false;
+            EnableHUD(false);
+        }
+        // make the UI visible
+        else
+        {
+            transform.GetChild(0).GetChild(0).GetComponent<Text>().enabled = true;
+            EnableHUD(true);
         }
     }
 
