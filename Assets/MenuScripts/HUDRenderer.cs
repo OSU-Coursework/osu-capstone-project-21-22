@@ -72,8 +72,11 @@ public class HUDRenderer : MonoBehaviour
         // make the UI visible
         else
         {
-            transform.GetChild(0).GetChild(0).GetComponent<Text>().enabled = true;
-            EnableHUD(true);
+            if ((OptionState.RightHandDominant && !isRightHand) || (!OptionState.RightHandDominant && isRightHand))
+            {
+                transform.GetChild(0).GetChild(0).GetComponent<Text>().enabled = true;
+                EnableHUD(true);
+            }
         }
     }
 

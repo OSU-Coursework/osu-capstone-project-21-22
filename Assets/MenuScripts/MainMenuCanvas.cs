@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
 using Valve.VR.InteractionSystem;
+using Valve.VR.Extras;
 
 public class MainMenuCanvas : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class MainMenuCanvas : MonoBehaviour
         else if (level == 4) levelname = "Very High";
         else if (level == 5) levelname = "Ultra";
         VisualQual.text = "Visual Quality:\n" + levelname;
+        EnablePointers();
     }
 
     // Clear the layout children
@@ -75,10 +77,12 @@ public class MainMenuCanvas : MonoBehaviour
             string final_name = form_name.Substring(form_name.IndexOf('\\') + 1);
             card_obj.transform.GetChild(0).gameObject.GetComponent<Text>().text = final_name.Remove(final_name.IndexOf('.'), 6);
 
+            // a short name for scene reference
+            string v_final_name = card_obj.transform.GetChild(0).gameObject.GetComponent<Text>().text;
             // Add this method to the play button
             GameObject play_button = card_obj.transform.GetChild(2).gameObject;
-            play_button.GetComponent<Button>().onClick.AddListener(delegate { openScene(); });
-            play_button.GetComponent<UIElement>().onHandClick.AddListener(delegate { openScene(); });
+            play_button.GetComponent<Button>().onClick.AddListener(delegate { openScene(v_final_name); });
+            play_button.GetComponent<UIElement>().onHandClick.AddListener(delegate { openScene(v_final_name); });
 
             // Load the image, if one exists
             if (image.Length != 0)
@@ -119,10 +123,8 @@ public class MainMenuCanvas : MonoBehaviour
     }
 
     // Open the scene of the button that was pressed
-    public void openScene()
+    public void openScene(string scene_name)
     {
-        var button = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
-        string scene_name = button.transform.parent.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>().text;
         GameObject.Destroy(GameObject.Find("Player"));
         SceneManager.LoadScene(scene_name);
     }
@@ -179,5 +181,15 @@ public class MainMenuCanvas : MonoBehaviour
     public void ChangeDomHand(bool rightHandDom)
     {
         OptionState.RightHandDominant = rightHandDom;
+    }
+
+    private void EnablePointers()
+    {
+        // enable the dominant laser pointer
+        GameObject[] activeHudTextTaggedObjects = GameObject.FindGameObjectsWithTag("HudText");
+        foreach (GameObject obj in activeHudTextTaggedObjects)
+        {
+            obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>().enabled = true;
+        }
     }
 }
