@@ -59,6 +59,7 @@ public class PauseMenu : MonoBehaviour
     {
         MainMenu.SetActive(false);
         OptionMenu.SetActive(true);
+        UpdateHandText();
     }
 
     public void ChangeQuality(bool increase)
@@ -151,8 +152,25 @@ public class PauseMenu : MonoBehaviour
     public void ChangeDomHand(bool rightHandDom)
     {
         OptionState.RightHandDominant = rightHandDom;
+        UpdateHandText();
     }
 
+    // Change how the text is displayed
+    private void UpdateHandText()
+    {
+        // if right had is dominant, show it
+        if (OptionState.RightHandDominant)
+        {
+            OptionMenu.transform.GetChild(1).GetChild(0).GetChild(2).GetComponent<Text>().text = "[  ] Left";
+            OptionMenu.transform.GetChild(1).GetChild(2).GetChild(2).GetComponent<Text>().text = "[X] Right";
+        }
+        // otherwise, show that the left hand is dominant
+        else
+        {
+            OptionMenu.transform.GetChild(1).GetChild(0).GetChild(2).GetComponent<Text>().text = "[X] Left";
+            OptionMenu.transform.GetChild(1).GetChild(2).GetChild(2).GetComponent<Text>().text = "[  ] Right";
+        }
+    }
 
     private void EnablePointers(bool enable)
     {

@@ -138,6 +138,7 @@ public class MainMenuCanvas : MonoBehaviour
     // Open the Scenes menu
     public void OpenScenesMenu()
     {
+        page_no = 0;
         MainMenu.SetActive(false);
         OptionMenu.SetActive(false);
         SceneMenu.SetActive(true);
@@ -160,6 +161,7 @@ public class MainMenuCanvas : MonoBehaviour
         SceneMenu.SetActive(false);
         MainMenu.SetActive(false);
         OptionMenu.SetActive(true);
+        UpdateHandText();
     }
 
     public void ChangeQuality(bool increase)
@@ -181,6 +183,7 @@ public class MainMenuCanvas : MonoBehaviour
     public void ChangeDomHand(bool rightHandDom)
     {
         OptionState.RightHandDominant = rightHandDom;
+        UpdateHandText();
     }
 
     private void EnablePointers()
@@ -192,4 +195,22 @@ public class MainMenuCanvas : MonoBehaviour
             obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>().enabled = true;
         }
     }
+
+    // Change how the text is displayed
+    private void UpdateHandText()
+    {
+        // if right had is dominant, show it
+        if (OptionState.RightHandDominant)
+        {
+            OptionMenu.transform.GetChild(1).GetChild(0).GetChild(2).GetComponent<Text>().text = "[  ] Left";
+            OptionMenu.transform.GetChild(1).GetChild(2).GetChild(2).GetComponent<Text>().text = "[X] Right";
+        }
+        // otherwise, show that the left hand is dominant
+        else
+        {
+            OptionMenu.transform.GetChild(1).GetChild(0).GetChild(2).GetComponent<Text>().text = "[X] Left";
+            OptionMenu.transform.GetChild(1).GetChild(2).GetChild(2).GetComponent<Text>().text = "[  ] Right";
+        }
+    }
+
 }
