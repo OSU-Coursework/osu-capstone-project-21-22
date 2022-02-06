@@ -8,13 +8,13 @@ public class JoistHangerMaster : MonoBehaviour
 
     public int AutoCompleteCount;
 
-    private int CurrentHangerIndex = 0;
-    private int HangerCount;
+    //private int CurrentHangerIndex = 0;
+    //private int HangerCount;
 
     private bool IsEnabled = false;
     private bool IsComplete = false;
 
-    private GameObject CurrentJoist;
+    //private GameObject CurrentJoist;
 
     // Start is called before the first frame update
     void Start()
