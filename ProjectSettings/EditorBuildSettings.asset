@@ -4,7 +4,28 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Resources/MainMenu.unity
+    guid: 3bdf3d4d0ffd1ea448c0b81d26d968c9
+  - enabled: 1
+    path: Assets/Scenes/Resources/Factory/Factory.unity
+    guid: 5e66231f54715bf4baa79d9cb1f2a299
+  - enabled: 1
+    path: Assets/Scenes/Resources/ColorSockets/TaskColoredSockets.unity
+    guid: d5aff628525906a4b80e2098291c8b92
+  - enabled: 1
+    path: Assets/Scenes/Resources/OrderedTasks/TaskInteractablesPickUpOrdered.unity
+    guid: 42908ebe0bc207343bb79fd155cd4d50
+  - enabled: 1
+    path: Assets/Scenes/Resources/Simple_Sockets/SimpleSockets.unity
+    guid: de9e0ef93009a3a499969b804c6487a7
+  - enabled: 1
+    path: Assets/Scenes/Resources/SimpleInteractables/SimpleVRInteractables.unity
+    guid: 40bca985cfdf8894fb9e378af286cffa
+  - enabled: 1
+    path: Assets/Scenes/Resources/UnorderedTasks/TaskInteractablesPickUpUnordered.unity
+    guid: 9f6024661a660ef4da47c30cb93f31a6
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}
