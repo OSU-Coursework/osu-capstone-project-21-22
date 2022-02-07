@@ -106,7 +106,7 @@ public class HammerableNail : MonoBehaviour
         {
             if (_lastSocket.transform.parent.GetComponent<Socketable>() != null)
             {
-                if (!_lastSocket.transform.parent.GetComponent<Socketable>()._attachedToSocket)
+                if (!_lastSocket.transform.parent.GetComponent<Socketable>().AttachedToSocket)
                 {
                     return;
                 }

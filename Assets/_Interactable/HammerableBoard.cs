@@ -65,12 +65,12 @@ public class HammerableBoard : MonoBehaviour
     {
         if (gameObject.GetComponent<Socketable>() != null)
         {
-            if (gameObject.GetComponent<Socketable>()._attachedToSocket)
+            if (gameObject.GetComponent<Socketable>().AttachedToSocket)
             {
                 // If the socket is not specific to this object, do not delete!
-                if (gameObject.GetComponent<Socketable>()._visibleSocket != null)
+                if (gameObject.GetComponent<Socketable>().VisibleSocket != null)
                 {
-                    if (gameObject.GetComponent<Socketable>()._visibleSocket.AllowedObjectType == gameObject)
+                    if (gameObject.GetComponent<Socketable>().VisibleSocket.AllowedObjectType == gameObject)
                     {
                         SetActive(true);
                         // Make this board not interactable anymore

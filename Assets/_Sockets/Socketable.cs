@@ -18,12 +18,18 @@ public class Socketable : MonoBehaviour
     private Rigidbody _rigidbody;
     // a socket is visible when an object is inside of its
     //   collision boundary.
-    public Socket _visibleSocket;
+    private Socket _visibleSocket;
+    public Socket VisibleSocket { get { return _visibleSocket; } }
 
     // these flags are useful for managing the state of a
     //   socketable object.
     private bool _inSocketZone;
-    public bool _attachedToSocket;
+    private bool _attachedToSocket;
+    public bool AttachedToSocket { get { return _attachedSocket; } }
+    // by keeping a reference to the socket this item is
+    //   attached to, we can use its values directly
+    //   and not leak into other visible sockets
+    private Socket _attachedSocket;
 
     // This flag allows an object to be socketed
     public bool _canBeSocketed = true;
@@ -65,20 +71,19 @@ public class Socketable : MonoBehaviour
         {
             _rigidbody.useGravity = false;
 
-            if (_visibleSocket.AttachTransform != null)
+            if (_attachedSocket.AttachTransform != null)
             {
                 // this socket has a specialized transform, so make the
                 //   object take its position and rotation
-                transform.position = _visibleSocket.AttachTransform.position; 
-                transform.rotation = _visibleSocket.AttachTransform.rotation;
+                transform.position = _attachedSocket.AttachTransform.position; 
+                transform.rotation = _attachedSocket.AttachTransform.rotation;
             }
             else
             {
                 // just use the socket position
-                transform.position = _visibleSocket.transform.position;
+                transform.position = _attachedSocket.transform.position;
             }
         }
-
     }
 
     private void AttachToSocket(Hand hand)
@@ -90,10 +95,11 @@ public class Socketable : MonoBehaviour
                 _visibleSocket.AllowedObjectType == this.gameObject)
             {
                 _attachedToSocket = true;
-                _visibleSocket.HoldingSocketable = true;
-                if (_visibleSocket._vanishOnUse)
+                _attachedSocket = _visibleSocket;
+                _attachedSocket.HoldingSocketable = true;
+                if (_attachedSocket._vanishOnUse)
                 {
-                    _visibleSocket.GetComponent<MeshRenderer>().enabled = false;
+                    _attachedSocket.GetComponent<MeshRenderer>().enabled = false;
                 }
             }
         }
@@ -105,9 +111,10 @@ public class Socketable : MonoBehaviour
         if (_attachedToSocket)
         {
             _attachedToSocket = false;
-            _visibleSocket.HoldingSocketable = false;
+            _attachedSocket.HoldingSocketable = false;
             _rigidbody.useGravity = true;
-            _visibleSocket.GetComponent<MeshRenderer>().enabled = true;
+            _attachedSocket.GetComponent<MeshRenderer>().enabled = true;
+            _attachedSocket = null;
         }
 
     }
