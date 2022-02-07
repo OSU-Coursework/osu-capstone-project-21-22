@@ -18,12 +18,38 @@ public class TaskWatcher : MonoBehaviour
     protected Task[] _tasks;  // gathered automatically by task watcher on scene initialization
     private int _taskCount;
 
+    // the menu to open on complete. Set at Awake()
+    private CompleteMenu menu;
+
+    // the number of tasks that there were at the start
+    private int _startingCount;
+    public int TaskCount
+    {
+        get { return _startingCount; }
+    }
+
     public bool _executeTasksInOrder = false;
     private int _activeTaskIndex = 0;
 
     private GameObject[] activeHudTextTaggedObjects;  // taskwatcher periodically checks for text objects with a
                                        //   specific tag and stores them in this list.
     private string _canvasTaskList = "";
+
+    // Time struct
+    [System.Serializable]
+    public struct TimeVal
+    {
+        public int minutes;
+        public int seconds;
+    }
+
+    [Header("Whether to rank times")]
+    public bool useTimes = false;
+
+    [Header("Max Times")]
+    public TimeVal greatTime;
+    public TimeVal goodTime;
+    public TimeVal averageTime;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +58,11 @@ public class TaskWatcher : MonoBehaviour
 
         // continue to update hud objects once a second as long as this object exists
         InvokeRepeating("CollectAndUpdateHudTextObjects", 0.0f, 1.0f);
+    }
+
+    void Awake()
+    {
+        menu = transform.GetChild(1).GetComponent<CompleteMenu>();
     }
 
     private void OnEnable()
@@ -63,6 +94,9 @@ public class TaskWatcher : MonoBehaviour
         // collect tasks in current scene
         _tasks = FindObjectsOfType<Task>();
         _taskCount = _tasks.Length;
+
+        // set the original task count
+        _startingCount = _taskCount;
 
         if (_tasks.Length == 0)
         {
@@ -137,6 +171,14 @@ public class TaskWatcher : MonoBehaviour
 
     private void SetHudText()
     {
+        // if there are no more tasks, open the complete menu!
+        if (_taskCount == 0 && !menu.active)
+        {
+            menu.active = true;
+            menu.SpawnMenu();
+        }
+
+        // carry on
         string hudText = string.Format("Tasks Remaining: {0}\n\n", _taskCount);
         hudText += _canvasTaskList;
 
@@ -158,5 +200,12 @@ public class TaskWatcher : MonoBehaviour
 
             }
         }
+    }
+
+    // when this is destroyed, remove the listener
+    // this prevents the re-calling of the UpdateTasks on old, destroyed objects
+    private void OnDestroy()
+    {
+        TaskEventManager.onTaskComplete -= UpdateTasks;
     }
 }
