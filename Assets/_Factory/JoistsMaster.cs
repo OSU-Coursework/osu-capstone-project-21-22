@@ -9,13 +9,13 @@ public class JoistsMaster : MonoBehaviour
 
     public int AutoCompleteCount;
 
-    private int CurrentJoistIndex = 0;
-    private int JoistCount;
+    //private int CurrentJoistIndex = 0;
+    //private int JoistCount;
 
     private bool IsEnabled;
     private bool IsComplete = false;
 
-    private GameObject CurrentJoist;
+    //private GameObject CurrentJoist;
 
     // Start is called before the first frame update
     void Start()
