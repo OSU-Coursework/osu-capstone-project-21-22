@@ -18,12 +18,14 @@ public class Socketable : MonoBehaviour
     private Rigidbody _rigidbody;
     // a socket is visible when an object is inside of its
     //   collision boundary.
-    public Socket _visibleSocket;
+    private Socket _visibleSocket;
+    public Socket VisibleSocket { get { return _visibleSocket; } }
 
     // these flags are useful for managing the state of a
     //   socketable object.
     private bool _inSocketZone;
-    public bool _attachedToSocket;
+    private bool _attachedToSocket;
+    public bool AttachedToSocket { get { return _attachedSocket; } }
     // by keeping a reference to the socket this item is
     //   attached to, we can use its values directly
     //   and not leak into other visible sockets
