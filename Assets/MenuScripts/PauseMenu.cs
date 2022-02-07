@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
 using Valve.VR;
+using Valve.VR.Extras;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -58,6 +59,7 @@ public class PauseMenu : MonoBehaviour
     {
         MainMenu.SetActive(false);
         OptionMenu.SetActive(true);
+        UpdateHandText();
     }
 
     public void ChangeQuality(bool increase)
@@ -84,6 +86,9 @@ public class PauseMenu : MonoBehaviour
         }
         else
         {
+            // enable the laser pointer
+            EnablePointers(true);
+
             // Set it to be active
             this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             this.gameObject.transform.GetChild(2).gameObject.SetActive(true);
@@ -98,6 +103,8 @@ public class PauseMenu : MonoBehaviour
 
     public void DeleteMenu()
     {
+        // disable laser pointers
+        EnablePointers(true);
         // Make the board menu inactive
         this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         this.gameObject.transform.GetChild(2).gameObject.SetActive(false);
@@ -145,5 +152,51 @@ public class PauseMenu : MonoBehaviour
     public void ChangeDomHand(bool rightHandDom)
     {
         OptionState.RightHandDominant = rightHandDom;
+        UpdateHandText();
+    }
+
+    // Change how the text is displayed
+    private void UpdateHandText()
+    {
+        // if right had is dominant, show it
+        if (OptionState.RightHandDominant)
+        {
+            OptionMenu.transform.GetChild(1).GetChild(0).GetChild(2).GetComponent<Text>().text = "[  ] Left";
+            OptionMenu.transform.GetChild(1).GetChild(2).GetChild(2).GetComponent<Text>().text = "[X] Right";
+        }
+        // otherwise, show that the left hand is dominant
+        else
+        {
+            OptionMenu.transform.GetChild(1).GetChild(0).GetChild(2).GetComponent<Text>().text = "[X] Left";
+            OptionMenu.transform.GetChild(1).GetChild(2).GetChild(2).GetComponent<Text>().text = "[  ] Right";
+        }
+    }
+
+    private void EnablePointers(bool enable)
+    {
+        // enable the dominant laser pointer
+        GameObject[] activeHudTextTaggedObjects = GameObject.FindGameObjectsWithTag("HudText");
+        foreach (GameObject obj in activeHudTextTaggedObjects)
+        {
+            // add the pointers
+            if (enable && obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>() == null)
+            {
+                obj.transform.parent.parent.parent.parent.parent.gameObject.AddComponent<SteamVR_LaserPointer>();
+            }
+            // destroy the pointers
+            else if (obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>() != null)
+            {
+                Destroy(obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>());
+                
+                // destroy the laser
+                foreach (Transform child in obj.transform.parent.parent.parent.parent.parent)
+                {
+                    if (child.gameObject.name.Contains("New Game Object"))
+                    {
+                        Destroy(child.gameObject);
+                    }
+                }
+            }
+        }
     }
 }
