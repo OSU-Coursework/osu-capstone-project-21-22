@@ -62,7 +62,7 @@ public class TaskWatcher : MonoBehaviour
 
     void Awake()
     {
-        menu = transform.GetChild(1).GetComponent<CompleteMenu>();
+        menu = FindObjectsOfType<CompleteMenu>()[0];
     }
 
     private void OnEnable()

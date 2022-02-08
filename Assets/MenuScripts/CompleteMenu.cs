@@ -34,6 +34,12 @@ public class CompleteMenu : MonoBehaviour
         {
             GameObject.Destroy(Wboards[i].transform.gameObject);
         }
+
+        // get the task watcher
+        if (taskWatcher == null)
+        {
+            taskWatcher = FindObjectsOfType<TaskWatcher>()[0];
+        }
     }
 
 
@@ -70,6 +76,9 @@ public class CompleteMenu : MonoBehaviour
     public void SpawnMenu()
     {
         active = true;
+
+        // destroy the pause menu
+        if (FindObjectsOfType<PauseMenu>().Length > 0) Destroy(FindObjectsOfType<PauseMenu>()[0].gameObject);
 
         // get the task count
         if (taskWatcher != null)
@@ -120,6 +129,25 @@ public class CompleteMenu : MonoBehaviour
             Destroy(tele.gameObject);
         }
 
+        // move the player
+        GameObject fadecam = FindObjectsOfType<SteamVR_Fade>()[0].gameObject;
+        GameObject player = FindObjectsOfType<Player>()[0].gameObject;
+        GameObject target = GameObject.FindGameObjectsWithTag("CompleteTeleport")[0].gameObject;
+
+        // remove global lighting
+        GameObject.Find("Directional Light").GetComponent<Light>().color = Color.black;
+        GameObject.Find("Directional Light").GetComponent<Light>().intensity = 0;
+
+        // fade out the camera, then move the player to the target position
+        SteamVR_Fade.View(Color.black, 0);
+        player.transform.position = target.transform.position;
+        fadecam.transform.position = new Vector3(target.transform.position.x, fadecam.transform.position.y, target.transform.position.z);
+        // rotate the room to face the player
+        target.transform.parent.eulerAngles = new Vector3(0, fadecam.transform.eulerAngles.y, 0);
+        // fade back in
+        SteamVR_Fade.View(Color.clear, 0.5f);
+
+
         // enable the laser pointer
         EnablePointers(true);
 
@@ -128,9 +156,9 @@ public class CompleteMenu : MonoBehaviour
         this.gameObject.transform.GetChild(1).gameObject.SetActive(true);
 
         // Move the menu in front of the player, always
-        this.gameObject.transform.SetParent(FindObjectsOfType<SteamVR_Fade>()[0].transform);
-        this.gameObject.transform.localPosition = new Vector3(0f, -0.2f, 1.3f);
-        this.gameObject.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
+        //this.gameObject.transform.SetParent(FindObjectsOfType<SteamVR_Fade>()[0].transform);
+        //this.gameObject.transform.localPosition = new Vector3(0f, -0.2f, 1.3f);
+        //this.gameObject.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
     }
 
     public void DeleteMenu()
