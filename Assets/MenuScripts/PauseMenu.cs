@@ -126,6 +126,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (SteamVR_Input.GetStateDown("X", leftHand) || Input.GetKeyDown((KeyCode)'p'))
         {
+            Debug.Log("-->Attempting open. . .");
             SpawnMenu();
         }
         if (SceneManager.GetActiveScene().name == "MainMenu")
@@ -178,22 +179,27 @@ public class PauseMenu : MonoBehaviour
         GameObject[] activeHudTextTaggedObjects = GameObject.FindGameObjectsWithTag("HudText");
         foreach (GameObject obj in activeHudTextTaggedObjects)
         {
-            // add the pointers
-            if (enable && obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>() == null)
+            Debug.Log(obj.transform.parent.parent.tag);
+            // if this is a display board, do nothing
+            if (obj.transform.parent.parent.tag != "OtherHUDdisplay")
             {
-                obj.transform.parent.parent.parent.parent.parent.gameObject.AddComponent<SteamVR_LaserPointer>();
-            }
-            // destroy the pointers
-            else if (obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>() != null)
-            {
-                Destroy(obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>());
-                
-                // destroy the laser
-                foreach (Transform child in obj.transform.parent.parent.parent.parent.parent)
+                // add the pointers
+                if (enable && obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>() == null)
                 {
-                    if (child.gameObject.name.Contains("New Game Object"))
+                    obj.transform.parent.parent.parent.parent.parent.gameObject.AddComponent<SteamVR_LaserPointer>();
+                }
+                // destroy the pointers
+                else if (obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>() != null)
+                {
+                    Destroy(obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>());
+
+                    // destroy the laser
+                    foreach (Transform child in obj.transform.parent.parent.parent.parent.parent)
                     {
-                        Destroy(child.gameObject);
+                        if (child.gameObject.name.Contains("New Game Object"))
+                        {
+                            Destroy(child.gameObject);
+                        }
                     }
                 }
             }
