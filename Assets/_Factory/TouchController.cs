@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR;
+//using Valve.VR;
 using System;
 
 public class TouchController : MonoBehaviour
 {
     // Reference to the touchpad press action
-    public SteamVR_Action_Boolean TouchpadPress;
-    // Reference to the touchpad movement value
-    public SteamVR_Action_Vector2 TouchpadValue;
+    //public SteamVR_Action_Boolean TouchpadPress;
+    //// Reference to the touchpad movement value
+    //public SteamVR_Action_Vector2 TouchpadValue;
 
     // Value determining how sensitively touchpad movements translate to character movement
     public float MovementSensitivity = 0.1f;
@@ -33,13 +33,13 @@ public class TouchController : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        // Get references to the transforms for the SteamVR camera rig and the character's
-        // head
-        CameraRig = SteamVR_Render.Top().origin;
-        CharacterHead = SteamVR_Render.Top().head;
-    }
+    //void Start()
+    //{
+    //    // Get references to the transforms for the SteamVR camera rig and the character's
+    //    // head
+    //    CameraRig = SteamVR_Render.Top().origin;
+    //    CharacterHead = SteamVR_Render.Top().head;
+    //}
 
     // Update is called once per frame
     void Update()
@@ -77,21 +77,21 @@ public class TouchController : MonoBehaviour
         Vector3 movement = Vector3.zero;
 
         // If the touchpad isn't being pressed, set the movement speed to 0
-        if (TouchpadPress.GetStateUp(SteamVR_Input_Sources.Any))
-            MovementSpeed = 0;
+        //if (TouchpadPress.GetStateUp(SteamVR_Input_Sources.Any))
+        //    MovementSpeed = 0;
 
-        // If the touchpad is being rpressed and moved, move the character
-        if (TouchpadPress.state)
-        {
-            // Increase the MovementSpeed based on the movement of the touchpad and sensitivty
-            MovementSpeed += TouchpadValue.axis.y * MovementSensitivity;
-            // Limit the speed of the character to between -/+ MovementSpeed
-            MovementSpeed = Mathf.Clamp(MovementSpeed, -MovementMaxSpeed, MovementMaxSpeed);
+        //// If the touchpad is being rpressed and moved, move the character
+        //if (TouchpadPress.state)
+        //{
+        //    // Increase the MovementSpeed based on the movement of the touchpad and sensitivty
+        //    MovementSpeed += TouchpadValue.axis.y * MovementSensitivity;
+        //    // Limit the speed of the character to between -/+ MovementSpeed
+        //    MovementSpeed = Mathf.Clamp(MovementSpeed, -MovementMaxSpeed, MovementMaxSpeed);
 
-            // Calculate the movement using the time since last frame and movement speed;
-            // multiply with the direction we're facing to move in that direction
-            movement += orientation * (MovementSpeed * Vector3.forward) * Time.deltaTime;
-        }
+        //    // Calculate the movement using the time since last frame and movement speed;
+        //    // multiply with the direction we're facing to move in that direction
+        //    movement += orientation * (MovementSpeed * Vector3.forward) * Time.deltaTime;
+        //}
 
         // Perform the movement on the character controller
         Controller.Move(movement);

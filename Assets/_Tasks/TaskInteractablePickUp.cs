@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR.InteractionSystem;
+//using Valve.VR.InteractionSystem;
 
 /// <summary>
 /// Basic task created for testing.
@@ -12,7 +12,7 @@ using Valve.VR.InteractionSystem;
 public class TaskInteractablePickUp : Task
 {
     public GameObject _interactableGameObject;
-    private Interactable _interactable;
+    //private Interactable _interactable;
 
     private string _taskDescription;
 
@@ -23,7 +23,7 @@ public class TaskInteractablePickUp : Task
     void Awake()
     {
         // get handle for steamvr interactable script
-        _interactable = _interactableGameObject.GetComponent<Interactable>();
+        //_interactable = _interactableGameObject.GetComponent<Interactable>();
 
         _taskDescription = string.Format("Pick up {0}", _interactableGameObject.name);
     }
@@ -35,11 +35,12 @@ public class TaskInteractablePickUp : Task
         base.Update();
 
         // update task
-        if (_interactable != null && 
-            _interactable.attachedToHand != null)
-        {
-            _taskComplete = true;
-        }
+        //Note from Allan- commenting out to be able to build
+        //if (_interactable != null) // && 
+        //    //_interactable.attachedToHand != null)
+        //{
+        //    _taskComplete = true;
+        //}
     }
 
     public override string ToString()

@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR;
-using Valve.VR.InteractionSystem;
+//using Valve.VR;
+//using Valve.VR.InteractionSystem;
 
 public class NailGun : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class NailGun : MonoBehaviour
     public GameObject NailObject;
 
     // The action associated with controller triggers
-    public SteamVR_Action_Boolean TriggerPress;
+    //public SteamVR_Action_Boolean TriggerPress;
 
     //Private Variables
 
@@ -31,57 +31,57 @@ public class NailGun : MonoBehaviour
     bool InFireDelay;
 
 
-    private Interactable interactable;
+    //private Interactable interactable;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        // Call the TriggerPressed function when the trigger of either controller is
-        // pressed
-        TriggerPress.AddOnStateDownListener(TriggerPressed, SteamVR_Input_Sources.Any);
-        interactable = GetComponent<Interactable>();
-    }
+    //void Start()
+    //{
+    //    // Call the TriggerPressed function when the trigger of either controller is
+    //    // pressed
+    //    TriggerPress.AddOnStateDownListener(TriggerPressed, SteamVR_Input_Sources.Any);
+    //    interactable = GetComponent<Interactable>();
+    //}
 
     // Update is called once per frame
-    void Update()
-    {
-        if(interactable.attachedToHand != null)
-        {
-            SteamVR_Input_Sources source = interactable.attachedToHand.handType;
-            if (TriggerPress[source].stateDown)
-            {
-                Fire();
-            }
-        }
-    }
+    //void Update()
+    //{
+    //    if(interactable.attachedToHand != null)
+    //    {
+    //        SteamVR_Input_Sources source = interactable.attachedToHand.handType;
+    //        if (TriggerPress[source].stateDown)
+    //        {
+    //            Fire();
+    //        }
+    //    }
+    //}
 
-    void TriggerPressed(SteamVR_Action_Boolean action, SteamVR_Input_Sources source)
-    {
+    //void TriggerPressed(SteamVR_Action_Boolean action, SteamVR_Input_Sources source)
+    //{
 
-        Debug.Log("Nail gun trigger pulled");
-        // If trigger is pressed, check if we're still in fire delay
-        if (InFireDelay)
-        {
-            // If yes and FireTime is less than FireDelay, update the FireTime
-            if (FireTime < FireDelay)
-                FireTime += Time.deltaTime;
-            // Otherwise, FireTime >= FireDelay so we're not in the fire delay anymore
-            else
-                InFireDelay = false;
-        }
-        // We're not in the fire delay, so fire
-        else
-        {
-            // Set InFireDelay to true because we just fired
-            InFireDelay = true;
+    //    Debug.Log("Nail gun trigger pulled");
+    //    // If trigger is pressed, check if we're still in fire delay
+    //    if (InFireDelay)
+    //    {
+    //        // If yes and FireTime is less than FireDelay, update the FireTime
+    //        if (FireTime < FireDelay)
+    //            FireTime += Time.deltaTime;
+    //        // Otherwise, FireTime >= FireDelay so we're not in the fire delay anymore
+    //        else
+    //            InFireDelay = false;
+    //    }
+    //    // We're not in the fire delay, so fire
+    //    else
+    //    {
+    //        // Set InFireDelay to true because we just fired
+    //        InFireDelay = true;
 
-            // Reset the fire time
-            FireTime = 0f;
+    //        // Reset the fire time
+    //        FireTime = 0f;
 
-            // Fire the nailgun
-            Fire();
-        }
-    }
+    //        // Fire the nailgun
+    //        Fire();
+    //    }
+    //}
 
     void Fire()
     {
