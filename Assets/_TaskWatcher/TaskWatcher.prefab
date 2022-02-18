@@ -28,8 +28,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3693157144057191155}
-  - {fileID: 7913115165700675301}
+  - {fileID: 5937035276200494271}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,17 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _executeTasksInOrder: 1
-  useTimes: 0
-  greatTime:
-    minutes: 0
-    seconds: 0
-  goodTime:
-    minutes: 0
-    seconds: 0
-  averageTime:
-    minutes: 0
-    seconds: 0
---- !u!1001 &1107385546448543019
+--- !u!1001 &7960699153005855591
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -123,13 +112,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICamera
       objectReference: {fileID: 0}
+    - target: {fileID: 4512469333636322589, guid: 1201bd10e3a5f944f85bfeb911dfeb7b,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1800
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512469333636322589, guid: 1201bd10e3a5f944f85bfeb911dfeb7b,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1400
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1201bd10e3a5f944f85bfeb911dfeb7b, type: 3}
---- !u!4 &3693157144057191155 stripped
+--- !u!4 &5937035276200494271 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4332044561012361176, guid: 1201bd10e3a5f944f85bfeb911dfeb7b,
     type: 3}
-  m_PrefabInstance: {fileID: 1107385546448543019}
+  m_PrefabInstance: {fileID: 7960699153005855591}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6135539726946259874
 PrefabInstance:
