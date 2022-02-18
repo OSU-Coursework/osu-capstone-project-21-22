@@ -7,6 +7,8 @@ TagManager:
   - projectile
   - FxTemporaire
   - HudText
+  - HUDobject
+  - CompleteTeleport
   layers:
   - Default
   - TransparentFX

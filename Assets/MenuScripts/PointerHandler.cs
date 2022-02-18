@@ -56,7 +56,10 @@ public class PointerHandler : MonoBehaviour
         // if there is a button, activate it!
         if (e.target.transform.childCount > 0)
         {
-            e.target.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+            if (e.target.transform.GetChild(0).GetComponent<MeshRenderer>() != null)
+            {
+                e.target.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+            }
         }
     }
 
@@ -66,7 +69,10 @@ public class PointerHandler : MonoBehaviour
         // if there is a button, activate it!
         if (e.target.transform.childCount > 0)
         {
-            e.target.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            if (e.target.transform.GetChild(0).GetComponent<MeshRenderer>() != null)
+            {
+                e.target.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            }
         }
     }
 

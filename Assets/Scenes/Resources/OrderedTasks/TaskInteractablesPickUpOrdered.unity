@@ -751,8 +751,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7528362159264748159, guid: 4f782268a95bd6b45ad87742b6d2f43d,
         type: 3}
+      propertyPath: useTimes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7528362159264748159, guid: 4f782268a95bd6b45ad87742b6d2f43d,
+        type: 3}
       propertyPath: _canvasText
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7528362159264748159, guid: 4f782268a95bd6b45ad87742b6d2f43d,
+        type: 3}
+      propertyPath: goodTime.seconds
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7528362159264748159, guid: 4f782268a95bd6b45ad87742b6d2f43d,
+        type: 3}
+      propertyPath: greatTime.seconds
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7528362159264748159, guid: 4f782268a95bd6b45ad87742b6d2f43d,
+        type: 3}
+      propertyPath: averageTime.seconds
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7528362159264748159, guid: 4f782268a95bd6b45ad87742b6d2f43d,
         type: 3}

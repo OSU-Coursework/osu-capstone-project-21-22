@@ -95,9 +95,8 @@ public class PauseMenu : MonoBehaviour
 
             // Move the menu in front of the player, then stop tracking the camera
             this.gameObject.transform.SetParent(player.transform);
-            this.gameObject.transform.localPosition = new Vector3(0f, 0f, 0.6f);
+            this.gameObject.transform.localPosition = new Vector3(0f, 0f, 1f);
             this.gameObject.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
-            this.gameObject.transform.SetParent(null);
         }
     }
 
@@ -198,5 +197,22 @@ public class PauseMenu : MonoBehaviour
                 }
             }
         }
+    }
+
+    // replay the current scene
+    public void ReplayScene()
+    {
+        // delete the menu and the player
+        DeleteMenu();
+
+        // destroy everything
+        foreach (GameObject obj in Object.FindObjectsOfType<GameObject>())
+        {
+            if (obj != this) GameObject.Destroy(obj);
+        }
+
+        // load the main menu, then destroy this
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameObject.Destroy(this);
     }
 }
