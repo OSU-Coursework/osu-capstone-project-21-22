@@ -95,9 +95,8 @@ public class PauseMenu : MonoBehaviour
 
             // Move the menu in front of the player, then stop tracking the camera
             this.gameObject.transform.SetParent(player.transform);
-            this.gameObject.transform.localPosition = new Vector3(0f, 0f, 0.6f);
+            this.gameObject.transform.localPosition = new Vector3(0f, 0f, 1f);
             this.gameObject.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
-            this.gameObject.transform.SetParent(null);
         }
     }
 
@@ -126,6 +125,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (SteamVR_Input.GetStateDown("X", leftHand) || Input.GetKeyDown((KeyCode)'p'))
         {
+            Debug.Log("-->Attempting open. . .");
             SpawnMenu();
         }
         if (SceneManager.GetActiveScene().name == "MainMenu")
@@ -178,25 +178,47 @@ public class PauseMenu : MonoBehaviour
         GameObject[] activeHudTextTaggedObjects = GameObject.FindGameObjectsWithTag("HudText");
         foreach (GameObject obj in activeHudTextTaggedObjects)
         {
-            // add the pointers
-            if (enable && obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>() == null)
+            Debug.Log(obj.transform.parent.parent.tag);
+            // if this is a display board, do nothing
+            if (obj.transform.parent.parent.tag != "OtherHUDdisplay")
             {
-                obj.transform.parent.parent.parent.parent.parent.gameObject.AddComponent<SteamVR_LaserPointer>();
-            }
-            // destroy the pointers
-            else if (obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>() != null)
-            {
-                Destroy(obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>());
-                
-                // destroy the laser
-                foreach (Transform child in obj.transform.parent.parent.parent.parent.parent)
+                // add the pointers
+                if (enable && obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>() == null)
                 {
-                    if (child.gameObject.name.Contains("New Game Object"))
+                    obj.transform.parent.parent.parent.parent.parent.gameObject.AddComponent<SteamVR_LaserPointer>();
+                }
+                // destroy the pointers
+                else if (obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>() != null)
+                {
+                    Destroy(obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>());
+
+                    // destroy the laser
+                    foreach (Transform child in obj.transform.parent.parent.parent.parent.parent)
                     {
-                        Destroy(child.gameObject);
+                        if (child.gameObject.name.Contains("New Game Object"))
+                        {
+                            Destroy(child.gameObject);
+                        }
                     }
                 }
             }
         }
+    }
+
+    // replay the current scene
+    public void ReplayScene()
+    {
+        // delete the menu and the player
+        DeleteMenu();
+
+        // destroy everything
+        foreach (GameObject obj in Object.FindObjectsOfType<GameObject>())
+        {
+            if (obj != this) GameObject.Destroy(obj);
+        }
+
+        // load the main menu, then destroy this
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameObject.Destroy(this);
     }
 }

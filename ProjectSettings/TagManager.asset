@@ -7,6 +7,10 @@ TagManager:
   - projectile
   - FxTemporaire
   - HudText
+  - HUDobject
+  - OtherHUDdisplay
+  - HazardUI
+  - UICam
   layers:
   - Default
   - TransparentFX
@@ -14,7 +18,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - VR_UI
   - 
   - 
   - 
