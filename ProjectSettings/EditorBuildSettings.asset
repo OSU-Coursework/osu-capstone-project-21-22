@@ -6,34 +6,34 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Resources/MainMenu.unity
+    path: Assets/_Scenes/Resources/MainMenu.unity
     guid: 3bdf3d4d0ffd1ea448c0b81d26d968c9
   - enabled: 1
-    path: Assets/Scenes/Resources/Factory/Factory.unity
+    path: Assets/_Scenes/Resources/Factory/Factory.unity
     guid: 5e66231f54715bf4baa79d9cb1f2a299
   - enabled: 1
-    path: Assets/Scenes/Resources/ColorSockets/TaskColoredSockets.unity
+    path: Assets/_Scenes/Resources/ColorSockets/TaskColoredSockets.unity
     guid: d5aff628525906a4b80e2098291c8b92
   - enabled: 1
-    path: Assets/Scenes/Resources/OrderedTasks/TaskInteractablesPickUpOrdered.unity
+    path: Assets/_Scenes/Resources/OrderedTasks/TaskInteractablesPickUpOrdered.unity
     guid: 42908ebe0bc207343bb79fd155cd4d50
   - enabled: 1
-    path: Assets/Scenes/Resources/Simple_Sockets/SimpleSockets.unity
+    path: Assets/_Scenes/Resources/Simple_Sockets/SimpleSockets.unity
     guid: de9e0ef93009a3a499969b804c6487a7
   - enabled: 1
-    path: Assets/Scenes/Resources/SimpleInteractables/SimpleVRInteractables.unity
+    path: Assets/_Scenes/Resources/SimpleInteractables/SimpleVRInteractables.unity
     guid: 40bca985cfdf8894fb9e378af286cffa
   - enabled: 1
-    path: Assets/Scenes/Resources/UnorderedTasks/TaskInteractablesPickUpUnordered.unity
+    path: Assets/_Scenes/Resources/UnorderedTasks/TaskInteractablesPickUpUnordered.unity
     guid: 9f6024661a660ef4da47c30cb93f31a6
   - enabled: 1
-    path: Assets/Scenes/Resources/HammerNail/HammerNailScene.unity
+    path: Assets/_Scenes/Resources/HammerNail/HammerNailScene.unity
     guid: fb279a0bd7225304a996656369910f35
   - enabled: 1
-    path: Assets/Scenes/Resources/Saw/SawBoardScene.unity
+    path: Assets/_Scenes/Resources/Saw/SawBoardScene.unity
     guid: 8fdd66169ca52a14191b59c0a6cbb386
   - enabled: 1
-    path: Assets/Scenes/Resources/Spawners/Ex_Spawners.unity
+    path: Assets/_Scenes/Resources/Spawners/Ex_Spawners.unity
     guid: 952a3ee55895f754d859b0120e243894
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
