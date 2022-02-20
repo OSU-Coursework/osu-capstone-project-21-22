@@ -47,7 +47,7 @@ public class MainMenuCanvas : MonoBehaviour
 
     private void LoadSceneList()
     {
-        string scene_dir = (Application.dataPath+"/Scenes/Resources");
+        string scene_dir = (Application.dataPath+"/_Scenes/Resources");
         string[] scene_list = Directory.GetDirectories(scene_dir);
         float num = (float)scene_list.Length;
         max_pages = (int)(Mathf.Ceil(num / 3.0f) - 1.0f);
