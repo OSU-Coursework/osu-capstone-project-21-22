@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR.InteractionSystem;
 
 public class HammerableNail : Socketable
 {
@@ -25,36 +24,27 @@ public class HammerableNail : Socketable
 
     private void OnCollisionEnter(Collision other)
     {
-        // Stop if this is not in the nail area
-        if (!_canBeNailed)
+        // don't check unless attached to socket
+        if (AttachedToSocket && other.gameObject.CompareTag("Hammer"))
         {
-            return;
+            // check conditions for hammering nail
+            if (_canBeNailed && other.relativeVelocity.magnitude < _impactStrengthToNail)
+            {
+                // move nail model position to nailed position
+                NailSocket socket = _attachedSocket as NailSocket;
+                _nail.transform.position = socket.NailHammeredPosition.position;
+
+                // set nail model parent to the socket parent
+                GameObject board = _attachedSocket.transform.parent.gameObject;
+                _nail.transform.SetParent(board.transform);
+
+                // disable the socket
+                _attachedSocket.gameObject.SetActive(false);
+
+                // disable self
+                gameObject.SetActive(false);
+            }
         }
-        // If the colliding object is NOT a hammer of any kind, stop this event
-        if (!(other.gameObject.name == "Hammer" || other.gameObject.name == "SocketableHammer" || other.gameObject.name.Contains("Hammer (") || other.gameObject.name.Contains("SocketableHammer (")))
-        {
-            return;
-        }
-        
-        // If the collision speed is not fast enough, stop
-        if (other.relativeVelocity.magnitude < _impactStrengthToNail)
-        {
-            return;
-        }
-
-        // move nail model position to nailed position
-        NailSocket socket = _attachedSocket as NailSocket;
-        _nail.transform.position = socket.NailHammeredPosition.position;
-
-        // set nail model parent to the socket parent
-        GameObject board = _attachedSocket.transform.parent.gameObject;
-        _nail.transform.SetParent(board.transform);
-
-        // disable the socket
-        _attachedSocket.gameObject.SetActive(false);
-
-        // disable self
-        gameObject.SetActive(false);
     }
 
     //private void NailObject()

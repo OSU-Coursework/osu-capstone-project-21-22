@@ -11,6 +11,12 @@ TagManager:
   - OtherHUDdisplay
   - HazardUI
   - UICam
+  - CompleteTeleport
+  - JoistHanger
+  - RimJoist
+  - FloorJoist
+  - BandBoard
+  - Hammer
   layers:
   - Default
   - TransparentFX
