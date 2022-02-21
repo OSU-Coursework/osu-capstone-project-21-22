@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NailSocket : MonoBehaviour
+public class NailSocket : Socket
 {
-    public bool HoldingSocketable = false;
-
-    private void Update()
-    {
-        transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().enabled = !HoldingSocketable;
-    }
+    [SerializeField] private Transform _nailHammeredPosition;
+    public Transform NailHammeredPosition { get { return _nailHammeredPosition; } }
 }
