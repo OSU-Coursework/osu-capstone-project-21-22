@@ -134,7 +134,7 @@ public class HammerableNail : MonoBehaviour
             if (hit.collider != null)
             {
                 // if the object can be nailed
-                if (hit.collider.gameObject.GetComponent<CanBeNailed>() != null)
+                if (hit.collider.gameObject.GetComponent<HammerableBoard>() != null)
                 {
                     gameObject.AddComponent<HingeJoint>();
                     gameObject.GetComponent<HingeJoint>().connectedBody = hit.collider.gameObject.GetComponent<Rigidbody>();

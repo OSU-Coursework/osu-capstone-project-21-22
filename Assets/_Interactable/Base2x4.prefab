@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _vanishOnUse: 1
+  _sawBoardSocket: 0
   _allowedObjectType: {fileID: 0}
   _attachTransform: {fileID: 7307864690286698186}
 --- !u!1 &335771641333195437
@@ -252,6 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _vanishOnUse: 1
+  _sawBoardSocket: 0
   _allowedObjectType: {fileID: 0}
   _attachTransform: {fileID: 3007038658778780386}
 --- !u!1 &3007038658286168512
@@ -268,7 +270,6 @@ GameObject:
   - component: {fileID: 3007038658286168526}
   - component: {fileID: 3007038658286168525}
   - component: {fileID: 3007038658286168515}
-  - component: {fileID: 3007038658286168513}
   m_Layer: 0
   m_Name: Base2x4
   m_TagString: Untagged
@@ -385,18 +386,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3007038658286168513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3007038658286168512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8b387da94fd47546be6e0d3a31dab76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3007038658778780385
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,6 +526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _vanishOnUse: 1
+  _sawBoardSocket: 0
   _allowedObjectType: {fileID: 0}
   _attachTransform: {fileID: 3636783858147049164}
 --- !u!1 &6786775658548419792
