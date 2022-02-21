@@ -12,10 +12,8 @@ public class HammerableNail : Socketable
     //   the mesh to the board once it has been nailed.
     [SerializeField] private GameObject _nail;
 
+    // how hard does the nail have to be hit for it to enter the board?
     [SerializeField] private float _impactStrengthToNail;
-
-    //private NailSocket _lastSocket;
-    //public bool _fromNailgun;
 
     protected override void LateUpdate()
     {
@@ -37,18 +35,7 @@ public class HammerableNail : Socketable
         {
             return;
         }
-        // If the parent is socketable, and it is NOT in a socket
-        // we should return
-        //if (_lastSocket != null)
-        //{
-        //    if (_lastSocket.transform.parent.GetComponent<Socketable>() != null)
-        //    {
-        //        if (!_lastSocket.transform.parent.GetComponent<Socketable>().AttachedToSocket)
-        //        {
-        //            return;
-        //        }
-        //    }
-        //}
+        
         // If the collision speed is not fast enough, stop
         if (other.relativeVelocity.magnitude < _impactStrengthToNail)
         {
@@ -68,26 +55,7 @@ public class HammerableNail : Socketable
 
         // disable self
         gameObject.SetActive(false);
-
-        // Copy the hologram transform
-        //Transform newpos = hit.gameObject.transform.GetChild(1).transform;
-        // Destroy all physical properties
-        //Destroy(GetComponent<Throwable>());
-        //Destroy(GetComponent<Interactable>());
-        //Destroy(GetComponent<CapsuleCollider>());
-        // Reparent this to the board, then destroy the socket
-        //gameObject.transform.SetParent(hit.gameObject.transform.parent);
-        //Destroy(_visibleSocket.gameObject);
-        //Destroy(GetComponent<Rigidbody>());
-        // Fix the position and make the visible socket null
-        //transform.position = newpos.position;
-        //transform.rotation = newpos.rotation;
-        //gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY |
-        //        RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-
-        //TryConnect();
     }
-
 
     //private void NailObject()
     //{
@@ -109,64 +77,6 @@ public class HammerableNail : Socketable
     //                gameObject.GetComponent<HingeJoint>().axis = new Vector3(0, 1, 0);
     //            }
     //        }
-    //    }
-    //}
-
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    // don't run unless colliding with a socket.
-    //    if (other.gameObject.name == "NailSocket" || other.gameObject.name.Contains("NailSocket ("))
-    //    {
-    //        // Remove any velocity
-    //        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-    //        gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-
-    //        // set other values
-    //        canBeNailed = true;
-    //        _inSocketZone = true;
-    //        _visibleSocket = other.GetComponent<NailSocket>();
-    //        _lastSocket = _visibleSocket;
-    //        if (_fromNailgun)
-    //        {
-    //            _attachedToSocket = true;
-    //            _visibleSocket.HoldingSocketable = true;
-    //            TryConnect();
-    //        }
-    //    }
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    // don't run unless colliding with a socket.
-    //    if (other.gameObject.name == "NailSocket" || other.gameObject.name.Contains("NailSocket ("))
-    //    {
-    //        canBeNailed = false;
-    //        _inSocketZone = false;
-    //        _visibleSocket = null;
-    //    }
-    //}
-
-    //private void TryConnect()
-    //{
-    //    if (_lastSocket != null)
-    //    {
-    //        var hit = _lastSocket;
-    //        // Copy the hologram transform
-    //        Transform newpos = hit.gameObject.transform.GetChild(1).transform;
-    //        // Destroy all physical properties
-    //        Destroy(GetComponent<Throwable>());
-    //        Destroy(GetComponent<Interactable>());
-    //        Destroy(GetComponent<CapsuleCollider>());
-    //        // Reparent this to the board, then destroy the socket
-    //        gameObject.transform.SetParent(hit.gameObject.transform.parent);
-    //        //Destroy(_visibleSocket.gameObject);
-    //        Destroy(GetComponent<Rigidbody>());
-    //        // Fix the position and make the visible socket null
-    //        transform.position = newpos.position;
-    //        transform.rotation = newpos.rotation;
-    //        gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY |
-    //                RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-    //        //NailObject();
     //    }
     //}
 }
