@@ -80,7 +80,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _vanishOnUse: 1
   _sawBoardSocket: 0
-  _allowedObjectType: {fileID: 0}
+  _allowedObjectType: {fileID: 4083214141726881159, guid: 65f4f4c642d270a46a6c1ca3404020c2,
+    type: 3}
   _attachTransform: {fileID: 198480988975385306}
   _nailHammeredPosition: {fileID: 7607272816044195086}
 --- !u!65 &3791840711871124776
