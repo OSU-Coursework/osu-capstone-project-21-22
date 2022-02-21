@@ -103,7 +103,7 @@ public class Socketable : MonoBehaviour
         if (!_attachedToSocket && _inSocketZone && !_visibleSocket.HoldingSocketable)
         {
             if (_visibleSocket.AllowedObjectType == null ||
-                _visibleSocket.AllowedObjectType == this.gameObject)
+                gameObject.name.Contains(_visibleSocket.AllowedObjectType.gameObject.name))
             {
                 _attachedToSocket = true;
                 _attachedSocket = _visibleSocket;
