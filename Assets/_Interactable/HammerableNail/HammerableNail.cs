@@ -22,13 +22,13 @@ public class HammerableNail : Socketable
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionStay(Collision other)
     {
         // don't check unless attached to socket
         if (AttachedToSocket && other.gameObject.CompareTag("Hammer"))
         {
             // check conditions for hammering nail
-            if (_canBeNailed && other.relativeVelocity.magnitude < _impactStrengthToNail)
+            if (_canBeNailed && other.relativeVelocity.magnitude > _impactStrengthToNail)
             {
                 // move nail model position to nailed position
                 NailSocket socket = _attachedSocket as NailSocket;
