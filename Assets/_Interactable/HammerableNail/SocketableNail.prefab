@@ -237,7 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canBeSocketed: 1
   _nail: {fileID: 3855727856904571360}
-  _impactStrengthToNail: 0.9
+  _impactStrengthToNail: 1
 --- !u!136 &4083214141726881179
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -251,7 +251,7 @@ CapsuleCollider:
   m_Radius: 0.02
   m_Height: 0.12
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: -0.005}
+  m_Center: {x: 0, y: 0.003, z: -0.0075}
 --- !u!54 &4083214141726881176
 Rigidbody:
   m_ObjectHideFlags: 0
