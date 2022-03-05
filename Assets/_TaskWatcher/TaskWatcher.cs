@@ -171,12 +171,13 @@ public class TaskWatcher : MonoBehaviour
 
     private void SetHudText()
     {
+        //needs definition of Active in Completemenu
         // if there are no more tasks, open the complete menu!
-        if (_taskCount == 0 && !menu.active)
-        {
-            menu.active = true;
-            menu.SpawnMenu();
-        }
+        //if (_taskCount == 0 && !menu.active)
+        //{
+        //    menu.active = true;
+        //    menu.SpawnMenu();
+        //}
 
         // carry on
         string hudText = string.Format("Tasks Remaining: {0}\n\n", _taskCount);
@@ -206,6 +207,6 @@ public class TaskWatcher : MonoBehaviour
     // this prevents the re-calling of the UpdateTasks on old, destroyed objects
     private void OnDestroy()
     {
-        TaskEventManager.onTaskComplete -= UpdateTasks;
+        //TaskEventManager.onTaskComplete -= UpdateTasks;
     }
 }

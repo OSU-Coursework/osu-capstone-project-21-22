@@ -14,38 +14,38 @@ public class HammerableNail : Socketable
     // how hard does the nail have to be hit for it to enter the board?
     [SerializeField] private float _impactStrengthToNail;
 
-    protected override void LateUpdate()
-    {
-        if (AttachedToSocket && _attachedSocket.GetType() == typeof(NailSocket))
-        {
-            _canBeNailed = true;
-        }
-    }
+    //protected override void LateUpdate()
+    //{
+    //    if (AttachedToSocket && _attachedSocket.GetType() == typeof(NailSocket))
+    //    {
+    //        _canBeNailed = true;
+    //    }
+    //}
 
-    private void OnCollisionStay(Collision other)
-    {
-        // don't check unless attached to socket
-        if (AttachedToSocket && other.gameObject.CompareTag("Hammer"))
-        {
-            // check conditions for hammering nail
-            if (_canBeNailed && other.relativeVelocity.magnitude > _impactStrengthToNail)
-            {
-                // move nail model position to nailed position
-                NailSocket socket = _attachedSocket as NailSocket;
-                _nail.transform.position = socket.NailHammeredPosition.position;
+    //private void OnCollisionStay(Collision other)
+    //{
+    //    // don't check unless attached to socket
+    //    if (AttachedToSocket && other.gameObject.CompareTag("Hammer"))
+    //    {
+    //        // check conditions for hammering nail
+    //        if (_canBeNailed && other.relativeVelocity.magnitude > _impactStrengthToNail)
+    //        {
+    //            // move nail model position to nailed position
+    //            NailSocket socket = _attachedSocket as NailSocket;
+    //            _nail.transform.position = socket.NailHammeredPosition.position;
 
-                // set nail model parent to the socket parent
-                GameObject board = _attachedSocket.transform.parent.gameObject;
-                _nail.transform.SetParent(board.transform);
+    //            // set nail model parent to the socket parent
+    //            GameObject board = _attachedSocket.transform.parent.gameObject;
+    //            _nail.transform.SetParent(board.transform);
 
-                // disable the socket
-                _attachedSocket.gameObject.SetActive(false);
+    //            // disable the socket
+    //            _attachedSocket.gameObject.SetActive(false);
 
-                // disable self
-                gameObject.SetActive(false);
-            }
-        }
-    }
+    //            // disable self
+    //            gameObject.SetActive(false);
+    //        }
+    //    }
+    //}
 
     //private void NailObject()
     //{

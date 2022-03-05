@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR.InteractionSystem;
+//using Valve.VR.InteractionSystem;
 
 /// <summary>
 /// Basic task created for testing.
@@ -11,39 +11,39 @@ using Valve.VR.InteractionSystem;
 [AddComponentMenu("Task Management/Interactable Pick Up")]
 public class TaskInteractablePickUp : Task
 {
-    public GameObject _interactableGameObject;
-    private Interactable _interactable;
+    //public GameObject _interactableGameObject;
+    //private Interactable _interactable;
 
-    private string _taskDescription;
+    //private string _taskDescription;
 
-    // Awake is called either when an active GameObject that contains the
-    // script is initialized when a Scene loads, or when a previously inactive
-    // GameObject is set to active, or after a GameObject created with 
-    // Object.Instantiate is initialized.
-    void Awake()
-    {
-        // get handle for steamvr interactable script
-        _interactable = _interactableGameObject.GetComponent<Interactable>();
+    //// Awake is called either when an active GameObject that contains the
+    //// script is initialized when a Scene loads, or when a previously inactive
+    //// GameObject is set to active, or after a GameObject created with 
+    //// Object.Instantiate is initialized.
+    //void Awake()
+    //{
+    //    // get handle for steamvr interactable script
+    //    _interactable = _interactableGameObject.GetComponent<Interactable>();
 
-        _taskDescription = string.Format("Pick up {0}", _interactableGameObject.name);
-    }
+    //    _taskDescription = string.Format("Pick up {0}", _interactableGameObject.name);
+    //}
 
-    // Update is called once per frame
-    protected override void Update()
-    {
-        // run parent update function
-        base.Update();
+    //// Update is called once per frame
+    //protected override void Update()
+    //{
+    //    // run parent update function
+    //    base.Update();
 
-        // update task
-        if (_interactable != null && 
-            _interactable.attachedToHand != null)
-        {
-            _taskComplete = true;
-        }
-    }
+    //    // update task
+    //    if (_interactable != null && 
+    //        _interactable.attachedToHand != null)
+    //    {
+    //        _taskComplete = true;
+    //    }
+    //}
 
-    public override string ToString()
-    {
-        return _taskDescription;
-    }
+    //public override string ToString()
+    //{
+    //    return _taskDescription;
+    //}
 }
