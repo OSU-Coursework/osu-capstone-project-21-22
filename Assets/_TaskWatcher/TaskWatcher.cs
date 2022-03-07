@@ -126,6 +126,9 @@ public class TaskWatcher : MonoBehaviour
                 {
                     _canvasTaskList += t.ToString() + "\n";
                 }
+
+                // Initialize the icons
+                ManageIcon(t);
             }
         }
     }
@@ -164,6 +167,9 @@ public class TaskWatcher : MonoBehaviour
                     _canvasTaskList += t.ToString() + "\n";
                 }
             }
+
+            // Initialize the icons
+            ManageIcon(t);
         }
 
         SetHudText();
@@ -198,6 +204,32 @@ public class TaskWatcher : MonoBehaviour
 
                                 " has no attached <Text> object!");
 
+            }
+        }
+    }
+
+    private void ManageIcon(Task t)
+    {
+        // If the gameobject is active and NOT a complete task, track it!
+        if (t.gameObject.activeSelf && !t.TaskComplete)
+        {
+            foreach (Transform child in t.gameObject.transform)
+            {
+                if (child.tag == "hover_icon")
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
+        }
+        // Otherwise, don't bother!
+        else
+        {
+            foreach (Transform child in t.gameObject.transform)
+            {
+                if (child.tag == "hover_icon")
+                {
+                    child.gameObject.SetActive(false);
+                }
             }
         }
     }

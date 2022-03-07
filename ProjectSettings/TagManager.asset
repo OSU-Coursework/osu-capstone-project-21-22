@@ -11,6 +11,8 @@ TagManager:
   - OtherHUDdisplay
   - HazardUI
   - UICam
+  - CompleteTeleport
+  - hover_icon
   layers:
   - Default
   - TransparentFX
