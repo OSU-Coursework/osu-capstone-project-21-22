@@ -334,18 +334,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5d2ee97e6a16333478e78e09ccef8bf6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93720a0753538924c93b4ba99f429a0d, type: 3}
---- !u!114 &223545464 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5898769960880810801, guid: 93720a0753538924c93b4ba99f429a0d,
-    type: 3}
-  m_PrefabInstance: {fileID: 223545463}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e37d06abb6101454ea5aa8b71aa4b416, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &232916215
 GameObject:
   m_ObjectHideFlags: 0
@@ -3213,51 +3201,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694261061}
   m_Mesh: {fileID: -673657327375193403, guid: a737fe62af8f6ee4798e802eb4414f68, type: 3}
---- !u!1 &1712735665
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1712735667}
-  - component: {fileID: 1712735666}
-  m_Layer: 0
-  m_Name: TaskPlaceInBlueSocket
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1712735666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712735665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 493a7fc18429a1d47b11a6db0e7d80fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _taskName: 
-  _socket: {fileID: 223545464}
---- !u!4 &1712735667
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712735665}
-  m_LocalRotation: {x: -0, y: -0.5, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: -187.1126, y: -158.41856, z: -106.26888}
-  m_LocalScale: {x: 12.5, y: 12.5, z: 12.5}
-  m_Children: []
-  m_Father: {fileID: 543450652800685935}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1810830509
 GameObject:
   m_ObjectHideFlags: 0
@@ -3654,7 +3597,6 @@ Transform:
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children:
   - {fileID: 6546778760134016394}
-  - {fileID: 1712735667}
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 60, z: 0}
