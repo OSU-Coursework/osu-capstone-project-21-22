@@ -51,6 +51,9 @@ public class TaskWatcher : MonoBehaviour
     public TimeVal goodTime;
     public TimeVal averageTime;
 
+    // Whether to spawn the complete menu on all tasks finished
+    public bool end_on_complete = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -178,7 +181,7 @@ public class TaskWatcher : MonoBehaviour
     private void SetHudText()
     {
         // if there are no more tasks, open the complete menu!
-        if (_taskCount == 0 && !menu.active)
+        if (_taskCount == 0 && !menu.active && end_on_complete)
         {
             menu.active = true;
             menu.SpawnMenu();
