@@ -17,6 +17,7 @@ TagManager:
   - FloorJoist
   - BandBoard
   - Hammer
+  - hover_icon
   layers:
   - Default
   - TransparentFX
