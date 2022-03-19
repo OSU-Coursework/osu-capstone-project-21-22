@@ -13,16 +13,16 @@ public class MainMenuCanvas : MonoBehaviour
     private const string sceneDir = "Demo";
 
     // public local objects
-    public GameObject scene_card;
-    public GameObject MainMenu;
-    public GameObject SceneMenu;
-    public GameObject OptionMenu;
-    public GameObject SceneLayout;
-    public Text VisualQual;
+    public GameObject sceneCard;
+    public GameObject mainMenu;
+    public GameObject sceneMenu;
+    public GameObject optionMenu;
+    public GameObject sceneLayout;
+    public Text visualQual;
 
     // private values for pages
-    private int page_no = 0;
-    private int max_pages;
+    private int pageCount = 0;
+    private int maxPages;
 
     private void Awake()
     {
@@ -34,14 +34,14 @@ public class MainMenuCanvas : MonoBehaviour
         else if (level == 3) levelname = "High";
         else if (level == 4) levelname = "Very High";
         else if (level == 5) levelname = "Ultra";
-        VisualQual.text = "Visual Quality:\n" + levelname;
+        visualQual.text = "Visual Quality:\n" + levelname;
         EnablePointers();
     }
 
     // Clear the layout children
     private void clearChildren()
     {
-        foreach (Transform child in SceneLayout.transform)
+        foreach (Transform child in sceneLayout.transform)
         {
             GameObject.Destroy(child.gameObject);
         }
@@ -50,24 +50,27 @@ public class MainMenuCanvas : MonoBehaviour
 
     private void LoadSceneList()
     {
-        string scene_dir = (Application.dataPath + "/_Scenes/" + sceneDir);
-        string[] scene_list = Directory.GetDirectories(scene_dir);
-        float num = (float)scene_list.Length;
-        max_pages = (int)(Mathf.Ceil(num / 3.0f) - 1.0f);
+        // get full path to scene list and count present scenes
+        string scenePath = (Application.dataPath + "/_Scenes/" + sceneDir);
+        string[] sceneList = Directory.GetDirectories(scenePath);
+        float num = (float)sceneList.Length;
+
+        // calculate pages needed to display all present scenes
+        maxPages = (int)(Mathf.Ceil(num / 3.0f) - 1.0f);
         
-        // For all scenes, get the scene and image
+        // set up scene list in ui
         for (int i = 0; i < 3; i++)
         {
             // Return if greater than the length
-            if ((i + (3 * page_no)) >= scene_list.Length) return;
+            if ((i + (3 * pageCount)) >= sceneList.Length) return;
 
             // get the path of the scene and the image
-            string[] name = Directory.GetFiles(scene_list[i+(3*page_no)], "*.unity");
-            string[] image = Directory.GetFiles(scene_list[i+(3 * page_no)], "*.png");
+            string[] name = Directory.GetFiles(sceneList[i+(3*pageCount)], "*.unity");
+            string[] image = Directory.GetFiles(sceneList[i+(3 * pageCount)], "*.png");
             
             // Create an instance of the scene card
-            GameObject card_obj = Instantiate(scene_card);
-            card_obj.transform.SetParent(SceneLayout.transform);
+            GameObject card_obj = Instantiate(sceneCard);
+            card_obj.transform.SetParent(sceneLayout.transform);
             RectTransform cardthing = card_obj.GetComponent<RectTransform>();
             
             // Fix the size and position of the card
@@ -106,10 +109,10 @@ public class MainMenuCanvas : MonoBehaviour
     // Load the next page
     public void NextPage()
     {
-        page_no += 1;
-        if (page_no > max_pages)
+        pageCount += 1;
+        if (pageCount > maxPages)
         {
-            page_no = 0;
+            pageCount = 0;
         }
         clearChildren();
     }
@@ -117,10 +120,10 @@ public class MainMenuCanvas : MonoBehaviour
     // Load the last page
     public void LastPage()
     {
-        page_no -= 1;
-        if (page_no < 0)
+        pageCount -= 1;
+        if (pageCount < 0)
         {
-            page_no = max_pages;
+            pageCount = maxPages;
         }
         clearChildren();
     }
@@ -141,10 +144,10 @@ public class MainMenuCanvas : MonoBehaviour
     // Open the Scenes menu
     public void OpenScenesMenu()
     {
-        page_no = 0;
-        MainMenu.SetActive(false);
-        OptionMenu.SetActive(false);
-        SceneMenu.SetActive(true);
+        pageCount = 0;
+        mainMenu.SetActive(false);
+        optionMenu.SetActive(false);
+        sceneMenu.SetActive(true);
         NextPage();
     }
 
@@ -152,18 +155,18 @@ public class MainMenuCanvas : MonoBehaviour
     public void OpenMainMenu()
     {
         clearChildren();
-        page_no = 0;
-        SceneMenu.SetActive(false);
-        OptionMenu.SetActive(false);
-        MainMenu.SetActive(true);
+        pageCount = 0;
+        sceneMenu.SetActive(false);
+        optionMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 
     // Open the Options Menu
     public void OpenOptionsMenu()
     {
-        SceneMenu.SetActive(false);
-        MainMenu.SetActive(false);
-        OptionMenu.SetActive(true);
+        sceneMenu.SetActive(false);
+        mainMenu.SetActive(false);
+        optionMenu.SetActive(true);
         UpdateHandText();
     }
 
@@ -180,7 +183,7 @@ public class MainMenuCanvas : MonoBehaviour
         else if (level == 4) levelname = "Very High";
         else if (level == 5) levelname = "Ultra";
 
-        VisualQual.text = "Visual Quality:\n" + levelname;
+        visualQual.text = "Visual Quality:\n" + levelname;
     }
 
     public void ChangeDomHand(bool rightHandDom)
@@ -205,14 +208,14 @@ public class MainMenuCanvas : MonoBehaviour
         // if right had is dominant, show it
         if (OptionState.RightHandDominant)
         {
-            OptionMenu.transform.GetChild(1).GetChild(0).GetChild(2).GetComponent<Text>().text = "[  ] Left";
-            OptionMenu.transform.GetChild(1).GetChild(2).GetChild(2).GetComponent<Text>().text = "[X] Right";
+            optionMenu.transform.GetChild(1).GetChild(0).GetChild(2).GetComponent<Text>().text = "[  ] Left";
+            optionMenu.transform.GetChild(1).GetChild(2).GetChild(2).GetComponent<Text>().text = "[X] Right";
         }
         // otherwise, show that the left hand is dominant
         else
         {
-            OptionMenu.transform.GetChild(1).GetChild(0).GetChild(2).GetComponent<Text>().text = "[X] Left";
-            OptionMenu.transform.GetChild(1).GetChild(2).GetChild(2).GetComponent<Text>().text = "[  ] Right";
+            optionMenu.transform.GetChild(1).GetChild(0).GetChild(2).GetComponent<Text>().text = "[X] Left";
+            optionMenu.transform.GetChild(1).GetChild(2).GetChild(2).GetComponent<Text>().text = "[  ] Right";
         }
     }
 
