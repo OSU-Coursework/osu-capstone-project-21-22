@@ -9,7 +9,10 @@ using Valve.VR.Extras;
 
 public class MainMenuCanvas : MonoBehaviour
 {
-    // Public local objects
+    // name of directory containing scenes to be picked up by menu
+    private const string sceneDir = "Demo";
+
+    // public local objects
     public GameObject scene_card;
     public GameObject MainMenu;
     public GameObject SceneMenu;
@@ -47,7 +50,7 @@ public class MainMenuCanvas : MonoBehaviour
 
     private void LoadSceneList()
     {
-        string scene_dir = (Application.dataPath+"/_Scenes/Resources");
+        string scene_dir = (Application.dataPath + "/_Scenes/" + sceneDir);
         string[] scene_list = Directory.GetDirectories(scene_dir);
         float num = (float)scene_list.Length;
         max_pages = (int)(Mathf.Ceil(num / 3.0f) - 1.0f);
@@ -72,7 +75,7 @@ public class MainMenuCanvas : MonoBehaviour
             cardthing.localScale = new Vector3(0.4f, 0.4f, 0.4f);
             
             // Fix the name of the path to be the name of the scene
-            string name_name = name[0].Substring((Application.dataPath + "/Resources/").Length);
+            string name_name = name[0].Substring((Application.dataPath + "/" + sceneDir + "/").Length);
             string form_name = name_name.Substring(name_name.IndexOf('\\') + 1);
             string final_name = form_name.Substring(form_name.IndexOf('\\') + 1);
             card_obj.transform.GetChild(0).gameObject.GetComponent<Text>().text = final_name.Remove(final_name.IndexOf('.'), 6);
@@ -89,8 +92,8 @@ public class MainMenuCanvas : MonoBehaviour
             {
                 // Fix the image path to be local
                 image[0] = image[0].Replace("\\", "/");
-                image[0] = image[0].Substring(image[0].IndexOf("Resources"));
-                image[0] = image[0].Replace("Resources/", "");
+                image[0] = image[0].Substring(image[0].IndexOf(sceneDir));
+                image[0] = image[0].Replace(sceneDir + "/", "");
                 image[0] = image[0].Remove(image[0].IndexOf('.'), 4);
                 var sprite = Resources.Load<Sprite>(image[0]);
                 card_obj.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = sprite;
