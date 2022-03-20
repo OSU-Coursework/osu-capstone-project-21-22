@@ -19,6 +19,7 @@ public class MainMenuCanvas : MonoBehaviour
     public GameObject optionMenu;
     public GameObject sceneLayout;
     public Text visualQual;
+    public int menuRows = 3;
 
     // private values for pages
     private int pageCount = 0;
@@ -56,17 +57,17 @@ public class MainMenuCanvas : MonoBehaviour
         float num = (float)sceneList.Length;
 
         // calculate pages needed to display all present scenes
-        maxPages = (int)(Mathf.Ceil(num / 3.0f) - 1.0f);
+        maxPages = (int)(Mathf.Ceil(num / menuRows) - 1.0f);
         
         // set up scene list in ui
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < menuRows; i++)
         {
             // Return if greater than the length
-            if ((i + (3 * pageCount)) >= sceneList.Length) return;
+            if ((i + (menuRows * pageCount)) >= sceneList.Length) return;
 
             // get the path of the scene and the image
-            string[] name = Directory.GetFiles(sceneList[i+(3*pageCount)], "*.unity");
-            string[] image = Directory.GetFiles(sceneList[i+(3 * pageCount)], "*.png");
+            string[] name = Directory.GetFiles(sceneList[i + (menuRows * pageCount)], "*.unity");
+            string[] image = Directory.GetFiles(sceneList[i + (menuRows * pageCount)], "*.png");
             
             // Create an instance of the scene card
             GameObject card_obj = Instantiate(sceneCard);

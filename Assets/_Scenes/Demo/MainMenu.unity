@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00019938334, g: 0.0003772556, b: 0.0008502217, a: 1}
+  m_IndirectSpecularColor: {r: 0.003501391, g: 0.004354356, b: 0.0059865876, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7222,13 +7222,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0952c14414abaf948b3a90dff3407a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene_card: {fileID: 6952017459384072554, guid: ea5426d4ee7c33046b9b52882718a4fb,
+  sceneCard: {fileID: 6952017459384072554, guid: ea5426d4ee7c33046b9b52882718a4fb,
     type: 3}
-  MainMenu: {fileID: 1105474192}
-  SceneMenu: {fileID: 1028421540}
-  OptionMenu: {fileID: 1408046791}
-  SceneLayout: {fileID: 1842997955}
-  VisualQual: {fileID: 976753474}
+  mainMenu: {fileID: 1105474192}
+  sceneMenu: {fileID: 1028421540}
+  optionMenu: {fileID: 1408046791}
+  sceneLayout: {fileID: 1842997955}
+  visualQual: {fileID: 976753474}
+  menuRows: 3
 --- !u!1001 &2061144504
 PrefabInstance:
   m_ObjectHideFlags: 0
