@@ -1340,8 +1340,8 @@ MonoBehaviour:
     actionPath: /actions/default/in/GrabGrip
     needsReinit: 0
   hapticAction:
-    actionPath: /actions/default/out/Haptic
-    needsReinit: 0
+    actionPath: 
+    needsReinit: 1
   uiInteractAction:
     actionPath: /actions/default/in/InteractUI
     needsReinit: 0
@@ -1569,8 +1569,8 @@ MonoBehaviour:
     actionPath: /actions/default/in/GrabGrip
     needsReinit: 0
   hapticAction:
-    actionPath: /actions/default/out/Haptic
-    needsReinit: 0
+    actionPath: 
+    needsReinit: 1
   uiInteractAction:
     actionPath: /actions/default/in/InteractUI
     needsReinit: 0
