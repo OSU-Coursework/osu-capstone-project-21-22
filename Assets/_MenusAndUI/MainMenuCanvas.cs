@@ -9,8 +9,8 @@ using Valve.VR.Extras;
 
 public class MainMenuCanvas : MonoBehaviour
 {
-    // name of directory containing scenes to be picked up by menu
-    private const string sceneDir = "Demo";
+    // name of directory containing scenes to be picked up by menu.
+    private const string sceneDir = "Resources";
 
     // public local objects
     public GameObject sceneCard;

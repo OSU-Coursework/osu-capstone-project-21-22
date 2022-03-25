@@ -6032,7 +6032,7 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
-  m_ReverseArrangement: 0
+  m_ReverseArrangement: 1
 --- !u!1 &1886691462
 GameObject:
   m_ObjectHideFlags: 0
