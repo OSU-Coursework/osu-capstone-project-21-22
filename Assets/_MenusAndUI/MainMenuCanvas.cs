@@ -10,6 +10,9 @@ using Valve.VR.Extras;
 public class MainMenuCanvas : MonoBehaviour
 {
     // name of directory containing scenes to be picked up by menu.
+    // this demo scene directory is named "Resources" to be compatible
+    //   with the static method Resources.Load<T>("path").
+    // https://docs.unity3d.com/2018.4/Documentation/ScriptReference/Resources.Load.html
     private const string sceneDir = "Resources";
 
     // public local objects
