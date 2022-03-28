@@ -29,7 +29,7 @@ public class Socketable : MonoBehaviour
     // by keeping a reference to the socket this item is
     //   attached to, we can use its values directly
     //   and not leak into other visible sockets
-    private Socket _attachedSocket;
+    protected Socket _attachedSocket;
 
     // This flag allows an object to be socketed
     public bool _canBeSocketed = true;
@@ -84,6 +84,17 @@ public class Socketable : MonoBehaviour
                 transform.position = _attachedSocket.transform.position;
             }
         }
+
+        LateUpdate();
+    }
+
+    /// <summary>
+    /// Extended classes can implement this to run code
+    /// after the normal update routine is complete.
+    /// </summary>
+    protected virtual void LateUpdate()
+    {
+        return;
     }
 
     private void AttachToSocket(Hand hand)
@@ -92,7 +103,7 @@ public class Socketable : MonoBehaviour
         if (!_attachedToSocket && _inSocketZone && !_visibleSocket.HoldingSocketable)
         {
             if (_visibleSocket.AllowedObjectType == null ||
-                _visibleSocket.AllowedObjectType == this.gameObject)
+                gameObject.name.Contains(_visibleSocket.AllowedObjectType.gameObject.name))
             {
                 _attachedToSocket = true;
                 _attachedSocket = _visibleSocket;
