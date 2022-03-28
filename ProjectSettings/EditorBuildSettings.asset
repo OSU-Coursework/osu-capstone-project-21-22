@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Resources/002_ColorSockets/Colored Sockets.unity
     guid: d5aff628525906a4b80e2098291c8b92
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Test/Factory.unity
     guid: 5e66231f54715bf4baa79d9cb1f2a299
   - enabled: 1
@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Scenes/Test/Ex_Spawners.unity
     guid: 952a3ee55895f754d859b0120e243894
+  - enabled: 1
+    path: Assets/_Scenes/Resources/006_Sandbox/Sandbox.unity
+    guid: 1940c52d4aaf4184e99192a7b06de505
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}
