@@ -1313,6 +1313,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerVR
       objectReference: {fileID: 0}
+    - target: {fileID: 6542905613220441042, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: hapticAction.actionPath
+      value: /actions/default/out/Haptic
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542905613220490060, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: hapticAction.actionPath
+      value: /actions/default/out/Haptic
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e6689d7c5738474896652142550a945, type: 3}
 --- !u!1001 &1404938065
