@@ -2019,6 +2019,80 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65f4f4c642d270a46a6c1ca3404020c2, type: 3}
+--- !u!1001 &2144608428
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5100447774950622577, guid: 5a90a3d268be1894dadaa1b479ba2bcc,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100447774950622577, guid: 5a90a3d268be1894dadaa1b479ba2bcc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100447774950622577, guid: 5a90a3d268be1894dadaa1b479ba2bcc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100447774950622577, guid: 5a90a3d268be1894dadaa1b479ba2bcc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100447774950622577, guid: 5a90a3d268be1894dadaa1b479ba2bcc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100447774950622577, guid: 5a90a3d268be1894dadaa1b479ba2bcc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100447774950622577, guid: 5a90a3d268be1894dadaa1b479ba2bcc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100447774950622577, guid: 5a90a3d268be1894dadaa1b479ba2bcc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100447774950622577, guid: 5a90a3d268be1894dadaa1b479ba2bcc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100447774950622577, guid: 5a90a3d268be1894dadaa1b479ba2bcc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100447774950622577, guid: 5a90a3d268be1894dadaa1b479ba2bcc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100447774950622590, guid: 5a90a3d268be1894dadaa1b479ba2bcc,
+        type: 3}
+      propertyPath: m_Name
+      value: HammerNailDecor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100447775475686598, guid: 5a90a3d268be1894dadaa1b479ba2bcc,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.97
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5a90a3d268be1894dadaa1b479ba2bcc, type: 3}
 --- !u!1001 &1327486937090172649
 PrefabInstance:
   m_ObjectHideFlags: 0
