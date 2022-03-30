@@ -9,6 +9,9 @@ using Valve.VR.InteractionSystem;
 /// </summary>
 public class Socketable : MonoBehaviour
 {
+    // flag to determine if object should not be grabbable after being socketed
+    public bool _freezeSocketedObject = false;
+
     // we can use the onAttachedToHand/onDetachedFromHand
     //   events on an interactable to trigger socket attach
     //   and release methods.
@@ -119,7 +122,7 @@ public class Socketable : MonoBehaviour
     private void DetachFromSocket(Hand hand)
     {
         // if attached to socket while being grabbed by hand, release from socket.
-        if (_attachedToSocket)
+        if (!_freezeSocketedObject && _attachedToSocket)
         {
             _attachedToSocket = false;
             _attachedSocket.HoldingSocketable = false;

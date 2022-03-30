@@ -158,6 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03e51c9c9c88ce4eb667ec7bd4f5cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _freezeSocketedObject: 1
   _canBeSocketed: 1
 --- !u!65 &5610210589267093297
 BoxCollider:
