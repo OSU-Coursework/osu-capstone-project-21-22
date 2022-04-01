@@ -15,7 +15,6 @@ public class HammerableBoard : MonoBehaviour
     // Whether the nails are active
     public bool setActive = true;
 
-
     // Start is called before the first frame update
     void Awake()
     {

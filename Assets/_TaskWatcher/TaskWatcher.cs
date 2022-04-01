@@ -15,6 +15,8 @@ using UnityEngine.UI;
 [AddComponentMenu("Task Management/Task Watcher")]  // make this script selectable from within editor
 public class TaskWatcher : MonoBehaviour
 {
+    public bool _updateTextEveryFrame = false;
+
     protected Task[] _tasks;  // gathered automatically by task watcher on scene initialization
     private int _taskCount;
 
@@ -66,6 +68,14 @@ public class TaskWatcher : MonoBehaviour
     void Awake()
     {
         menu = FindObjectsOfType<CompleteMenu>()[0];
+    }
+
+    private void Update()
+    {
+        if (_updateTextEveryFrame)
+        {
+            UpdateHudText();
+        }
     }
 
     private void OnEnable()
@@ -139,7 +149,6 @@ public class TaskWatcher : MonoBehaviour
     private void UpdateTasks()
     {
         _taskCount = 0;
-        _canvasTaskList = "";
 
         if (_executeTasksInOrder && _tasks[_activeTaskIndex].TaskComplete)
         {
@@ -156,7 +165,20 @@ public class TaskWatcher : MonoBehaviour
             {
                 // update new count
                 _taskCount++;
+            }
+        }
 
+        UpdateHudText();
+    }
+
+    private void UpdateHudText()
+    {
+        _canvasTaskList = "";
+
+        foreach (Task t in _tasks)
+        {
+            if (!t.TaskComplete)
+            {
                 // update hud string
                 if (_executeTasksInOrder)
                 {

@@ -35,11 +35,14 @@ public class HammerableNail : Socketable
                 _nail.transform.position = socket.NailHammeredPosition.position;
 
                 // set nail model parent to the socket parent
-                GameObject board = _attachedSocket.transform.parent.gameObject;
+                GameObject board = socket.transform.parent.gameObject;
                 _nail.transform.SetParent(board.transform);
 
+                // set state
+                socket.HasBeenNailed = true;
+
                 // disable the socket
-                _attachedSocket.gameObject.SetActive(false);
+                socket.gameObject.SetActive(false);
 
                 // disable self
                 gameObject.SetActive(false);
