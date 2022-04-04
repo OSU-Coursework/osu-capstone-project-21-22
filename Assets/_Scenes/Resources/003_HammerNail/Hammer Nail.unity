@@ -349,6 +349,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65f4f4c642d270a46a6c1ca3404020c2, type: 3}
+--- !u!1 &409082695 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6591411755896369256, guid: 42cf43f5861c0e94587552cc62db8fe2,
+    type: 3}
+  m_PrefabInstance: {fileID: 6591411755227807122}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &409082704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409082695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36db9b00ab53d984ba6e284d58959ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &452668640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -489,6 +507,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083214141726881158, guid: 65f4f4c642d270a46a6c1ca3404020c2,
+        type: 3}
+      propertyPath: _impactStrengthToNail
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4083214141726881159, guid: 65f4f4c642d270a46a6c1ca3404020c2,
         type: 3}
