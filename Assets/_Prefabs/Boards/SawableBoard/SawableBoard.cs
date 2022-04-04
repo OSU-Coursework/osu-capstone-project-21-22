@@ -181,8 +181,8 @@ public class SawableBoard : MonoBehaviour
             {
                 // fix the position and rotation
                 transform.position = _lastSocket.AttachTransform.position;
-                if (_lastSocket.gameObject.name == "SawBoardSocket" ||
-                    _lastSocket.gameObject.name.Contains("SawBoardSocket (")) _lastSocket.AttachTransform.localEulerAngles = new Vector3(0, 90, 90);
+                if (_lastSocket.gameObject.name == "2x4SawableBoardSocket" ||
+                    _lastSocket.gameObject.name.Contains("2x4SawableBoardSocket (")) _lastSocket.AttachTransform.localEulerAngles = new Vector3(0, 90, 90);
                 transform.rotation = _lastSocket.AttachTransform.rotation;
             }
         }
@@ -222,7 +222,7 @@ public class SawableBoard : MonoBehaviour
     {
         if (!active || justFreed) return;
         // don't run unless colliding with a socket.
-        if (other.gameObject.name == "SawBoardSocket" || other.gameObject.name.Contains("SawBoardSocket ("))
+        if (other.gameObject.name == "2x4SawableBoardSocket" || other.gameObject.name.Contains("2x4SawableBoardSocket ("))
         {
             // set other values
             _inUse = true;
@@ -252,7 +252,7 @@ public class SawableBoard : MonoBehaviour
         justFreed = false;
 
         // don't run unless colliding with a socket.
-        if (other.gameObject.name == "SawBoardSocket" || other.gameObject.name.Contains("SawBoardSocket ("))
+        if (other.gameObject.name == "2x4SawableBoardSocket" || other.gameObject.name.Contains("2x4SawableBoardSocket ("))
         {
             _inUse = false;
             _inSocketZone = false;

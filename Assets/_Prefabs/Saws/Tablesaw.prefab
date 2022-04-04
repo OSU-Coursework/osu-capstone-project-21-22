@@ -75,7 +75,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7999107632446648961}
-  - {fileID: 7999107632813257529}
+  - {fileID: 1159466072335626107}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -144,7 +144,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1529324, y: 1.0431151, z: 0.7298843}
   m_Center: {x: 0.00000011920929, y: 0.00009679794, z: 0.0043141544}
---- !u!1001 &1255876941844870127
+--- !u!1001 &7960129184613396397
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -154,7 +154,7 @@ PrefabInstance:
     - target: {fileID: 9110587907033743573, guid: 5a80b0d2c21837441840475b366a32ca,
         type: 3}
       propertyPath: m_Name
-      value: SawBoardSocket
+      value: 2x4SawableBoardSocket
       objectReference: {fileID: 0}
     - target: {fileID: 9110587907033743574, guid: 5a80b0d2c21837441840475b366a32ca,
         type: 3}
@@ -213,9 +213,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a80b0d2c21837441840475b366a32ca, type: 3}
---- !u!4 &7999107632813257529 stripped
+--- !u!4 &1159466072335626107 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9110587907033743574, guid: 5a80b0d2c21837441840475b366a32ca,
     type: 3}
-  m_PrefabInstance: {fileID: 1255876941844870127}
+  m_PrefabInstance: {fileID: 7960129184613396397}
   m_PrefabAsset: {fileID: 0}

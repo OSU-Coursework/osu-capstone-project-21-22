@@ -174,7 +174,7 @@ public class Socketable : MonoBehaviour
         if (other.GetComponent<Socket>())
         {
             // do NOT attach to a sawable socket
-            if (other.gameObject.name == "SawBoardSocket" || other.gameObject.name.Contains("SawBoardSocket (")) return;
+            if (other.gameObject.name == "2x4SawableBoardSocket" || other.gameObject.name.Contains("2x4SawableBoardSocket (")) return;
             _inSocketZone = true;
             _visibleSocket = other.GetComponent<Socket>();
         }
@@ -187,7 +187,7 @@ public class Socketable : MonoBehaviour
         if (other.GetComponent<Socket>())
         {
             // do NOT attach to a sawable socket
-            if (other.gameObject.name == "SawBoardSocket" || other.gameObject.name.Contains("SawBoardSocket (")) return;
+            if (other.gameObject.name == "2x4SawableBoardSocket" || other.gameObject.name.Contains("2x4SawableBoardSocket (")) return;
             _inSocketZone = false;
             _visibleSocket = null;
         }

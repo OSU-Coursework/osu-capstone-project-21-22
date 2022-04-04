@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 7302353627968358465}
   - component: {fileID: 7302353627968358466}
   m_Layer: 0
-  m_Name: SawableBoard
+  m_Name: 2x4SawableBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
