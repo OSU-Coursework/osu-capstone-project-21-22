@@ -40,7 +40,12 @@ public class Socketable : MonoBehaviour
     protected Socket _attachedSocket;
 
     // This flag allows an object to be socketed
-    public bool _canBeSocketed = true;
+    private bool _canBeSocketed = true;
+    public bool CanBeSocketed
+    {
+        get { return _canBeSocketed; }
+        set { _canBeSocketed = value; }
+    }
 
     void Awake()
     {

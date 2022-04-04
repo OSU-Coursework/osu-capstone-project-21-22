@@ -107,10 +107,10 @@ public class SawableBoard : MonoBehaviour
         Board1.GetComponent<BoxCollider>().enabled = false;
         Board2.GetComponent<BoxCollider>().enabled = false;
 
-        if (Board1.GetComponent<Socketable>() != null) Board1.GetComponent<Socketable>()._canBeSocketed = false;
+        if (Board1.GetComponent<Socketable>() != null) Board1.GetComponent<Socketable>().CanBeSocketed = false;
         if (Board1.GetComponent<SawableBoard>() != null) Board1.GetComponent<SawableBoard>().active = false;
         // make board2 usable
-        if (Board2.GetComponent<Socketable>() != null) Board2.GetComponent<Socketable>()._canBeSocketed = false;
+        if (Board2.GetComponent<Socketable>() != null) Board2.GetComponent<Socketable>().CanBeSocketed = false;
         if (Board2.GetComponent<SawableBoard>() != null) Board2.GetComponent<SawableBoard>().active = false;
 
         float ratio = (float)board1Len / (float)max_length;
@@ -307,10 +307,10 @@ public class SawableBoard : MonoBehaviour
         Board2.gameObject.AddComponent<Throwable>();
 
         // make board1 usable
-        if (Board1.GetComponent<Socketable>() != null) Board1.GetComponent<Socketable>()._canBeSocketed = true;
+        if (Board1.GetComponent<Socketable>() != null) Board1.GetComponent<Socketable>().CanBeSocketed = true;
         if (Board1.GetComponent<SawableBoard>() != null) Board1.GetComponent<SawableBoard>().ReInitComponents();
         // make board2 usable
-        if (Board2.GetComponent<Socketable>() != null) Board2.GetComponent<Socketable>()._canBeSocketed = true;
+        if (Board2.GetComponent<Socketable>() != null) Board2.GetComponent<Socketable>().CanBeSocketed = true;
         if (Board2.GetComponent<SawableBoard>() != null) Board2.GetComponent<SawableBoard>().ReInitComponents();
 
         // Destroy this object
