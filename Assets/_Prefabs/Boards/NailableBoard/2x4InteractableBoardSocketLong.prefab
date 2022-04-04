@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6536311477797566326}
   - component: {fileID: 6192029339621275495}
   m_Layer: 0
-  m_Name: 2x4BaseSocketLong
+  m_Name: 2x4InteractableBoardSocketLong
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

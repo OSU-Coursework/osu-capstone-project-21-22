@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7469387810288949781}
   - component: {fileID: 7562597017447651844}
   m_Layer: 0
-  m_Name: 2x4BaseSocketShort
+  m_Name: 2x4HammerableBoardSocketShort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
