@@ -20,19 +20,19 @@ public class Socketable : MonoBehaviour
     // we can use the onAttachedToHand/onDetachedFromHand
     //   events on an interactable to trigger socket attach
     //   and release methods.
-    private Interactable _interactable;
+    protected Interactable _interactable;
     // a reference to the object's rigidbody will allow us to
     //   disable gravity so that the object hovers in the socket.
-    private Rigidbody _rigidbody;
+    protected Rigidbody _rigidbody;
     // a socket is visible when an object is inside of its
     //   collision boundary.
-    private Socket _visibleSocket;
+    protected Socket _visibleSocket;
     public Socket VisibleSocket { get { return _visibleSocket; } }
 
     // these flags are useful for managing the state of a
     //   socketable object.
-    private bool _inSocketZone;
-    private bool _attachedToSocket;
+    protected bool _inSocketZone;
+    protected bool _attachedToSocket;
     public bool AttachedToSocket { get { return _attachedSocket; } }
     // by keeping a reference to the socket this item is
     //   attached to, we can use its values directly
@@ -47,7 +47,7 @@ public class Socketable : MonoBehaviour
         set { _canBeSocketed = value; }
     }
 
-    void Awake()
+    protected virtual void Awake()
     {
         // get handle for steamvr interactable script
         _interactable = GetComponent<Interactable>();
@@ -61,7 +61,7 @@ public class Socketable : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         // reset the rigidbody
         if (_rigidbody == null && GetComponent<Rigidbody>() != null)
@@ -111,7 +111,7 @@ public class Socketable : MonoBehaviour
         LateUpdate();
     }
 
-    void freezeObjectIfNecessary()
+    private void freezeObjectIfNecessary()
     {
         // frozen objects remember this position for future iterations
         if (_freezeSocketedObject && !_objectFrozen)
@@ -134,7 +134,7 @@ public class Socketable : MonoBehaviour
         return;
     }
 
-    private void AttachToSocket(Hand hand)
+    protected virtual void AttachToSocket(Hand hand)
     {
         // if inside socket zone while being let go from hand, attach to socket.
         if (!_attachedToSocket && _inSocketZone && !_visibleSocket.HoldingSocketable)
@@ -153,7 +153,7 @@ public class Socketable : MonoBehaviour
         }
     }
 
-    private void DetachFromSocket(Hand hand)
+    protected virtual void DetachFromSocket(Hand hand)
     {
         // if attached to socket while being grabbed by hand, release from socket.
         if (!_freezeSocketedObject && _attachedToSocket)
@@ -180,7 +180,7 @@ public class Socketable : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
         if (!_canBeSocketed) return;
         // don't run unless colliding with a socket.

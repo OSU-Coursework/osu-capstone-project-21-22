@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR.InteractionSystem;
 
-public class SawableBoard : MonoBehaviour
+public class SawableBoard : Socketable
 {
     // whether it can be used to saw
 
@@ -22,24 +22,8 @@ public class SawableBoard : MonoBehaviour
     // whether this was just freed
     private bool justFreed = true;
 
-    // we can use the onAttachedToHand/onDetachedFromHand
-    //   events on an interactable to trigger socket attach
-    //   and release methods.
-    private Interactable _interactable;
-    // a reference to the objects rigidbody will allow us to
-    //   disable gravity so that the object hovers in the socket.
-    private Rigidbody _rigidbody;
-    // a socket is visible when an object is inside of its
-    //   collision boundary.
-    private Socket _visibleSocket;
-
     // a reference to _visibleSocket once it is freed
     private Socket _lastSocket;
-
-    // these flags are useful for managing the state of a
-    //   socketable object.
-    private bool _inSocketZone;
-    public bool _attachedToSocket;
 
     // when this count hits 0, the board breaks
     private int hits = 10;
@@ -65,26 +49,15 @@ public class SawableBoard : MonoBehaviour
     // the second board object
     public GameObject Board2;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         InitBoards();
     }
 
-    public void InitBoards()
+    private void InitBoards()
     {
-        _doneInit = true;
-
-        // get handle for steamvr interactable script
-        _interactable = GetComponent<Interactable>();
-
-        // register socket functions with interactable events
-        _interactable.onAttachedToHand += DetachFromSocket;
-        _interactable.onDetachedFromHand += AttachToSocket;
-
-        // get handle for attached rigidbody to disable
-        //   gravity when needed
-        _rigidbody = GetComponent<Rigidbody>();
-
         // Spawn a default board
         if (Board1 == null)
         {
@@ -134,9 +107,11 @@ public class SawableBoard : MonoBehaviour
 
         // change the active status
         active = startActive;
+
+        _doneInit = true;
     }
 
-    void Update()
+    protected override void Update()
     {
         // initialize if somehow not ready
         if (active && !_doneInit)
@@ -189,7 +164,7 @@ public class SawableBoard : MonoBehaviour
 
     }
 
-    private void AttachToSocket(Hand hand)
+    protected override void AttachToSocket(Hand hand)
     {
         Debug.Log(gameObject.name);
         if (!active) return;
@@ -204,7 +179,7 @@ public class SawableBoard : MonoBehaviour
         }
     }
 
-    private void DetachFromSocket(Hand hand)
+    protected override void DetachFromSocket(Hand hand)
     {
         if (!active) return;
         // if attached to socket while being grabbed by hand, release from socket.
@@ -218,7 +193,7 @@ public class SawableBoard : MonoBehaviour
 
     }
 
-    private void OnTriggerStay(Collider other)
+    protected override void OnTriggerStay(Collider other)
     {
         if (!active || justFreed) return;
         // don't run unless colliding with a socket.
@@ -244,7 +219,7 @@ public class SawableBoard : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    protected override void OnTriggerExit(Collider other)
     {
         if (!active) return;
 
