@@ -6,9 +6,7 @@ using Valve.VR.InteractionSystem;
 public class SawableBoard : Socketable
 {
     // whether it can be used to saw
-
-    [Header("DO NOT CHANGE")]
-    public bool active = false;
+    private bool active = false;
 
     [Header("Activate after initializing")]
     public bool startActive = false;
