@@ -170,11 +170,10 @@ public class Socketable : MonoBehaviour
     protected virtual void OnTriggerStay(Collider other)
     {
         if (!_canBeSocketed) return;
+
         // don't run unless colliding with a socket.
         if (other.GetComponent<Socket>())
         {
-            // do NOT attach to a sawable socket
-            if (other.gameObject.name == "2x4SawableBoardSocket" || other.gameObject.name.Contains("2x4SawableBoardSocket (")) return;
             _inSocketZone = true;
             _visibleSocket = other.GetComponent<Socket>();
         }
@@ -183,11 +182,10 @@ public class Socketable : MonoBehaviour
     protected virtual void OnTriggerExit(Collider other)
     {
         if (!_canBeSocketed) return;
+
         // don't run unless colliding with a socket.
         if (other.GetComponent<Socket>())
         {
-            // do NOT attach to a sawable socket
-            if (other.gameObject.name == "2x4SawableBoardSocket" || other.gameObject.name.Contains("2x4SawableBoardSocket (")) return;
             _inSocketZone = false;
             _visibleSocket = null;
         }

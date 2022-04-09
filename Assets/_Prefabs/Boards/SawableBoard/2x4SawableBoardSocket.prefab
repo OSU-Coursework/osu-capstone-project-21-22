@@ -79,7 +79,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _vanishOnUse: 1
   _sawBoardSocket: 1
-  _allowedObjectType: {fileID: 0}
+  _allowedObjectType: {fileID: 7302353627968358468, guid: 4986156724cb6aa44a949aa6947be3a2,
+    type: 3}
   _attachTransform: {fileID: 9110587905270303579}
 --- !u!33 &9110587907033743570
 MeshFilter:
