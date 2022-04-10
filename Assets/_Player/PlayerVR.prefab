@@ -877,6 +877,7 @@ GameObject:
   - component: {fileID: 6542905613220490060}
   - component: {fileID: 6582032387316579090}
   - component: {fileID: 6582032387440956350}
+  - component: {fileID: 4723139417317986578}
   m_Layer: 26
   m_Name: LeftHand
   m_TagString: Untagged
@@ -946,7 +947,7 @@ MonoBehaviour:
   noSteamVRFallbackCamera: {fileID: 0}
   noSteamVRFallbackMaxDistanceNoItem: 10
   noSteamVRFallbackMaxDistanceWithItem: 0.5
-  renderModelPrefab: {fileID: 1000011547835092, guid: d5082f7d9f947374197e0a97786f4e40,
+  renderModelPrefab: {fileID: 1000011547835092, guid: a3adca0961048584dac752b32b646ebf,
     type: 3}
   renderModels: []
   mainRenderModel: {fileID: 0}
@@ -1006,6 +1007,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967039
   hand: {fileID: 0}
+--- !u!114 &4723139417317986578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6542905613209710562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b792508f5012d2e44a336c288496f2f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6542905613209726928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,6 +1031,7 @@ GameObject:
   - component: {fileID: 6542905613220441042}
   - component: {fileID: 6582032387739969168}
   - component: {fileID: 6582032410197730200}
+  - component: {fileID: 9058811575598005962}
   m_Layer: 26
   m_Name: RightHand
   m_TagString: Untagged
@@ -1087,7 +1101,7 @@ MonoBehaviour:
   noSteamVRFallbackCamera: {fileID: 0}
   noSteamVRFallbackMaxDistanceNoItem: 10
   noSteamVRFallbackMaxDistanceWithItem: 0.5
-  renderModelPrefab: {fileID: 1000012617731570, guid: 837f93beb9a614743ae3a2c0ada7c388,
+  renderModelPrefab: {fileID: 1000012617731570, guid: e595d9a215c40c543935be666dda3f92,
     type: 3}
   renderModels: []
   mainRenderModel: {fileID: 0}
@@ -1147,6 +1161,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967039
   hand: {fileID: 0}
+--- !u!114 &9058811575598005962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6542905613209726928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b792508f5012d2e44a336c288496f2f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6542905613209731178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,9 +1477,9 @@ CapsuleCollider:
   m_GameObject: {fileID: 6542905613209760120}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.25
-  m_Height: 1.5
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 0.2
   m_Direction: 1
   m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!114 &6542905613220501428

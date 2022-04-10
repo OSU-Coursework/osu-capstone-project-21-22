@@ -3,7 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - projectile
+  - FxTemporaire
+  - HudText
+  - HUDobject
+  - OtherHUDdisplay
+  - HazardUI
+  - UICam
+  - CompleteTeleport
+  - JoistHanger
+  - RimJoist
+  - FloorJoist
+  - BandBoard
+  - Hammer
+  - hover_icon
   layers:
   - Default
   - TransparentFX
@@ -11,7 +25,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - VR_UI
   - 
   - 
   - 
