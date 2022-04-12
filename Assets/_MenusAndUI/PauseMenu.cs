@@ -25,6 +25,18 @@ public class PauseMenu : MonoBehaviour
             player = GameObject.Find("Player").transform.GetChild(0).GetChild(3).gameObject;
         }
 
+        // Set the player and hand objects
+        if (GameObject.Find("PlayerVRWithHatSocket") != null)
+        {
+            player = GameObject.Find("PlayerVRWithHatSocket").transform.GetChild(0).GetChild(3).gameObject;
+        }
+
+        // Set the player and hand objects
+        if (GameObject.Find("PlayerVR") != null)
+        {
+            player = GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(3).gameObject;
+        }
+
         // Get all pause menu objects
         var Wboards = FindObjectsOfType(typeof(PauseMenu)) as PauseMenu[];
         // For each menu, destroy it until one remains
@@ -145,6 +157,10 @@ public class PauseMenu : MonoBehaviour
             else if (GameObject.Find("PlayerVR(Clone)") != null)
             {
                 player = GameObject.Find("PlayerVR(Clone)").transform.GetChild(0).GetChild(3).gameObject;
+            }
+            else if (GameObject.Find("PlayerVRWithHatSocket") != null)
+            {
+                player = GameObject.Find("PlayerVRWithHatSocket").transform.GetChild(0).GetChild(3).gameObject;
             }
         }
     }

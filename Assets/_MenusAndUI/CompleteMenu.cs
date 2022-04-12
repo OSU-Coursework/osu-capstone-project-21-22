@@ -129,23 +129,32 @@ public class CompleteMenu : MonoBehaviour
             Destroy(tele.gameObject);
         }
 
-        // move the player
-        GameObject fadecam = FindObjectsOfType<SteamVR_Fade>()[0].gameObject;
-        GameObject player = FindObjectsOfType<Player>()[0].gameObject;
-        GameObject target = GameObject.FindGameObjectsWithTag("CompleteTeleport")[0].gameObject;
-
         // remove global lighting
         GameObject.Find("Directional Light").GetComponent<Light>().color = Color.black;
         GameObject.Find("Directional Light").GetComponent<Light>().intensity = 0;
 
         // fade out the camera, then move the player to the target position
-        SteamVR_Fade.View(Color.black, 0);
+        //SteamVR_Fade.Start(Color.black, 3f, true);
+        // Fade the canvas
+        StartCoroutine(taskWatcher.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<FadeUI>().FadeOut());
+        StartCoroutine(WaitForTime());
+
+    }
+
+    private void FinishTeleport()
+    {
+        // move the player
+        GameObject fadecam = FindObjectsOfType<SteamVR_Fade>()[0].gameObject;
+        GameObject player = FindObjectsOfType<Player>()[0].gameObject;
+        GameObject target = GameObject.FindGameObjectsWithTag("CompleteTeleport")[0].gameObject;
+
         player.transform.position = target.transform.position;
         fadecam.transform.position = new Vector3(target.transform.position.x, fadecam.transform.position.y, target.transform.position.z);
         // rotate the room to face the player
         target.transform.parent.eulerAngles = new Vector3(0, fadecam.transform.eulerAngles.y, 0);
         // fade back in
-        SteamVR_Fade.View(Color.clear, 0.5f);
+        //SteamVR_Fade.Start(Color.clear, 2f, true);
+        StartCoroutine(taskWatcher.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<FadeUI>().FadeIn());
 
 
         // enable the laser pointer
@@ -247,4 +256,20 @@ public class CompleteMenu : MonoBehaviour
             }
         }
     }
+
+
+    // Wait for seconds then finish the sequence
+    private IEnumerator WaitToTeleport()
+    {
+        yield return new WaitForSeconds(3);
+        FinishTeleport();
+    }
+
+    // Wait for seconds then finish the sequence
+    private IEnumerator WaitForTime()
+    {
+        yield return new WaitForSeconds(2);
+        StartCoroutine(WaitToTeleport());
+    }
+
 }
