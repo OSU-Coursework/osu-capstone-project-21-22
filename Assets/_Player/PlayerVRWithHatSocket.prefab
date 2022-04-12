@@ -1951,7 +1951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &284326420880913121
 Transform:
   m_ObjectHideFlags: 0
@@ -1975,7 +1975,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 284326420880612529}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.2
   m_Height: 0.2
   m_Direction: 1
