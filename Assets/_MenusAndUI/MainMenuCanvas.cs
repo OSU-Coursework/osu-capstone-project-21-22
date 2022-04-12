@@ -135,8 +135,7 @@ public class MainMenuCanvas : MonoBehaviour
     // Open the scene of the button that was pressed
     public void openScene(string scene_name)
     {
-        GameObject.Destroy(GameObject.Find("Player"));
-        SceneManager.LoadScene(scene_name);
+        StartCoroutine(WaitToLoad(scene_name));
     }
 
     // Close the application
@@ -221,6 +220,21 @@ public class MainMenuCanvas : MonoBehaviour
             optionMenu.transform.GetChild(1).GetChild(0).GetChild(2).GetComponent<Text>().text = "[X] Left";
             optionMenu.transform.GetChild(1).GetChild(2).GetChild(2).GetComponent<Text>().text = "[  ] Right";
         }
+    }
+
+    // fade out, wait, then open the target scene
+    private IEnumerator WaitToLoad(string scene_name)
+    {
+        StartCoroutine(Object.FindObjectsOfType<FadeUI>()[0].FadeOut(1.5f));
+        yield return new WaitForSeconds(1.5f);
+        RealOpenScene(scene_name);
+    }
+
+    // open the scene with the given name
+    private void RealOpenScene(string scene_name)
+    {
+        GameObject.Destroy(GameObject.Find("Player"));
+        SceneManager.LoadScene(scene_name);
     }
 
 }

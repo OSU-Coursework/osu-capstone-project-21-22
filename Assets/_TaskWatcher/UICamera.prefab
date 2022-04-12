@@ -368,6 +368,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1457622506340446053, guid: d9f0d838642e8264f833919f7cbeb397,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9f0d838642e8264f833919f7cbeb397, type: 3}
 --- !u!224 &7403365843933155866 stripped

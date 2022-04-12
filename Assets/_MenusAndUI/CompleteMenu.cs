@@ -136,7 +136,7 @@ public class CompleteMenu : MonoBehaviour
         // fade out the camera, then move the player to the target position
         //SteamVR_Fade.Start(Color.black, 3f, true);
         // Fade the canvas
-        StartCoroutine(taskWatcher.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<FadeUI>().FadeOut());
+        StartCoroutine(taskWatcher.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<FadeUI>().FadeOut(3f));
         StartCoroutine(WaitForTime());
 
     }
@@ -154,7 +154,7 @@ public class CompleteMenu : MonoBehaviour
         target.transform.parent.eulerAngles = new Vector3(0, fadecam.transform.eulerAngles.y, 0);
         // fade back in
         //SteamVR_Fade.Start(Color.clear, 2f, true);
-        StartCoroutine(taskWatcher.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<FadeUI>().FadeIn());
+        StartCoroutine(taskWatcher.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<FadeUI>().FadeIn(1f));
 
 
         // enable the laser pointer
@@ -181,38 +181,18 @@ public class CompleteMenu : MonoBehaviour
 
     public void ReturnToMain()
     {
-        // delete the menu and the player
+        // delete the menu and wait
         DeleteMenu();
-        GameObject.Destroy(FindObjectsOfType<Player>()[0]);
-
-        // destroy everything EXCEPT tasks
-        foreach (GameObject obj in Object.FindObjectsOfType<GameObject>())
-        {
-            if (obj != this) GameObject.Destroy(obj);
-        }
-
-        // load the main menu, then destroy this
-        SceneManager.LoadScene("MainMenu");
-        GameObject.Destroy(this);
+        StartCoroutine(WaitToClose(2));
     }
 
 
     // replay the current scene
     public void ReplayScene()
     {
-        // delete the menu and the player
+        // delete the menu and wait
         DeleteMenu();
-        GameObject.Destroy(FindObjectsOfType<Player>()[0]);
-
-        // destroy everything EXCEPT tasks
-        foreach (GameObject obj in Object.FindObjectsOfType<GameObject>())
-        {
-            if (obj != this) GameObject.Destroy(obj);
-        }
-
-        // load the main menu, then destroy this
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        GameObject.Destroy(this);
+        StartCoroutine(WaitToClose(1));
     }
 
     void Update()
@@ -272,4 +252,40 @@ public class CompleteMenu : MonoBehaviour
         StartCoroutine(WaitToTeleport());
     }
 
+
+    // Wait a couple seconds, fade out and open a scene
+    private IEnumerator WaitToClose(int mode)
+    {
+        StartCoroutine(taskWatcher.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<FadeUI>().FadeOut(1.5f));
+        yield return new WaitForSeconds(1.5f);
+        if (mode == 1) Restart();
+        if (mode == 2) Close();
+    }
+
+    // Restart the current scene
+    private void Restart()
+    {
+        // destroy everything
+        GameObject.Destroy(FindObjectsOfType<Player>()[0]);
+        foreach (GameObject obj in Object.FindObjectsOfType<GameObject>())
+        {
+            if (obj != this) GameObject.Destroy(obj);
+        }
+
+        // load the main menu, then destroy this
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameObject.Destroy(this);
+    }
+
+    // Return to the main menu
+    private void Close()
+    {
+        GameObject.Destroy(FindObjectsOfType<Player>()[0]);
+        foreach (GameObject obj in Object.FindObjectsOfType<GameObject>())
+        {
+            if (obj != this) GameObject.Destroy(obj);
+        }
+        SceneManager.LoadScene("MainMenu");
+        GameObject.Destroy(this);
+    }
 }
