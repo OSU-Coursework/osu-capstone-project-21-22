@@ -378,6 +378,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeadsUpDisplay
       objectReference: {fileID: 0}
+    - target: {fileID: 3819940002134755668, guid: 9a9c17618ae3cdb40a5310ad139d3634,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a9c17618ae3cdb40a5310ad139d3634, type: 3}
 --- !u!1001 &949885089
@@ -969,7 +974,7 @@ PrefabInstance:
     - target: {fileID: 2121056261802283158, guid: 3b4caed00ca07cf418326d410be3c5c5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8685529
+      value: -0.04
       objectReference: {fileID: 0}
     - target: {fileID: 2121056261802283158, guid: 3b4caed00ca07cf418326d410be3c5c5,
         type: 3}
