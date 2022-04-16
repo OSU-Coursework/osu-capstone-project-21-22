@@ -1196,6 +1196,7 @@ GameObject:
   - component: {fileID: 284326420874036869}
   - component: {fileID: 173145832298698459}
   - component: {fileID: 173145832207875703}
+  - component: {fileID: 8596143509096347489}
   m_Layer: 26
   m_Name: LeftHand
   m_TagString: Untagged
@@ -1325,6 +1326,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967039
   hand: {fileID: 0}
+--- !u!114 &8596143509096347489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284326420880556587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b792508f5012d2e44a336c288496f2f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &284326420880564267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,6 +1529,7 @@ GameObject:
   - component: {fileID: 284326420874249755}
   - component: {fileID: 173145832991050585}
   - component: {fileID: 173145835233578577}
+  - component: {fileID: 7454089110403319393}
   m_Layer: 26
   m_Name: RightHand
   m_TagString: Untagged
@@ -1645,6 +1659,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967039
   hand: {fileID: 0}
+--- !u!114 &7454089110403319393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284326420880572953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b792508f5012d2e44a336c288496f2f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &284326420880590083
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,7 +1951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &284326420880913121
 Transform:
   m_ObjectHideFlags: 0
@@ -1949,7 +1975,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 284326420880612529}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.2
   m_Height: 0.2
   m_Direction: 1

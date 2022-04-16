@@ -46,7 +46,10 @@ namespace Valve.VR
         /// <param name="inputSource">The device you would like to execute the haptic action. Any if the action is not device specific.</param>
         public void Execute(float secondsFromNow, float durationSeconds, float frequency, float amplitude, SteamVR_Input_Sources inputSource)
         {
-            sourceMap[inputSource].Execute(secondsFromNow, durationSeconds, frequency, amplitude);
+            if (sourceMap != null)
+            {
+                sourceMap[inputSource].Execute(secondsFromNow, durationSeconds, frequency, amplitude);
+            }
         }
 
 
