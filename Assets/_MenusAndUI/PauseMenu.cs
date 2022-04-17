@@ -15,14 +15,34 @@ public class PauseMenu : MonoBehaviour
     public Text VisualQual;
     public SteamVR_Input_Sources leftHand;
     private GameObject player;
+    private TaskWatcher taskWatcher;
+    private bool can_open = true;
 
     // Find the player object
     private void Awake()
     {
+        // get the task watcher
+        if (taskWatcher == null)
+        {
+            taskWatcher = FindObjectsOfType<TaskWatcher>()[0];
+        }
+
         // Set the player and hand objects
         if (GameObject.Find("Player") != null)
         {
             player = GameObject.Find("Player").transform.GetChild(0).GetChild(3).gameObject;
+        }
+
+        // Set the player and hand objects
+        if (GameObject.Find("PlayerVRWithHatSocket") != null)
+        {
+            player = GameObject.Find("PlayerVRWithHatSocket").transform.GetChild(0).GetChild(3).gameObject;
+        }
+
+        // Set the player and hand objects
+        if (GameObject.Find("PlayerVR") != null)
+        {
+            player = GameObject.Find("PlayerVR").transform.GetChild(0).GetChild(3).gameObject;
         }
 
         // Get all pause menu objects
@@ -80,6 +100,9 @@ public class PauseMenu : MonoBehaviour
 
     public void SpawnMenu()
     {
+        // only continue if this can be opened
+        if (!can_open) return;
+
         if (this.gameObject.transform.GetChild(0).gameObject.activeSelf)
         {
             DeleteMenu();
@@ -111,14 +134,10 @@ public class PauseMenu : MonoBehaviour
 
     public void ReturnToMain()
     {
+        // stop menu opening and delete the menu
+        can_open = false;
         DeleteMenu();
-        GameObject.Destroy(GameObject.Find("Player"));
-        foreach (GameObject obj in Object.FindObjectsOfType<GameObject>())
-        {
-            if (obj != this) GameObject.Destroy(obj);
-        }
-        SceneManager.LoadScene("MainMenu");
-        GameObject.Destroy(this);
+        StartCoroutine(WaitToClose(2));
     }
 
     void Update()
@@ -145,6 +164,10 @@ public class PauseMenu : MonoBehaviour
             else if (GameObject.Find("PlayerVR(Clone)") != null)
             {
                 player = GameObject.Find("PlayerVR(Clone)").transform.GetChild(0).GetChild(3).gameObject;
+            }
+            else if (GameObject.Find("PlayerVRWithHatSocket") != null)
+            {
+                player = GameObject.Find("PlayerVRWithHatSocket").transform.GetChild(0).GetChild(3).gameObject;
             }
         }
     }
@@ -208,9 +231,24 @@ public class PauseMenu : MonoBehaviour
     // replay the current scene
     public void ReplayScene()
     {
-        // delete the menu and the player
+        // stop menu opening and delete the menu
+        can_open = false;
         DeleteMenu();
+        StartCoroutine(WaitToClose(1));
+    }
 
+    // Wait a couple seconds, fade out and open a scene
+    private IEnumerator WaitToClose(int mode)
+    {
+        StartCoroutine(taskWatcher.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<FadeUI>().FadeOut(1.5f));
+        yield return new WaitForSeconds(1.5f);
+        if (mode == 1) Restart();
+        if (mode == 2) Close();
+    }
+
+    // Restart the current scene
+    private void Restart()
+    {
         // destroy everything
         foreach (GameObject obj in Object.FindObjectsOfType<GameObject>())
         {
@@ -219,6 +257,18 @@ public class PauseMenu : MonoBehaviour
 
         // load the main menu, then destroy this
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameObject.Destroy(this);
+    }
+
+    // Return to the main menu
+    private void Close()
+    {
+        GameObject.Destroy(GameObject.Find("Player"));
+        foreach (GameObject obj in Object.FindObjectsOfType<GameObject>())
+        {
+            if (obj != this) GameObject.Destroy(obj);
+        }
+        SceneManager.LoadScene("MainMenu");
         GameObject.Destroy(this);
     }
 }

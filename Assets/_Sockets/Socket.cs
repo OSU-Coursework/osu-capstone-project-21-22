@@ -39,17 +39,17 @@ public class Socket : MonoBehaviour
     // they're useful for debugging but can ultimately be removed.
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Socketable>())
-        {
-            Debug.Log("Colliding with " + other.name);
-        }
+        //if (other.GetComponent<Socketable>())
+        //{
+        //    Debug.Log("Colliding with " + other.name);
+        //}
     }
     
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Socketable>())
-        {
-            Debug.Log("No longer colliding with " + other.name);
-        }
+        //if (other.GetComponent<Socketable>())
+        //{
+        //    Debug.Log("No longer colliding with " + other.name);
+        //}
     }
 }

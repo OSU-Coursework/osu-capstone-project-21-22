@@ -9,22 +9,30 @@ using Valve.VR.InteractionSystem;
 /// </summary>
 public class Socketable : MonoBehaviour
 {
+    // flag to determine if object should not be grabbable after being socketed
+    public bool _freezeSocketedObject = false;
+    // for tracking internal state
+    private bool _objectFrozen = false;
+    // for remembering initial socketed position
+    private Vector3 _rememberedPosition;
+    private Quaternion _rememberedRotation;
+
     // we can use the onAttachedToHand/onDetachedFromHand
     //   events on an interactable to trigger socket attach
     //   and release methods.
-    private Interactable _interactable;
-    // a reference to the objects rigidbody will allow us to
+    protected Interactable _interactable;
+    // a reference to the object's rigidbody will allow us to
     //   disable gravity so that the object hovers in the socket.
-    private Rigidbody _rigidbody;
+    protected Rigidbody _rigidbody;
     // a socket is visible when an object is inside of its
     //   collision boundary.
-    private Socket _visibleSocket;
+    protected Socket _visibleSocket;
     public Socket VisibleSocket { get { return _visibleSocket; } }
 
     // these flags are useful for managing the state of a
     //   socketable object.
-    private bool _inSocketZone;
-    private bool _attachedToSocket;
+    protected bool _inSocketZone;
+    protected bool _attachedToSocket;
     public bool AttachedToSocket { get { return _attachedSocket; } }
     // by keeping a reference to the socket this item is
     //   attached to, we can use its values directly
@@ -32,9 +40,14 @@ public class Socketable : MonoBehaviour
     protected Socket _attachedSocket;
 
     // This flag allows an object to be socketed
-    public bool _canBeSocketed = true;
+    private bool _canBeSocketed = true;
+    public bool CanBeSocketed
+    {
+        get { return _canBeSocketed; }
+        set { _canBeSocketed = value; }
+    }
 
-    void Awake()
+    protected virtual void Awake()
     {
         // get handle for steamvr interactable script
         _interactable = GetComponent<Interactable>();
@@ -48,7 +61,7 @@ public class Socketable : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         // reset the rigidbody
         if (_rigidbody == null && GetComponent<Rigidbody>() != null)
@@ -71,21 +84,45 @@ public class Socketable : MonoBehaviour
         {
             _rigidbody.useGravity = false;
 
-            if (_attachedSocket.AttachTransform != null)
+            if (_attachedSocket.AttachTransform != null && !_objectFrozen)
             {
                 // this socket has a specialized transform, so make the
                 //   object take its position and rotation
-                transform.position = _attachedSocket.AttachTransform.position; 
+                transform.position = _attachedSocket.AttachTransform.position;
                 transform.rotation = _attachedSocket.AttachTransform.rotation;
+
+                freezeObjectIfNecessary();
+            }
+            else if (_objectFrozen)
+            {
+                // use remembered socket transform
+                transform.position = _rememberedPosition;
+                transform.rotation = _rememberedRotation;
             }
             else
             {
                 // just use the socket position
                 transform.position = _attachedSocket.transform.position;
+
+                freezeObjectIfNecessary();
             }
         }
 
         LateUpdate();
+    }
+
+    private void freezeObjectIfNecessary()
+    {
+        // frozen objects remember this position for future iterations
+        if (_freezeSocketedObject && !_objectFrozen)
+        {
+            _rememberedPosition = transform.position;
+            _rememberedRotation = transform.rotation;
+            _objectFrozen = true;
+
+            // make kinematic to prevent influence from physics
+            //_rigidbody.isKinematic = true;
+        }
     }
 
     /// <summary>
@@ -97,7 +134,7 @@ public class Socketable : MonoBehaviour
         return;
     }
 
-    private void AttachToSocket(Hand hand)
+    protected virtual void AttachToSocket(Hand hand)
     {
         // if inside socket zone while being let go from hand, attach to socket.
         if (!_attachedToSocket && _inSocketZone && !_visibleSocket.HoldingSocketable)
@@ -116,10 +153,10 @@ public class Socketable : MonoBehaviour
         }
     }
 
-    private void DetachFromSocket(Hand hand)
+    protected virtual void DetachFromSocket(Hand hand)
     {
         // if attached to socket while being grabbed by hand, release from socket.
-        if (_attachedToSocket)
+        if (!_freezeSocketedObject && _attachedToSocket)
         {
             _attachedToSocket = false;
             _attachedSocket.HoldingSocketable = false;
@@ -130,27 +167,25 @@ public class Socketable : MonoBehaviour
 
     }
 
-    private void OnTriggerStay(Collider other)
+    protected virtual void OnTriggerStay(Collider other)
     {
         if (!_canBeSocketed) return;
+
         // don't run unless colliding with a socket.
         if (other.GetComponent<Socket>())
         {
-            // do NOT attach to a sawable socket
-            if (other.gameObject.name == "SawBoardSocket" || other.gameObject.name.Contains("SawBoardSocket (")) return;
             _inSocketZone = true;
             _visibleSocket = other.GetComponent<Socket>();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
         if (!_canBeSocketed) return;
+
         // don't run unless colliding with a socket.
         if (other.GetComponent<Socket>())
         {
-            // do NOT attach to a sawable socket
-            if (other.gameObject.name == "SawBoardSocket" || other.gameObject.name.Contains("SawBoardSocket (")) return;
             _inSocketZone = false;
             _visibleSocket = null;
         }
