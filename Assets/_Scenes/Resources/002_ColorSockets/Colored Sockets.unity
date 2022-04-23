@@ -1129,6 +1129,16 @@ PrefabInstance:
       propertyPath: hapticAction.actionPath
       value: /actions/default/out/Haptic
       objectReference: {fileID: 0}
+    - target: {fileID: 284326420880556587, guid: 731c683b6c393c240bb042da0e725018,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hands
+      objectReference: {fileID: 0}
+    - target: {fileID: 284326420880572953, guid: 731c683b6c393c240bb042da0e725018,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hands
+      objectReference: {fileID: 0}
     - target: {fileID: 284326420880790759, guid: 731c683b6c393c240bb042da0e725018,
         type: 3}
       propertyPath: m_Name

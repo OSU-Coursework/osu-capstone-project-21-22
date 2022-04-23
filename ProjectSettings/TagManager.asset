@@ -18,6 +18,7 @@ TagManager:
   - BandBoard
   - Hammer
   - hover_icon
+  - Hands
   layers:
   - Default
   - TransparentFX

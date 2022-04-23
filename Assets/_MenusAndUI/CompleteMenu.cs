@@ -206,33 +206,13 @@ public class CompleteMenu : MonoBehaviour
 
     private void EnablePointers(bool enable)
     {
-        // enable the dominant laser pointer
-        GameObject[] activeHudTextTaggedObjects = GameObject.FindGameObjectsWithTag("HudText");
+        GameObject[] activeHudTextTaggedObjects = GameObject.FindGameObjectsWithTag("Hands");
         foreach (GameObject obj in activeHudTextTaggedObjects)
         {
-            Debug.Log(obj.transform.parent.parent.tag);
-            // if this is a display board, do nothing
-            if (obj.transform.parent.parent.tag != "OtherHUDdisplay")
+            // add the pointers
+            if (enable && obj.transform.GetComponent<SteamVR_LaserPointer>() == null)
             {
-                // add the pointers
-                if (enable && obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>() == null)
-                {
-                    obj.transform.parent.parent.parent.parent.parent.gameObject.AddComponent<SteamVR_LaserPointer>();
-                }
-                // destroy the pointers
-                else if (obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>() != null)
-                {
-                    Destroy(obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>());
-
-                    // destroy the laser
-                    foreach (Transform child in obj.transform.parent.parent.parent.parent.parent)
-                    {
-                        if (child.gameObject.name.Contains("New Game Object"))
-                        {
-                            Destroy(child.gameObject);
-                        }
-                    }
-                }
+                obj.transform.gameObject.AddComponent<SteamVR_LaserPointer>();
             }
         }
     }
