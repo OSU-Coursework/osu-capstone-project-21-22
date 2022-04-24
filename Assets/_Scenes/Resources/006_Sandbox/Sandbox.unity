@@ -1021,5 +1021,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SandboxDecor
       objectReference: {fileID: 0}
+    - target: {fileID: 5782174464165061778, guid: 3b4caed00ca07cf418326d410be3c5c5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 022110323d53e4f44a23e7b37d90d5b8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b4caed00ca07cf418326d410be3c5c5, type: 3}
