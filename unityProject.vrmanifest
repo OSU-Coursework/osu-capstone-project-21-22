@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.vrtest.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\mjrad\\Desktop\\graded activity\\osu-capstone-project-21-22\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "C:\\development\\OSU Capstone Project\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "VR Test [Testing]"
