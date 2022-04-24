@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.19078934, g: 0.22856906, b: 0.27426136, a: 1}
+  m_IndirectSpecularColor: {r: 0.19077682, g: 0.22857276, b: 0.2742662, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1142,7 +1142,7 @@ PrefabInstance:
     - target: {fileID: 284326420880790759, guid: 731c683b6c393c240bb042da0e725018,
         type: 3}
       propertyPath: m_Name
-      value: PlayerVRWithHatSocket
+      value: PlayerVR
       objectReference: {fileID: 0}
     - target: {fileID: 284326420880790759, guid: 731c683b6c393c240bb042da0e725018,
         type: 3}

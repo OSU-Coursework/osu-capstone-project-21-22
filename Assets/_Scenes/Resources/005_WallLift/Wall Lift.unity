@@ -134,7 +134,7 @@ PrefabInstance:
     - target: {fileID: 284326420880790759, guid: 731c683b6c393c240bb042da0e725018,
         type: 3}
       propertyPath: m_Name
-      value: PlayerVRWithHatSocket
+      value: PlayerVR
       objectReference: {fileID: 0}
     - target: {fileID: 284326420880876703, guid: 731c683b6c393c240bb042da0e725018,
         type: 3}
