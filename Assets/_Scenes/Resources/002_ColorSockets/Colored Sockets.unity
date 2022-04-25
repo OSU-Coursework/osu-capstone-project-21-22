@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 29d2bb922f79ece4c90867d92e25976e, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 3c2476664a0b2ea4fb81a981d970a973, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.2038001, g: 0.25323686, b: 0.30745608, a: 1}
+  m_IndirectSpecularColor: {r: 0.19077682, g: 0.22857276, b: 0.2742662, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1129,10 +1129,20 @@ PrefabInstance:
       propertyPath: hapticAction.actionPath
       value: /actions/default/out/Haptic
       objectReference: {fileID: 0}
+    - target: {fileID: 284326420880556587, guid: 731c683b6c393c240bb042da0e725018,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hands
+      objectReference: {fileID: 0}
+    - target: {fileID: 284326420880572953, guid: 731c683b6c393c240bb042da0e725018,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hands
+      objectReference: {fileID: 0}
     - target: {fileID: 284326420880790759, guid: 731c683b6c393c240bb042da0e725018,
         type: 3}
       propertyPath: m_Name
-      value: PlayerVRWithHatSocket
+      value: PlayerVR
       objectReference: {fileID: 0}
     - target: {fileID: 284326420880790759, guid: 731c683b6c393c240bb042da0e725018,
         type: 3}
