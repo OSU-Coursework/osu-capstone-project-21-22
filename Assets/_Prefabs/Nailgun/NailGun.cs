@@ -4,7 +4,7 @@ using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
-public class NewNailGun : MonoBehaviour
+public class NailGun : MonoBehaviour
 {
     // The nail object to instantiate
     public GameObject nail;
