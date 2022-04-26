@@ -24,7 +24,11 @@ public class PauseMenu : MonoBehaviour
         // get the task watcher
         if (taskWatcher == null)
         {
-            taskWatcher = FindObjectsOfType<TaskWatcher>()[0];
+            // if there is one
+            if (FindObjectsOfType<TaskWatcher>().Length > 0)
+            {
+                taskWatcher = FindObjectsOfType<TaskWatcher>()[0];
+            }
         }
 
         // Set the player and hand objects
