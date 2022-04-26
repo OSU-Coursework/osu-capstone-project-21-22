@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR.InteractionSystem;
+using Valve.VR;
 
 public class HazardZone : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class HazardZone : MonoBehaviour
     // the hand objects
     public GameObject lHand;
     public GameObject rHand;
+
+    // whether this is in use
+    public bool in_use = false;
 
     void Awake()
     {
@@ -70,10 +74,10 @@ public class HazardZone : MonoBehaviour
         // if the player is not set, try to set it!
         if (player == null)
         {
-            var objs = Object.FindObjectsOfType<BodyCollider>();
+            var objs = Object.FindObjectsOfType<SteamVR_Fade>();
             if (objs[0] != null)
             {
-                player = objs[0].gameObject;
+                player = objs[0].transform.GetChild(0).GetChild(0).gameObject;
             }
         }
         // if the hand is not set, set it!
@@ -124,17 +128,31 @@ public class HazardZone : MonoBehaviour
     void UpdateUIState()
     {
         // deactivate if nothing that should be detected is present
-        if ((!headColl && !detectHands) || (!headColl && !handColl1 && !handColl2 && detectHands)) hazardUI.Deactivate();
+        // ONLY if NO areas detect anything
+        if ((!headColl && !detectHands) || (!headColl && !handColl1 && !handColl2 && detectHands))
+        {
+            in_use = false;
+            int flag = 0;
+            foreach (HazardZone zone in Object.FindObjectsOfType<HazardZone>())
+            {
+                if (zone.in_use) flag = 1;
+            }
+            if (flag == 0) {
+                hazardUI.Deactivate(gameObject);
+            }
+        }
         
         // send generic message
         if (headColl && !detectHands)
         {
+            in_use = true;
             hazardUI.Activate(gameObject, 0);
             hazardUI.SetMessage(0);
         }
         // if there are hands, show the hand message
         if ((headColl || handColl1 || handColl2) && detectHands) 
         {
+            in_use = true;
             hazardUI.Activate(gameObject, 1);
             hazardUI.SetMessage(1);
         }
@@ -148,8 +166,6 @@ public class HazardZone : MonoBehaviour
         if (other.gameObject == player) headColl = true;
 
         // if the hands enter
-        Debug.Log("--------------------------------------------------------------------");
-        Debug.Log(other.transform.parent.parent.gameObject.name);
         if (other.transform.parent.parent.gameObject == lHand) handColl1 = true;
         if (other.transform.parent.parent.gameObject == rHand) handColl2 = true;
     }
