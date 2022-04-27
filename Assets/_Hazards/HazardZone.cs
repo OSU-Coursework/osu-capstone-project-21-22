@@ -74,7 +74,7 @@ public class HazardZone : MonoBehaviour
         // if the player is not set, try to set it!
         if (player == null)
         {
-            var objs = Object.FindObjectsOfType<SteamVR_Fade>();
+            var objs = GameObject.FindGameObjectsWithTag("MainCamera");
             if (objs[0] != null)
             {
                 player = objs[0].transform.GetChild(0).GetChild(0).gameObject;
