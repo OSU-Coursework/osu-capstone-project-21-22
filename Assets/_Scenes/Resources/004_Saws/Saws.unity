@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 8bea1fe28e0878449ae2f387e86feb57,
+  m_LightingDataAsset: {fileID: 112000000, guid: 9eef1a803f038634c80494fd61495912,
     type: 2}
   m_LightingSettings: {fileID: 1676939293}
 --- !u!196 &4
@@ -324,6 +324,95 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &437828945
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542905613209680174, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerVR
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542905613209680174, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542905613209760120, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542905613220501428, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: head
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542905613220501428, guid: 6e6689d7c5738474896652142550a945,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6e6689d7c5738474896652142550a945, type: 3}
 --- !u!1001 &452668640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -987,7 +1076,7 @@ LightingSettings:
   m_PrefabAsset: {fileID: 0}
   m_Name: Settings.lighting
   serializedVersion: 3
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_EnableBakedLightmaps: 1
   m_EnableRealtimeLightmaps: 0
   m_RealtimeEnvironmentLighting: 1
