@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.19077682, g: 0.22857276, b: 0.2742662, a: 1}
+  m_IndirectSpecularColor: {r: 0.20380303, g: 0.25326285, b: 0.30745512, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -766,7 +766,7 @@ PrefabInstance:
     - target: {fileID: 3819940002134755664, guid: 9a9c17618ae3cdb40a5310ad139d3634,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3819940002134755664, guid: 9a9c17618ae3cdb40a5310ad139d3634,
         type: 3}
@@ -898,7 +898,7 @@ Transform:
   - {fileID: 1885651807}
   - {fileID: 1512387212}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &935042483
 MonoBehaviour:
@@ -949,7 +949,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 1347003622}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1082918831
 MonoBehaviour:
@@ -1185,90 +1185,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 599916905}
   - {fileID: 1082918830}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1357921719
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6542905613209487702, guid: 6e6689d7c5738474896652142550a945,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6542905613209680174, guid: 6e6689d7c5738474896652142550a945,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerVR
-      objectReference: {fileID: 0}
-    - target: {fileID: 6542905613220441042, guid: 6e6689d7c5738474896652142550a945,
-        type: 3}
-      propertyPath: hapticAction.actionPath
-      value: /actions/default/out/Haptic
-      objectReference: {fileID: 0}
-    - target: {fileID: 6542905613220490060, guid: 6e6689d7c5738474896652142550a945,
-        type: 3}
-      propertyPath: hapticAction.actionPath
-      value: /actions/default/out/Haptic
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6e6689d7c5738474896652142550a945, type: 3}
 --- !u!1001 &1366437686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1709,7 +1629,7 @@ Transform:
   - {fileID: 712888928}
   - {fileID: 326132905}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1806545791
 MonoBehaviour:
@@ -1885,7 +1805,7 @@ PrefabInstance:
     - target: {fileID: 7528362159264748156, guid: 4f782268a95bd6b45ad87742b6d2f43d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7528362159264748156, guid: 4f782268a95bd6b45ad87742b6d2f43d,
         type: 3}
@@ -1965,7 +1885,7 @@ PrefabInstance:
     - target: {fileID: 5100447774950622577, guid: 5a90a3d268be1894dadaa1b479ba2bcc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5100447774950622577, guid: 5a90a3d268be1894dadaa1b479ba2bcc,
         type: 3}
@@ -2056,7 +1976,7 @@ PrefabInstance:
     - target: {fileID: 6122807661305972786, guid: 50d2afcd09971ff41b79060bfcf0f4eb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6122807661305972786, guid: 50d2afcd09971ff41b79060bfcf0f4eb,
         type: 3}

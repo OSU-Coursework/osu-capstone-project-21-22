@@ -16,7 +16,7 @@ public class HazardZone : MonoBehaviour
 
 
     // the UI object and collision counts
-    private HazardDisplay hazardUI;
+    private HazardDisplay[] hazardUI = new HazardDisplay[2];
     private bool headColl = false;
     private bool handColl1 = false;
     private bool handColl2 = false;
@@ -34,7 +34,9 @@ public class HazardZone : MonoBehaviour
     void Awake()
     {
         // get the UI
-        hazardUI = GameObject.FindGameObjectsWithTag("HazardUI")[0].GetComponent<HazardDisplay>();
+        var objects = GameObject.FindGameObjectsWithTag("HazardUI");
+        hazardUI[0] = objects[0].GetComponent<HazardDisplay>();
+        hazardUI[1] = objects[2].GetComponent<HazardDisplay>();
 
         // deactivate the mesh renderer
         GetComponent<MeshRenderer>().enabled = false;
@@ -138,7 +140,8 @@ public class HazardZone : MonoBehaviour
                 if (zone.in_use) flag = 1;
             }
             if (flag == 0) {
-                hazardUI.Deactivate(gameObject);
+                hazardUI[0].Deactivate(gameObject);
+                hazardUI[1].Deactivate(gameObject);
             }
         }
         
@@ -146,15 +149,19 @@ public class HazardZone : MonoBehaviour
         if (headColl && !detectHands)
         {
             in_use = true;
-            hazardUI.Activate(gameObject, 0);
-            hazardUI.SetMessage(0);
+            hazardUI[0].Activate(gameObject, 0);
+            hazardUI[0].SetMessage(0);
+            hazardUI[1].Activate(gameObject, 0);
+            hazardUI[1].SetMessage(0);
         }
         // if there are hands, show the hand message
         if ((headColl || handColl1 || handColl2) && detectHands) 
         {
             in_use = true;
-            hazardUI.Activate(gameObject, 1);
-            hazardUI.SetMessage(1);
+            hazardUI[0].Activate(gameObject, 1);
+            hazardUI[0].SetMessage(1);
+            hazardUI[1].Activate(gameObject, 1);
+            hazardUI[1].SetMessage(1);
         }
     }
 

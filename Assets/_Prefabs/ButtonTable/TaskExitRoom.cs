@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR.InteractionSystem;
 
-public class TaskTutorial : Task 
+public class TaskExitRoom : Task 
 {
     public HoverButton _hoverButton;
 
