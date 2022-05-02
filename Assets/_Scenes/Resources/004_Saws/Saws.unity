@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.19077682, g: 0.22857276, b: 0.2742662, a: 1}
+  m_IndirectSpecularColor: {r: 0.20380303, g: 0.25326285, b: 0.30745512, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 8bea1fe28e0878449ae2f387e86feb57,
+  m_LightingDataAsset: {fileID: 112000000, guid: 9eef1a803f038634c80494fd61495912,
     type: 2}
   m_LightingSettings: {fileID: 1676939293}
 --- !u!196 &4
@@ -560,6 +560,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1251721115951172127, guid: 4f782268a95bd6b45ad87742b6d2f43d,
+        type: 3}
+      propertyPath: m_TargetEye
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431582663646575030, guid: 4f782268a95bd6b45ad87742b6d2f43d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 252.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5937035276200494268, guid: 4f782268a95bd6b45ad87742b6d2f43d,
+        type: 3}
+      propertyPath: m_TargetEye
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7528362159264748156, guid: 4f782268a95bd6b45ad87742b6d2f43d,
         type: 3}
       propertyPath: m_RootOrder
@@ -987,7 +1002,7 @@ LightingSettings:
   m_PrefabAsset: {fileID: 0}
   m_Name: Settings.lighting
   serializedVersion: 3
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_EnableBakedLightmaps: 1
   m_EnableRealtimeLightmaps: 0
   m_RealtimeEnvironmentLighting: 1

@@ -13,7 +13,7 @@ public class MainMenuCanvas : MonoBehaviour
     // this demo scene directory is named "Resources" to be compatible
     //   with the static method Resources.Load<T>("path").
     // https://docs.unity3d.com/2018.4/Documentation/ScriptReference/Resources.Load.html
-    private const string sceneDir = "Resources";
+    private const string sceneDir = "StreamingAssets";
 
     // public local objects
     public GameObject sceneCard;
@@ -55,7 +55,7 @@ public class MainMenuCanvas : MonoBehaviour
     private void LoadSceneList()
     {
         // get full path to scene list and count present scenes
-        string scenePath = (Application.dataPath + "/_Scenes/" + sceneDir);
+        string scenePath = (Application.streamingAssetsPath + "/_Scenes/");
         string[] sceneList = Directory.GetDirectories(scenePath);
         float num = (float)sceneList.Length;
 
@@ -82,7 +82,7 @@ public class MainMenuCanvas : MonoBehaviour
             cardthing.localScale = new Vector3(0.4f, 0.4f, 0.4f);
             
             // Fix the name of the path to be the name of the scene
-            string name_name = name[0].Substring((Application.dataPath + "/" + sceneDir + "/").Length);
+            string name_name = name[0].Substring((Application.streamingAssetsPath + "/_Scenes").Length);
             string form_name = name_name.Substring(name_name.IndexOf('\\') + 1);
             string final_name = form_name.Substring(form_name.IndexOf('\\') + 1);
             card_obj.transform.GetChild(0).gameObject.GetComponent<Text>().text = final_name.Remove(final_name.IndexOf('.'), 6);
@@ -99,10 +99,11 @@ public class MainMenuCanvas : MonoBehaviour
             {
                 // Fix the image path to be local
                 image[0] = image[0].Replace("\\", "/");
-                image[0] = image[0].Substring(image[0].IndexOf(sceneDir));
-                image[0] = image[0].Replace(sceneDir + "/", "");
-                image[0] = image[0].Remove(image[0].IndexOf('.'), 4);
-                var sprite = Resources.Load<Sprite>(image[0]);
+                Debug.Log(image[0]);
+                byte[] bytes = System.IO.File.ReadAllBytes(image[0]);
+                Texture2D tex = new Texture2D(2,2);
+                tex.LoadImage(bytes);
+                Sprite sprite = Sprite.Create(tex, new Rect(0f, 0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100f);
                 card_obj.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = sprite;
             }
         }
