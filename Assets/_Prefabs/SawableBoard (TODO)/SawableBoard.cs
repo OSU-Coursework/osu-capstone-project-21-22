@@ -22,56 +22,56 @@ public class SawableBoard : MonoBehaviour
     // whether this was just freed
     private bool justFreed = true;
 
-    //// we can use the onAttachedToHand/onDetachedFromHand
-    ////   events on an interactable to trigger socket attach
-    ////   and release methods.
+    // we can use the onAttachedToHand/onDetachedFromHand
+    //   events on an interactable to trigger socket attach
+    //   and release methods.
     //private Interactable _interactable;
-    //// a reference to the objects rigidbody will allow us to
-    ////   disable gravity so that the object hovers in the socket.
-    //private Rigidbody _rigidbody;
-    //// a socket is visible when an object is inside of its
-    ////   collision boundary.
-    //private Socket _visibleSocket;
+    // a reference to the objects rigidbody will allow us to
+    //   disable gravity so that the object hovers in the socket.
+    private Rigidbody _rigidbody;
+    // a socket is visible when an object is inside of its
+    //   collision boundary.
+    private Socket _visibleSocket;
 
-    //// a reference to _visibleSocket once it is freed
-    //private Socket _lastSocket;
+    // a reference to _visibleSocket once it is freed
+    private Socket _lastSocket;
 
-    //// these flags are useful for managing the state of a
-    ////   socketable object.
-    //private bool _inSocketZone;
-    //public bool _attachedToSocket;
+    // these flags are useful for managing the state of a
+    //   socketable object.
+    private bool _inSocketZone;
+    public bool _attachedToSocket;
 
-    //// when this count hits 0, the board breaks
-    //private int hits = 10;
-    //private bool broken = false;
+    // when this count hits 0, the board breaks
+    private int hits = 10;
+    private bool broken = false;
 
-    //// this keeps track of whether the board has been initialized
-    //private bool _doneInit = false;
+    // this keeps track of whether the board has been initialized
+    private bool _doneInit = false;
 
-    //// the max size of the board, when put together
-    //public int max_length = 5;
+    // the max size of the board, when put together
+    public int max_length = 5;
 
-    //// how long the left board should be
-    //[Header("Size of the left board")]
-    //public float board1Len;
+    // how long the left board should be
+    [Header("Size of the left board")]
+    public float board1Len;
 
-    //[Header("Related Objects")]
-    //// the default board object
-    //public GameObject defaultBoard;
+    [Header("Related Objects")]
+    // the default board object
+    public GameObject defaultBoard;
 
-    //// the first board object
-    //public GameObject Board1;
+    // the first board object
+    public GameObject Board1;
 
-    //// the second board object
-    //public GameObject Board2;
+    // the second board object
+    public GameObject Board2;
 
-    //void Awake()
-    //{
+    // void Awake()
+    // {
     //    InitBoards();
-    //}
+    // }
 
-    //public void InitBoards()
-    //{
+    // public void InitBoards()
+    // {
     //    _doneInit = true;
 
     //    // get handle for steamvr interactable script
@@ -134,10 +134,10 @@ public class SawableBoard : MonoBehaviour
 
     //    // change the active status
     //    active = startActive;
-    //}
+    // }
 
-    //void Update()
-    //{
+    // void Update()
+    // {
     //    // initialize if somehow not ready
     //    if (active && !_doneInit)
     //    {
@@ -187,10 +187,10 @@ public class SawableBoard : MonoBehaviour
     //        }
     //    }
 
-    //}
+    // }
 
-    //private void AttachToSocket(Hand hand)
-    //{
+    // private void AttachToSocket(Hand hand)
+    // {
     //    Debug.Log(gameObject.name);
     //    if (!active) return;
     //    // if inside socket zone while being let go from hand, attach to socket.
@@ -202,10 +202,10 @@ public class SawableBoard : MonoBehaviour
     //        _rigidbody.useGravity = false;
     //        if (_visibleSocket._vanishOnUse) _visibleSocket.gameObject.GetComponent<MeshRenderer>().enabled = false;
     //    }
-    //}
+    // }
 
-    //private void DetachFromSocket(Hand hand)
-    //{
+    // private void DetachFromSocket(Hand hand)
+    // {
     //    if (!active) return;
     //    // if attached to socket while being grabbed by hand, release from socket.
     //    if (_attachedToSocket)
@@ -216,10 +216,10 @@ public class SawableBoard : MonoBehaviour
     //        _rigidbody.useGravity = true;
     //    }
 
-    //}
+    // }
 
-    //private void OnTriggerStay(Collider other)
-    //{
+    // private void OnTriggerStay(Collider other)
+    // {
     //    if (!active || justFreed) return;
     //    // don't run unless colliding with a socket.
     //    if (other.gameObject.name == "SawBoardSocket" || other.gameObject.name.Contains("SawBoardSocket ("))
@@ -242,10 +242,10 @@ public class SawableBoard : MonoBehaviour
     //    {
     //        hittingSaw = true;
     //    }
-    //}
+    // }
 
-    //private void OnTriggerExit(Collider other)
-    //{
+    // private void OnTriggerExit(Collider other)
+    // {
     //    if (!active) return;
 
     //    // unset the one-way flag
@@ -263,10 +263,10 @@ public class SawableBoard : MonoBehaviour
     //    {
     //        hittingSaw = false;
     //    }
-    //}
+    // }
 
-    //private void DecHitCount()
-    //{
+    // private void DecHitCount()
+    // {
     //    // do nothing if this is broken
     //    if (broken || !_inUse) return;
     //    // add a hit, then test if the hitcount is done
@@ -276,10 +276,10 @@ public class SawableBoard : MonoBehaviour
     //        broken = true;
     //        BreakBoard();
     //    }
-    //}
+    // }
 
-    //private void BreakBoard()
-    //{
+    // private void BreakBoard()
+    // {
     //    // Free the socket
     //    _attachedToSocket = false;
     //    _visibleSocket.gameObject.GetComponent<MeshRenderer>().enabled = true;
@@ -315,10 +315,10 @@ public class SawableBoard : MonoBehaviour
 
     //    // Destroy this object
     //    GameObject.Destroy(gameObject);
-    //}
+    // }
 
-    //void UpdateBoardPos()
-    //{
+    // void UpdateBoardPos()
+    // {
     //    float ratio = (float)board1Len / (float)max_length;
     //    float size = (float)ratio * max_length;
     //    float board2Len = max_length - board1Len;
@@ -349,10 +349,10 @@ public class SawableBoard : MonoBehaviour
     //        Board2.transform.localPosition = new Vector3((-0.153f * board2Len), 0f, 0f);
     //        Board2.transform.localEulerAngles = new Vector3(-90f, 0f, 90f);
     //    }
-    //}
+    // }
 
-    //public void ReInitComponents()
-    //{
+    // public void ReInitComponents()
+    // {
     //    // make this active
     //    active = true;
 
@@ -366,5 +366,5 @@ public class SawableBoard : MonoBehaviour
     //    // get handle for attached rigidbody to disable
     //    //   gravity when needed
     //    _rigidbody = GetComponent<Rigidbody>();
-    //}
+    // }
 }

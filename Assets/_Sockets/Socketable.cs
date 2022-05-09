@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using Valve.VR.InteractionSystem;
+// using Valve.VR.InteractionSystem;
 
 /// <summary>
 /// Attach this script to an interactable game object
@@ -9,33 +9,33 @@ using UnityEngine;
 /// </summary>
 public class Socketable : MonoBehaviour
 {
-    // we can use the onAttachedToHand/onDetachedFromHand
-    //   events on an interactable to trigger socket attach
-    //   and release methods.
-    //private Interactable _interactable;
-    //// a reference to the objects rigidbody will allow us to
-    ////   disable gravity so that the object hovers in the socket.
-    //private Rigidbody _rigidbody;
-    //// a socket is visible when an object is inside of its
-    ////   collision boundary.
-    //private Socket _visibleSocket;
-    //public Socket VisibleSocket { get { return _visibleSocket; } }
+    // // we can use the onAttachedToHand/onDetachedFromHand
+    // //   events on an interactable to trigger socket attach
+    // //   and release methods.
+    // private Interactable _interactable;
+    // // a reference to the objects rigidbody will allow us to
+    // //   disable gravity so that the object hovers in the socket.
+    // private Rigidbody _rigidbody;
+    // // a socket is visible when an object is inside of its
+    // //   collision boundary.
+    // private Socket _visibleSocket;
+    // public Socket VisibleSocket { get { return _visibleSocket; } }
 
-    //// these flags are useful for managing the state of a
-    ////   socketable object.
-    //private bool _inSocketZone;
-    //private bool _attachedToSocket;
-    //public bool AttachedToSocket { get { return _attachedSocket; } }
-    //// by keeping a reference to the socket this item is
-    ////   attached to, we can use its values directly
-    ////   and not leak into other visible sockets
-    //protected Socket _attachedSocket;
+    // // these flags are useful for managing the state of a
+    // //   socketable object.
+    // private bool _inSocketZone;
+    // private bool _attachedToSocket;
+    // public bool AttachedToSocket { get { return _attachedSocket; } }
+    // // by keeping a reference to the socket this item is
+    // //   attached to, we can use its values directly
+    // //   and not leak into other visible sockets
+    // protected Socket _attachedSocket;
 
-    //// This flag allows an object to be socketed
-    //public bool _canBeSocketed = true;
+    // // This flag allows an object to be socketed
+    // public bool _canBeSocketed = true;
 
-    //void Awake()
-    //{
+    // void Awake()
+    // {
     //    // get handle for steamvr interactable script
     //    _interactable = GetComponent<Interactable>();
  
@@ -46,10 +46,10 @@ public class Socketable : MonoBehaviour
     //    // get handle for attached rigidbody to disable
     //    //   gravity when needed
     //    _rigidbody = GetComponent<Rigidbody>();
-    //}
+    // }
 
-    //void Update()
-    //{
+    // void Update()
+    // {
     //    // reset the rigidbody
     //    if (_rigidbody == null && GetComponent<Rigidbody>() != null)
     //    {
@@ -86,19 +86,19 @@ public class Socketable : MonoBehaviour
     //    }
 
     //    LateUpdate();
-    //}
+    // }
 
-    ///// <summary>
-    ///// Extended classes can implement this to run code
-    ///// after the normal update routine is complete.
-    ///// </summary>
-    //protected virtual void LateUpdate()
-    //{
+    // /// <summary>
+    // /// Extended classes can implement this to run code
+    // /// after the normal update routine is complete.
+    // /// </summary>
+    // protected virtual void LateUpdate()
+    // {
     //    return;
-    //}
+    // }
 
-    //private void AttachToSocket(Hand hand)
-    //{
+    // private void AttachToSocket(Hand hand)
+    // {
     //    // if inside socket zone while being let go from hand, attach to socket.
     //    if (!_attachedToSocket && _inSocketZone && !_visibleSocket.HoldingSocketable)
     //    {
@@ -114,10 +114,10 @@ public class Socketable : MonoBehaviour
     //            }
     //        }
     //    }
-    //}
+    // }
 
-    //private void DetachFromSocket(Hand hand)
-    //{
+    // private void DetachFromSocket(Hand hand)
+    // {
     //    // if attached to socket while being grabbed by hand, release from socket.
     //    if (_attachedToSocket)
     //    {
@@ -128,10 +128,10 @@ public class Socketable : MonoBehaviour
     //        _attachedSocket = null;
     //    }
 
-    //}
+    // }
 
-    //private void OnTriggerStay(Collider other)
-    //{
+    // private void OnTriggerStay(Collider other)
+    // {
     //    if (!_canBeSocketed) return;
     //    // don't run unless colliding with a socket.
     //    if (other.GetComponent<Socket>())
@@ -141,10 +141,10 @@ public class Socketable : MonoBehaviour
     //        _inSocketZone = true;
     //        _visibleSocket = other.GetComponent<Socket>();
     //    }
-    //}
+    // }
 
-    //private void OnTriggerExit(Collider other)
-    //{
+    // private void OnTriggerExit(Collider other)
+    // {
     //    if (!_canBeSocketed) return;
     //    // don't run unless colliding with a socket.
     //    if (other.GetComponent<Socket>())
@@ -154,5 +154,5 @@ public class Socketable : MonoBehaviour
     //        _inSocketZone = false;
     //        _visibleSocket = null;
     //    }
-    //}
+    // }
 }
