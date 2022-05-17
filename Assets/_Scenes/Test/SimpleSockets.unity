@@ -984,8 +984,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 49720392533ec744ebb3535859cf5f9c, type: 3}
 --- !u!4 &4096099526978539401 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4562988289237899032, guid: 49720392533ec744ebb3535859cf5f9c,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 4096099526978539400}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5898769961193873947
@@ -1067,7 +1066,7 @@ PrefabInstance:
     - target: {fileID: 284326420880790759, guid: 731c683b6c393c240bb042da0e725018,
         type: 3}
       propertyPath: m_Name
-      value: PlayerVRWithHatSocket
+      value: PlayerVR
       objectReference: {fileID: 0}
     - target: {fileID: 284326420880876703, guid: 731c683b6c393c240bb042da0e725018,
         type: 3}

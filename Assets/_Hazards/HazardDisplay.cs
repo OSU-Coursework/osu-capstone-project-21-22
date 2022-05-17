@@ -33,8 +33,9 @@ public class HazardDisplay : MonoBehaviour
         if (msg == 1) transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "REMOVE YOUR HANDS\nOR HEAD FROM THE YELLOW AREA";
     }
 
-    public void Deactivate()
+    public void Deactivate(GameObject zone)
     {
+        if (zone != currZone) return;
         // clear the zone and make this object inactive
         _currZone = null;
         transform.GetChild(0).gameObject.SetActive(false);
