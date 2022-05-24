@@ -910,7 +910,7 @@ PrefabInstance:
     - target: {fileID: 9143770602167829693, guid: 2e39b4114a21d464b941c7b71bea4dcd,
         type: 3}
       propertyPath: m_Text
-      value: 'We have included many items that can be interected with.
+      value: 'We have included many items that can be interacted with.
 
 
         You
