@@ -99,7 +99,6 @@ public class MainMenuCanvas : MonoBehaviour
             {
                 // Fix the image path to be local
                 image[0] = image[0].Replace("\\", "/");
-                Debug.Log(image[0]);
                 byte[] bytes = System.IO.File.ReadAllBytes(image[0]);
                 Texture2D tex = new Texture2D(2,2);
                 tex.LoadImage(bytes);
@@ -198,11 +197,14 @@ public class MainMenuCanvas : MonoBehaviour
 
     private void EnablePointers()
     {
-        // enable the dominant laser pointer
-        GameObject[] activeHudTextTaggedObjects = GameObject.FindGameObjectsWithTag("HudText");
+        GameObject[] activeHudTextTaggedObjects = GameObject.FindGameObjectsWithTag("Hands");
         foreach (GameObject obj in activeHudTextTaggedObjects)
         {
-            obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>().enabled = true;
+            // if this is a display board, do nothing
+            if (obj.name == "LeftHand" || obj.name == "RightHand")
+            {
+                obj.AddComponent<SteamVR_LaserPointer>();
+            }
         }
     }
 
@@ -226,7 +228,10 @@ public class MainMenuCanvas : MonoBehaviour
     // fade out, wait, then open the target scene
     private IEnumerator WaitToLoad(string scene_name)
     {
-        StartCoroutine(Object.FindObjectsOfType<FadeUI>()[0].FadeOut(1.5f));
+        foreach (FadeUI fadeobj in Object.FindObjectsOfType<FadeUI>())
+        {
+            StartCoroutine(fadeobj.FadeOut(1.5f));
+        }
         yield return new WaitForSeconds(1.5f);
         RealOpenScene(scene_name);
     }

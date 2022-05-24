@@ -136,7 +136,10 @@ public class CompleteMenu : MonoBehaviour
         // fade out the camera, then move the player to the target position
         //SteamVR_Fade.Start(Color.black, 3f, true);
         // Fade the canvas
-        StartCoroutine(taskWatcher.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<FadeUI>().FadeOut(3f));
+        foreach (FadeUI fadeobj in Object.FindObjectsOfType<FadeUI>())
+        {
+            StartCoroutine(fadeobj.FadeOut(3f));
+        }
         StartCoroutine(WaitForTime());
 
     }
@@ -154,7 +157,10 @@ public class CompleteMenu : MonoBehaviour
         target.transform.parent.eulerAngles = new Vector3(0, fadecam.transform.eulerAngles.y, 0);
         // fade back in
         //SteamVR_Fade.Start(Color.clear, 2f, true);
-        StartCoroutine(taskWatcher.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<FadeUI>().FadeIn(1f));
+        foreach (FadeUI fadeobj in Object.FindObjectsOfType<FadeUI>())
+        {
+            StartCoroutine(fadeobj.FadeIn(1.5f));
+        }
 
 
         // enable the laser pointer
@@ -209,10 +215,10 @@ public class CompleteMenu : MonoBehaviour
         GameObject[] activeHudTextTaggedObjects = GameObject.FindGameObjectsWithTag("Hands");
         foreach (GameObject obj in activeHudTextTaggedObjects)
         {
-            // add the pointers
-            if (enable && obj.transform.GetComponent<SteamVR_LaserPointer>() == null)
+            // if this is a display board, do nothing
+            if (obj.name == "LeftHand" || obj.name == "RightHand")
             {
-                obj.transform.gameObject.AddComponent<SteamVR_LaserPointer>();
+                obj.AddComponent<SteamVR_LaserPointer>();
             }
         }
     }
@@ -236,7 +242,10 @@ public class CompleteMenu : MonoBehaviour
     // Wait a couple seconds, fade out and open a scene
     private IEnumerator WaitToClose(int mode)
     {
-        StartCoroutine(taskWatcher.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<FadeUI>().FadeOut(1.5f));
+        foreach (FadeUI fadeobj in Object.FindObjectsOfType<FadeUI>())
+        {
+            StartCoroutine(fadeobj.FadeOut(1.5f));
+        }
         yield return new WaitForSeconds(1.5f);
         if (mode == 1) Restart();
         if (mode == 2) Close();
