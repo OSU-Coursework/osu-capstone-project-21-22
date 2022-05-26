@@ -129,10 +129,6 @@ public class CompleteMenu : MonoBehaviour
             Destroy(tele.gameObject);
         }
 
-        // remove global lighting
-        GameObject.Find("Directional Light").GetComponent<Light>().color = Color.black;
-        GameObject.Find("Directional Light").GetComponent<Light>().intensity = 0;
-
         // fade out the camera, then move the player to the target position
         //SteamVR_Fade.Start(Color.black, 3f, true);
         // Fade the canvas
