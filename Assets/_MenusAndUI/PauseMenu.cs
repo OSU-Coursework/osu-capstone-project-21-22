@@ -202,25 +202,25 @@ public class PauseMenu : MonoBehaviour
     private void EnablePointers(bool enable)
     {
         // enable the dominant laser pointer
-        GameObject[] activeHudTextTaggedObjects = GameObject.FindGameObjectsWithTag("HudText");
+        GameObject[] activeHudTextTaggedObjects = GameObject.FindGameObjectsWithTag("Hands");
         foreach (GameObject obj in activeHudTextTaggedObjects)
         {
-            Debug.Log(obj.transform.parent.parent.tag);
+            Debug.Log(obj.name);
             // if this is a display board, do nothing
-            if (obj.transform.parent.parent.tag != "OtherHUDdisplay")
+            if (obj.name == "LeftHand" || obj.name == "RightHand")
             {
                 // add the pointers
-                if (enable && obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>() == null)
+                if (enable && obj.GetComponent<SteamVR_LaserPointer>() == null)
                 {
-                    obj.transform.parent.parent.parent.parent.parent.gameObject.AddComponent<SteamVR_LaserPointer>();
+                    obj.AddComponent<SteamVR_LaserPointer>();
                 }
                 // destroy the pointers
-                else if (obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>() != null)
+                else if (obj.GetComponent<SteamVR_LaserPointer>() != null)
                 {
-                    Destroy(obj.transform.parent.parent.parent.parent.parent.GetComponent<SteamVR_LaserPointer>());
+                    Destroy(obj.GetComponent<SteamVR_LaserPointer>());
 
                     // destroy the laser
-                    foreach (Transform child in obj.transform.parent.parent.parent.parent.parent)
+                    foreach (Transform child in obj.transform)
                     {
                         if (child.gameObject.name.Contains("New Game Object"))
                         {
@@ -244,7 +244,10 @@ public class PauseMenu : MonoBehaviour
     // Wait a couple seconds, fade out and open a scene
     private IEnumerator WaitToClose(int mode)
     {
-        StartCoroutine(taskWatcher.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<FadeUI>().FadeOut(1.5f));
+        foreach (FadeUI fadeobj in Object.FindObjectsOfType<FadeUI>())
+        {
+            StartCoroutine(fadeobj.FadeOut(1.5f));
+        }
         yield return new WaitForSeconds(1.5f);
         if (mode == 1) Restart();
         if (mode == 2) Close();
